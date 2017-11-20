@@ -1,0 +1,76 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<<<<<<< HEAD
+<mapper namespace="com.zxbangban.dao.CustomerDao">
+    <insert id="newCustomer" parameterType="Customer">
+        INSERT INTO customer
+        (name, telphone, program_address, create_time, notes)
+        VALUES (#{customer.name}, #{customer.telphone}, #{customer.programAddress}, #{customer.createTime},
+                #{customer.notes})
+    </insert>
+
+    <select id="queryAll" resultType="Customer">
+        SELECT
+            `id`,
+            name,
+            program_address,
+            telphone,
+            priority,
+            create_time,
+            notes
+        FROM customer
+        ORDER BY create_time DESC
+    </select>
+
+    <select id="queryByTel" resultType="Customer">
+        SELECT
+            id,
+            name,
+            program_address,
+            priority,
+            create_time,
+            notes
+        FROM customer
+        WHERE telphone = #{tel}
+        ORDER BY create_time DESC
+        LIMIT 3
+    </select>
+
+    <delete id="delete" parameterType="long">
+        DELETE FROM customer
+        WHERE id = #{id}
+    </delete>
+
+
+</mapper>
+=======
+<mapper namespace="dao.CustomerDao">
+
+    <insert id="insertCustomer" parameterType="Customer">
+        insert ignore into customer
+        (name,telphone,create_time)
+        VALUES
+        (#{customer.name},#{customer.telphone},#{customer.createTime})
+    </insert>
+
+    <select id="queryByTel" resultType="Customer" parameterType="String">
+        SELECT id,name,telphone,create_time
+        FROM customer
+        WHERE telphone = #{telphone}
+    </select>
+
+    <select id="queryAll" resultType="Customer">
+        SELECT id,name,telphone,create_time
+        FROM customer
+    </select>
+
+    <select id="queryById" resultType="Customer" parameterType="long">
+        SELECT id,name,telphone,create_time
+        FROM customer
+        WHERE id = #{id}
+    </select>
+
+
+</mapper>
+>>>>>>> 06de62988082376029fa3db2b096013a6c3894b8

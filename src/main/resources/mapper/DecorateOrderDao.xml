@@ -1,0 +1,38 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.DecorateOrderDao">
+
+    <insert id="insertDecrateOrder" parameterType="DecorateOrder">
+        insert into decorate_order
+          (customer_id,employee_id,service_id,number)
+        VALUES
+          (#{decorateOrder.id},#{decorateOrder.employeeId},#{decorateOrder.serviceId},#{number})
+    </insert>
+
+    <select id="queryByCustomerId" resultType="DecorateOrder" parameterType="long">
+        SELECT
+          id,customer_id,employee_id,state,create_time,warranty,service_id,notes
+        FROM decorate_order
+        WHERE customer_id = #{id}
+    </select>
+
+    <select id="queryAll" resultType="DecorateOrder">
+        SELECT
+          id,customer_id,employee_id,state,create_time,warranty,service_id,notes
+        FROM decorate_order
+    </select>
+    <select id="queryByEmployeeId" resultType="DecorateOrder" parameterType="long">
+        SELECT
+            id,customer_id,employee_id,state,create_time,warranty,service_id,notes,number
+        FROM decorate_order
+        WHERE employee_id = #{id}
+    </select>
+    <select id="queryByNumber" resultType="DecorateOrder" parameterType="String">
+        SELECT
+            id,customer_id,employee_id,state,create_time,warranty,service_id,notes,number
+        FROM decorate_order
+        WHERE number = #{number}
+    </select>
+    
+</mapper>

@@ -1,0 +1,36 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.EmployeeDao">
+
+    <select id="queryAll" resultType="Employee">
+        SELECT id,name,age,job_id,state,job_age,job_salary,certificated,deposit,native_place,location,id_card
+        FROM employee_profile
+    </select>
+    <select id="queryByJobId" resultType="Employee" parameterType="long">
+        SELECT id,name,age,job_id,state,job_age,job_salary,certificated,deposit,native_place,location,id_card
+        FROM employee_profile
+        WHERE job_id = #{id}
+
+    </select>
+
+    <select id="queryByName" resultType="Employee" parameterType="String">
+        SELECT id,name,age,job_id,state,job_age,job_salary,certificated,deposit,native_place,location,id_card
+        FROM employee_profile
+        WHERE name = #{name}
+    </select>
+
+    <select id="queryById" resultType="Employee" parameterType="long">
+        SELECT id,name,age,job_id,state,job_age,job_salary,certificated,deposit,native_place,location,id_card
+        FROM employee_profile
+        WHERE id = #{id}
+    </select>
+
+    <insert id="insertEmployee" parameterType="Employee">
+        INSERT INTO employee_profile
+          (id,name,age,job_id,job_age,job_salary,deposit,native_place,location,id_card)
+        VALUES (#{employee.id},#{employee.name},#{employee.age},#{employee.jobId},#{employee.jobAge},#{employee.jobSalary},
+        #{employee.deposit},#{employee.nativePlace},#{employee.location},#{employee.idCard})
+    </insert>
+
+</mapper>

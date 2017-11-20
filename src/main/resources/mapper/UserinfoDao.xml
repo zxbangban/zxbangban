@@ -1,0 +1,49 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<<<<<<< HEAD
+<mapper namespace="com.zxbangban.dao.UserInfoDao">
+    <insert id="newWorkerInfo" parameterType="UserInfo">
+        INSERT INTO userinfo
+          (username,password,telphone,create_time)
+        VALUES (#{userInfo.username},#{userInfo.password},#{userInfo.telphone},#{userInfo.createTime})
+    </insert>
+
+    <select id="queryByUsername" parameterType="String" resultType="UserInfo">
+        SELECT user_id,telphone,username,password,role_id,authen,head_img_url,member_level
+        FROM userinfo WHERE username = #{username}
+    </select>
+
+    <select id="queryTelByUsername" parameterType="String" resultType="String">
+        SELECT telphone
+        FROM userinfo WHERE username = #{username}
+    </select>
+
+    <update id="updatePassword" parameterType="String">
+        UPDATE userinfo
+        SET password = #{password}
+        WHERE username = #{username}
+=======
+<mapper namespace="dao.UserinfoDao">
+    <select id="queryByName" resultType="Userinfo" parameterType="string">
+      SELECT userinfo_id,username,password,create_time,telphone,permission
+      FROM userinfo WHERE username = #{username}
+    </select>
+
+    <insert id="insertUserinfo" parameterType="Userinfo">
+      INSERT INTO userinfo
+        (username,password,create_time,telphone)
+      VALUES (#{userinfo.username},#{userinfo.password},#{userinfo.createTime},#{userinfo.telphone})
+    </insert>
+
+    <select id="queryPermissionById" resultType="short" parameterType="long">
+        SELECT permission
+        FROM userinfo WHERE userinfo_id = #{id}
+    </select>
+    
+    <update id="updateUserinfoAuth" parameterType="long">
+        UPDATE userinfo SET permission = permission + 1
+        WHERE userinfo_id = #{userId}
+>>>>>>> 06de62988082376029fa3db2b096013a6c3894b8
+    </update>
+</mapper>

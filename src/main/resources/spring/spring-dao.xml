@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+<<<<<<< HEAD
+ http://www.springframework.org/schema/beans/spring-beans.xsd
+ http://www.springframework.org/schema/context
+ http://www.springframework.org/schema/context/spring-context.xsd">
+=======
+ http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+>>>>>>> 06de62988082376029fa3db2b096013a6c3894b8
+    <!--mybatis-->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+    <!--mysql-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+<<<<<<< HEAD
+        <property name="driverClass" value="${jdbc.driver}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="user" value="${jdbc.user}"/>
+        <property name="password" value="${jdbc.password}"/>
+=======
+        <property name="driverClass" value="${driver}"/>
+        <property name="jdbcUrl" value="${url}"/>
+        <property name="user" value="root"/>
+        <property name="password" value="${password}"/>
+>>>>>>> 06de62988082376029fa3db2b096013a6c3894b8
+        <!--c3p0-->
+        <property name="maxPoolSize" value="30"/>
+        <property name="minPoolSize" value="10"/>
+        <property name="autoCommitOnClose" value="false"/>
+        <property name="checkoutTimeout" value="1000"/>
+        <property name="acquireRetryAttempts" value="2"/>
+
+
+    </bean>
+
+    <!--sqlSessionFactory-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+<<<<<<< HEAD
+        <property name="typeAliasesPackage" value="com.zxbangban.entity"/>
+=======
+        <property name="typeAliasesPackage" value="entity"/>
+>>>>>>> 06de62988082376029fa3db2b096013a6c3894b8
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+    </bean>
+
+    <!--scan-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+<<<<<<< HEAD
+        <property name="basePackage" value="com.zxbangban.dao"/>
+=======
+        <property name="basePackage" value="dao"/>
+>>>>>>> 06de62988082376029fa3db2b096013a6c3894b8
+    </bean>
+</beans>

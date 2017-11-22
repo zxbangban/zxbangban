@@ -1,6 +1,5 @@
 package com.zxbangban.service;
 
-import com.zxbangban.entity.WorkerInfo;
 import com.zxbangban.entity.WorkerProfile;
 import org.springframework.stereotype.Service;
 

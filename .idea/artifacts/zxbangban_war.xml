@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="zxbangban:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="zxbangban.war">
+      <element id="artifact" artifact-name="zxbangban:war exploded" />
+    </root>
+  </artifact>
+</component>

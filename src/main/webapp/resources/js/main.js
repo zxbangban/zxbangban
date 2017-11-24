@@ -453,7 +453,6 @@ var usersignup = {
                 }
             });
 
-
             var $name = $("input[name=name]");
             $name.blur(function () {
                 valiName();

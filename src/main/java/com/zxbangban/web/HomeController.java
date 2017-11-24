@@ -95,7 +95,7 @@ public class HomeController {
      */
     @RequestMapping("/termsofuse")
     public String termsofuser(){
-        return "termsofservice";
+        return "support/termsofservice";
     }
 
     /**
@@ -113,7 +113,7 @@ public class HomeController {
 
     @RequestMapping("/privacy")
     public String privacy(){
-        return "privacy";
+        return "support/privacy";
     }
 
     /**
@@ -138,7 +138,7 @@ public class HomeController {
      */
     @RequestMapping("/record")
     public String record(){
-        return "record";
+        return "support/record";
     }
 
 
@@ -180,7 +180,7 @@ public class HomeController {
 
     @RequestMapping("/test")
     public String test(){
-        return "activity/test2";
+        return "beta/effect";
     }
 
 

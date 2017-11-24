@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>隐私 | 装修帮办服务平台</title>
-    <%@include file="common/head.jsp"%>
+    <%@include file="../common/head.jsp"%>
     <style type="text/css">
         .panel-body p{
             font-size: 14px;
@@ -18,7 +18,7 @@
     </style>
 </head>
 <body>
-<%@include file="common/header.jsp"%>
+<%@include file="../common/header.jsp"%>
 <div class="page-wrapper">
     <div class="container">
         <div class="jumbotron">
@@ -230,7 +230,7 @@
         </div>
     </div>
 </div>
-<%@include file="common/footer.jsp"%>
+<%@include file="../common/footer.jsp"%>
 </body>
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>

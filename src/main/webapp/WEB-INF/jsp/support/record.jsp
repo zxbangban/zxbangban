@@ -2,10 +2,10 @@
 <html>
 <head>
     <title>审批许可证</title>
-    <%@include file="common/head.jsp"%>
+    <%@include file="../common/head.jsp"%>
 </head>
 <body>
-<%@include file="common/header.jsp"%>
+<%@include file="../common/header.jsp"%>
 <div class="page-wrapper">
     <div class="container">
         <div class="row clearfix">
@@ -17,7 +17,7 @@
         </div>
     </div>
 </div>
-<%@include file="common/footer.jsp"%>
+<%@include file="../common/footer.jsp"%>
 </body>
-<%@include file="common/script.jsp"%>
+<%@include file="../common/script.jsp"%>
 </html>

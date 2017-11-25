@@ -160,6 +160,16 @@ public class HomeController {
         return "shop/home";
     }
 
+
+    /**
+     *
+     * @return 装修效果图页面
+     */
+    @RequestMapping("/effect")
+    public String effect(){
+        return "effect/effect";
+    }
+
     /**
      *
      * @return  工人入驻页面跳转

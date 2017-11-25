@@ -1,5 +1,4 @@
 
-
 //选项卡封装
 function tabFun(aBtn,aDiv){
     for(var i=0;i<aBtn.length;i++){

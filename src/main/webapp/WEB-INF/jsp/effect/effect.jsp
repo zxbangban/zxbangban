@@ -746,6 +746,12 @@
             return false;
         });
     })
-
+    $.ajax({
+        type:"GET",
+        url:"pbl.json",
+        success:function(msg){
+            console.log(msg);
+        }
+    })
 </script>
 </html>

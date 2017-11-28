@@ -419,10 +419,10 @@ table{border-collapse:collapse;border-spacing:0}
 .local_top_nav>li>a img{width:80px;height:80px;margin-top:10px;border-radius:50%}
 .local_top_nav>li a>span{width:100%;display:inline-block;text-align:center;padding-top:20px}
 .tab-content{margin-top:30px;margin-bottom:30px;box-shadow:5px 0 6px #000}
-.tab-pane ul li{display:inline-block;width:18%;margin-left:15px;margin-top:15px}
+.tab-pane ul li{display:inline-block;width:18%;height:150px;margin-left:15px;margin-top:15px}
 .tab-pane ul li a{position:relative}
 .tab-pane ul li a span{position:absolute;bottom:0;left:0;display:inline-block;width:100%;height:20px;line-height:1.25rem;text-align:center;color:#FFF;font-size:.875rem;background:rgba(99,99,99,.5)}
-.tab-pane ul li a img{width:100%;display:inline-block}
+.tab-pane ul li a img{width:100%; height:100%; display:inline-block}
 /* effect.jsp css end  */
 @media screen and (min-width:1024px){
     /*pc*/

@@ -10,27 +10,27 @@
     <div class="container">
         <div class="row clearfix">
             <div class="col-md-3 col-sm-6 col-xs-6 column">
-                <h4>官方商城</h4>
-                <p>我的订单</p>
-                <p>工人信息</p>
-                <p><a href="${pageContext.request.contextPath}/contact_us" >与我们联系</a></p>
+                <h4 class="h4">官方商城</h4>
+                <p class="pText">我的订单</p>
+                <p class="pText">工人信息</p>
+                <p class="pText"><a href="${pageContext.request.contextPath}/contact_us" >与我们联系</a></p>
             </div>
             <div class="col-md-3 col-sm-6 col-xs-6 column">
-                <h4>账户</h4>
-                <p><a href="${pageContext.request.contextPath}/my-account/center">管理你的账户</a></p>
-                <p>协议与合同</p>
-                <p><a href="${pageContext.request.contextPath}/termsofuse">服务条款</a></p>
+                <h4 class="h4">账户</h4>
+                <p class="pText"><a href="${pageContext.request.contextPath}/my-account/center">管理你的账户</a></p>
+                <p class="pText">协议与合同</p>
+                <p class="pText"><a href="${pageContext.request.contextPath}/termsofuse">服务条款</a></p>
             </div>
             <div class="col-md-3 col-sm-6 col-xs-6 column">
-                <h4>价值观</h4>
-                <p>公司责任</p>
-                <p><a href="${pageContext.request.contextPath}/privacy">隐私</a></p>
+                <h4 class="h4">价值观</h4>
+                <p class="pText">公司责任</p>
+                <p class="pText"><a href="${pageContext.request.contextPath}/privacy">隐私</a></p>
             </div>
             <div class="col-md-3 col-sm-6 col-xs-6 column">
-                <h4>公司</h4>
-                <p>招贤纳士</p>
-                <p><a href="${pageContext.request.contextPath}/about-us">关于我们</a></p>
-                <p>公司新闻</p>
+                <h4 class="h4">公司</h4>
+                <p class="pText">招贤纳士</p>
+                <p class="pText"><a href="${pageContext.request.contextPath}/about-us">关于我们</a></p>
+                <p class="pText">公司新闻</p>
             </div>
         </div>
         <div class="row clearfix">

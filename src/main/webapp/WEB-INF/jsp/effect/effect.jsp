@@ -1,20 +1,19 @@
-
-<!doctype html>
-<html lang="en">
+<%--
+  Created by IntelliJ IDEA.
+  User: Administrator
+  Date: 2017/11/25/025
+  Time: 10:47
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="effect.css">
-    <script src="http://meitu.qizuang.com/assets/common/js/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="pubu.js"></script>
-
+    <title>装修效果图</title>
+    <%@include file="../common/head.jsp"%>
 </head>
 <body>
+<%@include file="../common/header.jsp" %>
+<div class="page-wrapper">
 <div class="content">
     <div class="container">
         <div class="con">
@@ -295,7 +294,7 @@
                     <li class="level1">
                         <a href="#none"><em class="ico">1</em>店长推荐<i class="down">5</i></a>
                         <ul class="level2">
-                            <li><a href="javascript:;">
+                            <li><a href="javascript:">
                                 <img src="https://www.zxbangban.com/resources/images/shop/dongpeng_cizhuan/1.png" alt="">
                             </a></li>
 
@@ -337,7 +336,6 @@
     <div class="local container">
         <div class="con">
             <h1>局部装修效果图</h1>
-
             <div class="row-fluid">
                 <div class="span4">
                     <div class="tabbable" id="tabs-162228">
@@ -678,9 +676,12 @@
     </div>
 </div>
 
+</div>
+<%@include file="../common/footer.jsp" %>
 
 </body>
-<script src="easing.js"  type="text/javascript"></script>
+<%@include file="../common/script.jsp"%>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"  type="text/javascript"></script>
 <script type="text/javascript">
     'use strict';
     window.addEventListener('load', function () {

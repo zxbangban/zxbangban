@@ -14,7 +14,6 @@
 <body>
 <%@include file="../common/header.jsp" %>
 <div class="page-wrapper">
-
 <div class="content">
     <div class="container">
         <div class="con">
@@ -295,7 +294,7 @@
                     <li class="level1">
                         <a href="#none"><em class="ico">1</em>店长推荐<i class="down">5</i></a>
                         <ul class="level2">
-                            <li><a href="javascript:;">
+                            <li><a href="javascript:">
                                 <img src="https://www.zxbangban.com/resources/images/shop/dongpeng_cizhuan/1.png" alt="">
                             </a></li>
 
@@ -337,7 +336,6 @@
     <div class="local container">
         <div class="con">
             <h1>局部装修效果图</h1>
-
             <div class="row-fluid">
                 <div class="span4">
                     <div class="tabbable" id="tabs-162228">

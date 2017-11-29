@@ -199,6 +199,12 @@
         WHERE `tel` = #{telphone}
     </select>
 
+    <select id="queryByTel" parameterType="String" resultType="WorkerInfo">
+        SELECT `workerId`,`name`,`job_id`,`state`
+        FROM workerinfo
+        WHERE `tel` = #{telphone}
+    </select>
+
     <update id="changeStateTrue" parameterType="long">
         UPDATE workerinfo SET state = TRUE WHERE `workerId` = #{workerid}
     </update>

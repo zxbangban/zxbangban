@@ -134,4 +134,19 @@ public class WorkerInfoController {
 
         return workerInfoService.queryProjectImgByWorkerId(id);
     }
+
+    /*
+    * 根据工人手机号查询工人信息
+    *
+    * */
+    @RequestMapping(value = "/workerInfo",method = RequestMethod.POST)
+    public String workerInfo(@RequestParam("tel")String tel,Model model){
+        try{
+            workerInfoService.queryByTel(tel);
+            return "workerregistsuccess";
+        }catch (Exception e){
+            return "error";
+        }
+    }
+
 }

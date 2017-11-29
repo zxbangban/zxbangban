@@ -288,6 +288,122 @@ var workerlist = {
     }
 };
 
+//对于微信工人修改状态
+
+var workerstate = {
+    detail: {
+        validata: function () {
+            $("form").submit(function () {
+                if (valiTel() === false) {
+                    return false;
+                }
+                if (valiTelCode() === false) {
+                    return false;
+                }
+            });
+
+
+            var $tel = $("input[name=tel]");
+            $tel.blur(function () {
+                valiTel()
+            });
+            var $telCode = $("input[name=telcode]");
+            $telCode.blur(function () {
+                valiTelCode();
+            });
+            var $telChChe = "";
+            var $telCodeTemp = "";
+
+            var $flag = 0;
+            $("#codebtn").click(function () {
+                if ($telChChe.length > 0 && $flag === 0) {
+                    $.ajax({
+                        beforeSend: function () {
+                            valiTel();
+                        },
+                        url: "/valitel/aliyunMNSValidate",
+                        data: {
+                            "tel": $telChChe
+                        },
+                        type: "get",
+                        success: function (data) {
+                            $telCodeTemp = data;
+                            checkbtn();
+                        },
+                        error: function (xhr) {
+                            alert(xhr.status + " " + xhr.statusText);
+                        }
+                    });
+                }
+            });
+
+            function valiTel() {
+                var $temp = $tel.val();
+                var $telRegular = /^0?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/;
+                if ($temp.length === 0) {
+                    $tel.val("");
+                    $tel.attr("placeholder", errorInfo.THE_CELL_PHONE_NUMBER_CANNOT_BE_EMPTY);
+                    return false;
+                } else if (!($telRegular.test($temp))) {
+                    $tel.val("");
+                    $tel.attr("placeholder", errorInfo.THE_CELL_PHONE_NUMBER_IS_INCORRECT);
+                    return false;
+                } else {
+                    $telChChe = $temp;
+                    return true;
+                }
+
+
+            }
+
+            function checkbtn() {
+                $flag = 1;
+                var count = 60;
+                var $codeBtn = $("#codebtn");
+                $codeBtn.addClass("disabled");
+                var timer = setInterval(function () {
+                    count = count - 1;
+                    $codeBtn.text(count + "秒后重发");
+                    if (count <= 0) {
+                        $codeBtn.text("验证码");
+                        $codeBtn.removeClass("disabled");
+                        clearInterval(timer);
+                        $flag = 0;
+                        $telCodeTemp = "";
+                    }
+
+                }, 1000)
+
+            }
+
+            function valiTelCode() {
+                valiTel();
+                if ($telCode.val() !== "" && $telCodeTemp !== "") {
+                    if ($telCode.val() === $telCodeTemp) {
+                        return true;
+                    } else {
+                        $telCode.val("");
+                        $telCode.attr("placeholder", errorInfo.THE_VERIFICATION_CODE_IS_INCORRECT);
+                        return false;
+                    }
+                } else {
+                    $telCode.val("");
+                    $telCode.attr("placeholder", errorInfo.NO_VERIFICATION_CODE);
+                    return false;
+                }
+            }
+
+            var errorInfo = {
+                THE_CELL_PHONE_NUMBER_CANNOT_BE_EMPTY: "您没有输入手机号！",
+                THE_CELL_PHONE_NUMBER_IS_INCORRECT: "手机号码输入不正确！",
+                NO_VERIFICATION_CODE: "请填写6位的手机验证码！",
+                THE_VERIFICATION_CODE_IS_INCORRECT: "手机验证码不正确！"
+            };
+        }
+    }
+};
+
+
 var appointment = {
     detail: {
         validata: function () {

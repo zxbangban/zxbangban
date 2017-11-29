@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by pingyr on 2017/7/11.
  */
-@Service
+
 public class WorkerInfoServiceImpl implements WorkerInfoService{
 
     @Autowired
@@ -60,6 +60,10 @@ public class WorkerInfoServiceImpl implements WorkerInfoService{
 
     public String queryTelByWorkerId(long workerId) {
         return workerInfoDao.queryTelByWorkerId(workerId);
+    }
+
+    public WorkerInfo queryByTel(String tel) {
+        return workerInfoDao.queryByTel(tel);
     }
 
     public WorkerInfo queryDetailByWorkerId(long workerId) {

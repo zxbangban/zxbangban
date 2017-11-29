@@ -67,6 +67,8 @@ public interface WorkerInfoDao {
 
     String queryTelByWorkerId(long workerid);
 
+    WorkerInfo queryByTel(String tel);
+
     /**
      * 根据工人id查询工人部分详细信息
      *

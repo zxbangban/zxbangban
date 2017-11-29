@@ -33,6 +33,8 @@ public interface WorkerInfoService {
 
     WorkerInfo queryDetailByWorkerId(long workerid);
 
+    WorkerInfo queryByTel(String tel);
+
     int updateIsShow(long workerid);
 
     int updateIsNotShow(long workerid);

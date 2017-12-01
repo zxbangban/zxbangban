@@ -1,57 +1,19 @@
-window.onload=function(){
-    var aUl=[];
-    var listBox =getByClassName(document,'listBox')[0];
-    for(var i=0;i<listBox.getElementsByTagName('ul').length;i++){
-        aUl.push(listBox.getElementsByTagName('ul')[i]);
-    }
-        creatLi();
-    window.onscroll=function(){
-        var clienHeight = document.documentElement.clientHeight;
-        var scrolTop = document.documentElement.scrollTop || document.body.scrollTop;
-        var height = document.body.scrollHeight;
-        if(height<= clienHeight+scrolTop+100){
-            creatLi();
-        }
-    }
-    function creatLi(){
 
-        ajax({
-            type:"GET",
-            url:"pbl.json",
-            dataType:"json",
-            success:function(msg){
-                console.log(msg);
-                for(var i=0;i<20;i++){
-                    for(var j=0;j<msg.length;j++){
-                        var oLi =document.createElement('li');
-                        oLi.innerHTML = '<div class="poster">';
-                        oLi.innerHTML += ' <a href="">';
-                        oLi.innerHTML += '<img src="'+msg[j].url+'" alt="">';
-                        oLi.innerHTML += ' </a>';
-                        oLi.innerHTML += '<p class="tit">';
-                        oLi.innerHTML += '<a href=""></a>';
-                        oLi.innerHTML += '</p>';
-                        oLi.innerHTML += '</div>';
-                        aUl.sort(function(ul1,ul2){
-                            return ul1.offsetHeight-ul2.offsetHeight;
-                        });
-                        aUl[0].appendChild(oLi);
-                    }
-                }
+//选项卡封装
+function tabFun(aBtn,aDiv){
+    for(var i=0;i<aBtn.length;i++){
+        aBtn[i].index=i;
+        aBtn[i].onclick=function(){
+            for(var i=0;i<aBtn.length;i++){//先清空所有的样式
+                aBtn[i].className='';
+                aDiv[i].className='';
             }
-        })
-
+            this.className='on';
+            aDiv[this.index].className='show';
+        };
     }
 }
-
-
-
-
-
-
-
-
-
+//封装ajax代码
 function ajax(){
     var ajaxData = {
         type:arguments[0].type || "GET",
@@ -101,7 +63,7 @@ function convertData(data){
         return data;
     }
 }
-
+//封装getByClassName代码
 function getByClassName(oParent,sClassName){
     if(oParent.getElementsByClassName(sClassName)){
         return oParent.getElementsByTagName('*');

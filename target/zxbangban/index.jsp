@@ -28,7 +28,6 @@
             margin-bottom: 25px;
             font-weight: bold;
         }
-
         .garea span {
             font-size: 18px;
         }

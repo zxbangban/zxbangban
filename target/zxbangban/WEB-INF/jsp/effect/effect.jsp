@@ -1,20 +1,20 @@
-
-<!doctype html>
-<html lang="en">
+<%--
+  Created by IntelliJ IDEA.
+  User: Administrator
+  Date: 2017/11/25/025
+  Time: 10:47
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="effect.css">
-    <script src="http://meitu.qizuang.com/assets/common/js/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="pubu.js"></script>
-
+    <title>装修效果图</title>
+    <%@include file="../common/head.jsp"%>
 </head>
 <body>
+<%@include file="../common/header.jsp" %>
+<div class="page-wrapper">
+
 <div class="content">
     <div class="container">
         <div class="con">
@@ -337,43 +337,47 @@
     <div class="local container">
         <div class="con">
             <h1>局部装修效果图</h1>
+
             <div class="row-fluid">
                 <div class="span4">
                     <div class="tabbable" id="tabs-162228">
-                        <ul class=" local_top_nav nav nav-tabs" id="btn">
-                            <li id="woshi">
+                        <ul class=" local_top_nav nav nav-tabs">
+                            <li>
                                 <a href="#panel-202440" data-toggle="tab">
                                     <span>卧室</span>
                                     <img src="https://www.zxbangban.com/resources/images/shop/4brand/3.png" alt="">
                                 </a>
                             </li>
-                            <li id="canting">
+                            <li>
                                 <a href="#panel-647316" data-toggle="tab">
                                     <span>卧室</span>
                                     <img src="https://www.zxbangban.com/resources/images/shop/4brand/3.png" alt="">
                                 </a>
                             </li>
-                            <li id="shu">
+                            <li>
                                 <a href="#panel-202443" data-toggle="tab">
                                     <span>卧室</span>
                                     <img src="https://www.zxbangban.com/resources/images/shop/4brand/3.png" alt="">
                                 </a>
                             </li>
-                            <li id="a">
+                            <li>
                                 <a href="#panel-202444" data-toggle="tab">
                                     <span>卧室</span>
                                     <img src="https://www.zxbangban.com/resources/images/shop/4brand/3.png" alt="">
+
                                 </a>
                             </li>
-                            <li id="b">
+                            <li>
                                 <a href="#panel-202445" data-toggle="tab">
+
                                     <span>卧室</span>
                                     <img src="https://www.zxbangban.com/resources/images/shop/4brand/3.png" alt="">
                                 </a>
                             </li>
+
+
                         </ul>
-                        <div class="tab-content" id="content">
-                            <!--<div class="tab-pane" style="display: block" id="tab-pane"></div>-->
+                        <div class="tab-content">
                             <div class="tab-pane" id="panel-202440">
                                 <ul>
                                     <li>
@@ -664,17 +668,22 @@
                                     </li>
                                 </ul>
                             </div>
+
                         </div>
                     </div>
-
                 </div>
+
             </div>
         </div>
     </div>
 </div>
 
+</div>
+<%@include file="../common/footer.jsp" %>
+
 </body>
-<script src="easing.js"  type="text/javascript"></script>
+<%@include file="../common/script.jsp"%>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"  type="text/javascript"></script>
 <script type="text/javascript">
     'use strict';
     window.addEventListener('load', function () {
@@ -736,28 +745,13 @@
             $(this).addClass('current').find('i').addClass('down').parent().next().slideDown('slow','easeOutQuad').parent().siblings().children('a').removeClass('current').find('i').removeClass('down').parent().next().slideUp('slow','easeOutQuad');
             return false;
         });
-//        getCom()
-//        $('#btn li').click(function(){
-//            getCom()
-//        })
-//        function getCom(){
-//            ajax({
-//                type:"GET",
-//                url:"pbl.json",
-//                dataType:"json",
-//                success:function(msg){
-//                    if(msg && msg.length>0){
-//                        var data = msg;
-//                        var str = "";
-//                        for(var i=0;i<data.length;i++){
-//                            str = "<ul><li><a href='111'><img src='"+data[i].image+"' alt=''><span>"+data[i].title+"</span></a></li></ul>";
-//                            $('.tab-pane').append(str);
-//                        }
-//
-//                    }
-//                }
-//            })
-//        }
+    })
+    $.ajax({
+        type:"GET",
+        url:"pbl.json",
+        success:function(msg){
+            console.log(msg);
+        }
     })
 </script>
 </html>

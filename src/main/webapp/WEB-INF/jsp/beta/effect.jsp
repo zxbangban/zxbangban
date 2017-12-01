@@ -1,19 +1,29 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2017/11/25/025
-  Time: 10:47
+  User: zxbangban
+  Date: 2017/11/23
+  Time: 15:42
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<html lang="en">
 <head>
-    <title>装修效果图</title>
-    <%@include file="../common/head.jsp"%>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/effect.css">
+    <script src="http://meitu.qizuang.com/assets/common/js/jquery.min.js"></script>
+<<<<<<< HEAD:target/zxbangban/WEB-INF/jsp/effect/effect.html
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="pubu.js"></script>
+
+=======
+>>>>>>> 9bbbe54f51e89abf9f4a7eea754d2474dfffac98:src/main/webapp/WEB-INF/jsp/beta/effect.jsp
 </head>
 <body>
-<%@include file="../common/header.jsp" %>
-<div class="page-wrapper">
 <div class="content">
     <div class="container">
         <div class="con">
@@ -182,6 +192,7 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD:target/zxbangban/WEB-INF/jsp/effect/effect.html
 <!--banner下面推荐-->
 <div class="content_con">
     <div class="tj container">
@@ -294,7 +305,7 @@
                     <li class="level1">
                         <a href="#none"><em class="ico">1</em>店长推荐<i class="down">5</i></a>
                         <ul class="level2">
-                            <li><a href="javascript:">
+                            <li><a href="javascript:;">
                                 <img src="https://www.zxbangban.com/resources/images/shop/dongpeng_cizhuan/1.png" alt="">
                             </a></li>
 
@@ -339,43 +350,40 @@
             <div class="row-fluid">
                 <div class="span4">
                     <div class="tabbable" id="tabs-162228">
-                        <ul class=" local_top_nav nav nav-tabs">
-                            <li>
+                        <ul class=" local_top_nav nav nav-tabs" id="btn">
+                            <li id="woshi">
                                 <a href="#panel-202440" data-toggle="tab">
                                     <span>卧室</span>
                                     <img src="https://www.zxbangban.com/resources/images/shop/4brand/3.png" alt="">
                                 </a>
                             </li>
-                            <li>
+                            <li id="canting">
                                 <a href="#panel-647316" data-toggle="tab">
                                     <span>卧室</span>
                                     <img src="https://www.zxbangban.com/resources/images/shop/4brand/3.png" alt="">
                                 </a>
                             </li>
-                            <li>
+                            <li id="shu">
                                 <a href="#panel-202443" data-toggle="tab">
                                     <span>卧室</span>
                                     <img src="https://www.zxbangban.com/resources/images/shop/4brand/3.png" alt="">
                                 </a>
                             </li>
-                            <li>
+                            <li id="a">
                                 <a href="#panel-202444" data-toggle="tab">
                                     <span>卧室</span>
                                     <img src="https://www.zxbangban.com/resources/images/shop/4brand/3.png" alt="">
-
                                 </a>
                             </li>
-                            <li>
+                            <li id="b">
                                 <a href="#panel-202445" data-toggle="tab">
-
                                     <span>卧室</span>
                                     <img src="https://www.zxbangban.com/resources/images/shop/4brand/3.png" alt="">
                                 </a>
                             </li>
-
-
                         </ul>
-                        <div class="tab-content">
+                        <div class="tab-content" id="content">
+                            <!--<div class="tab-pane" style="display: block" id="tab-pane"></div>-->
                             <div class="tab-pane" id="panel-202440">
                                 <ul>
                                     <li>
@@ -666,31 +674,37 @@
                                     </li>
                                 </ul>
                             </div>
-
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-</div>
-<%@include file="../common/footer.jsp" %>
+</body>
+<script src="easing.js"  type="text/javascript"></script>
+=======
 
 </body>
-<%@include file="../common/script.jsp"%>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"  type="text/javascript"></script>
+>>>>>>> 9bbbe54f51e89abf9f4a7eea754d2474dfffac98:src/main/webapp/WEB-INF/jsp/beta/effect.jsp
 <script type="text/javascript">
     'use strict';
+
     window.addEventListener('load', function () {
         var carousels = document.querySelectorAll('.carousel');
+
         for (var i = 0; i < carousels.length; i++) {
             carousel(carousels[i]);
         }
     });
+<<<<<<< HEAD:target/zxbangban/WEB-INF/jsp/effect/effect.html
     //旋转轮播图
+=======
+
+
+>>>>>>> 9bbbe54f51e89abf9f4a7eea754d2474dfffac98:src/main/webapp/WEB-INF/jsp/beta/effect.jsp
     function carousel(root){
         var figure = root.querySelector('figure'),
             nav = root.querySelector('nav'),
@@ -705,10 +719,14 @@
         window.addEventListener('resize', function () {
             setupCarousel(n, parseFloat(getComputedStyle(images[0]).width));
         });
+
         setupNavigation();
+
         function setupCarousel(n, s) {
             var apothem = s / (2 * Math.tan(Math.PI / n));
+
             figure.style.transformOrigin = '50% 50% ' + -apothem + 'px';
+
             for (var i = 0; i < n; i++) {
                 images[i].style.padding = gap + 'px';
             }for (i = 1; i < n; i++) {
@@ -719,37 +737,63 @@
                 images[i].style.backfaceVisibility = 'hidden';
             }rotateCarousel(currImage);
         }
+
         function setupNavigation() {
             nav.addEventListener('click', onClick, true);
+
             function onClick(e) {
                 e.stopPropagation();
+
                 var t = e.target;
                 if (t.tagName.toUpperCase() != 'BUTTON') return;
+
                 if (t.classList.contains('next')) {
                     currImage++;
                 } else {
                     currImage--;
                 }
+
                 rotateCarousel(currImage);
             }
         }
+
         function rotateCarousel(imageIndex) {
             figure.style.transform = 'rotateY(' + imageIndex * -theta + 'rad)';
         }
     }
+<<<<<<< HEAD:target/zxbangban/WEB-INF/jsp/effect/effect.html
     //手风琴效果
     $(function(){
         $(".treebox .level1>a").click(function(){
             $(this).addClass('current').find('i').addClass('down').parent().next().slideDown('slow','easeOutQuad').parent().siblings().children('a').removeClass('current').find('i').removeClass('down').parent().next().slideUp('slow','easeOutQuad');
             return false;
         });
-    })
-    $.ajax({
-        type:"GET",
-        url:"pbl.json",
-        success:function(msg){
-            console.log(msg);
-        }
+//        getCom()
+//        $('#btn li').click(function(){
+//            getCom()
+//        })
+//        function getCom(){
+//            ajax({
+//                type:"GET",
+//                url:"pbl.json",
+//                dataType:"json",
+//                success:function(msg){
+//                    if(msg && msg.length>0){
+//                        var data = msg;
+//                        var str = "";
+//                        for(var i=0;i<data.length;i++){
+//                            str = "<ul><li><a href='111'><img src='"+data[i].image+"' alt=''><span>"+data[i].title+"</span></a></li></ul>";
+//                            $('.tab-pane').append(str);
+//                        }
+//
+//                    }
+//                }
+//            })
+//        }
     })
 </script>
 </html>
+=======
+</script>
+
+>>>>>>> 9bbbe54f51e89abf9f4a7eea754d2474dfffac98:src/main/webapp/WEB-INF/jsp/beta/effect.jsp

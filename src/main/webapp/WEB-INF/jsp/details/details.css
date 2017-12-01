@@ -1,0 +1,93 @@
+body{
+    font-size:14px;
+}
+a{
+    color:#333;
+}
+.row > div{
+    line-height: 40px;
+    cursor: pointer;
+    border-bottom:1px solid #eaeaea;
+    transition: all 2s;
+    -webkit-transition:all 2s ;
+    -o-transition: all 2s;
+    -moz-transition: all 2s;
+    overflow: hidden;
+}
+.row > div >ul>li>a{
+    position: relative;
+    transition: all 2s;
+    -webkit-transition:all 2s ;
+    -o-transition: all 2s;
+    -moz-transition: all 2s;
+    overflow: hidden;
+}
+.row > div>ul li a span{
+    position: absolute;
+    bottom: 20px;
+    right:0;
+    display: inline-block;
+    width:60%;
+    background: #eacc20;
+    color: #fff;
+    text-align: center;
+    transition: all 1s;
+    -webkit-transition:all 1s ;
+    -o-transition: all 1s;
+    -moz-transition: all 1s;
+    transform: translate(100%, 0);
+    opacity: 0;
+    -webkit-transform: translate(100%, 0);
+    -moz-transform: translate(100%, 0);
+    -o-transform: translate(100%, 0);
+    -ms-transform: translate(100%, 0);
+}
+.row > div>ul li:hover  a span{
+    transform: translate(0, 0);
+    -webkit-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    opacity: 1;
+}
+.bord>.bg{
+    background: #f8f8f8;
+    border-right:1px solid #eaeaea;
+    color:#999;
+    padding-left:0;
+    padding-right:0;
+    position: relative;
+}
+.list-inline{
+    width:100%;
+    border:1px dotted #ccc;
+    margin:-1px;
+}
+.list-inline > li >a {
+    padding:0 15px;
+    font-size:14px;
+}
+.list-inline > li >a:hover{
+    color:#ec5646;
+}
+.bord{
+    margin-top:10px;
+    border:1px solid #eaeaea;
+    border-right:0
+}
+.col-lg-1, .col-md-1,.col-md-11,.col-sm-1, .col-sm-11, .col-xs-1,.col-xs-11, .col-md-3 ,.col-sm-2,.col-lg-3 ,.col-md-4, .col-sm-6{
+    padding:0;
+}
+.icon_up{
+    display: block;
+    width:25px;
+    height:23px;
+    position: absolute;
+    top:0;
+    left:0;
+    background: url('../../../resources/images/effect/thumbs.png') no-repeat center;
+    background-size:100% 100%;
+}
+.layout img{
+    transition: all 2s;
+}

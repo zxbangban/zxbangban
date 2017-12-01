@@ -128,7 +128,8 @@
 
         .p_one {
             text-indent: 0;
-            padding-top: 20px;
+            padding-top: 10px;
+            padding-bottom:10px;
             padding-left: 20px;
             font-size: 1.2em;
         }

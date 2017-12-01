@@ -28,17 +28,14 @@
         margin: 0 auto;
         left: 12%;
     }
-.jumbotron >img{
-    width: 36%;
 
-}
 .jumbotron >h1,h2{
     color: #fff;
     margin-top:50px;
     margin-bottom:100px;
 }
     svg{
-        height: 100%;
+
         width: 100%;
     }
 </style>
@@ -75,7 +72,7 @@
         <div class="jumbotron">
             <h1 class="qr_code">使用微信扫描二维码，登录微信客服中心</h1>
             <%--<h2>8:30 - 18:30</h2>--%>
-            <img src="${pageContext.request.contextPath}/resources/images/common/QR_2.jpg" alt="" class="img-responsive" style="width: 36%;margin: 0 auto">
+            <img src="${pageContext.request.contextPath}/resources/images/common/QR_2.jpg" alt="" class="img-responsive" style="width: 29%;margin: 0 auto">
         </div>
     </div>
 </div>

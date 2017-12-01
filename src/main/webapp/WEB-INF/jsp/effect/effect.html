@@ -337,47 +337,43 @@
     <div class="local container">
         <div class="con">
             <h1>局部装修效果图</h1>
-
             <div class="row-fluid">
                 <div class="span4">
                     <div class="tabbable" id="tabs-162228">
-                        <ul class=" local_top_nav nav nav-tabs">
-                            <li>
+                        <ul class=" local_top_nav nav nav-tabs" id="btn">
+                            <li id="woshi">
                                 <a href="#panel-202440" data-toggle="tab">
                                     <span>卧室</span>
                                     <img src="https://www.zxbangban.com/resources/images/shop/4brand/3.png" alt="">
                                 </a>
                             </li>
-                            <li>
+                            <li id="canting">
                                 <a href="#panel-647316" data-toggle="tab">
                                     <span>卧室</span>
                                     <img src="https://www.zxbangban.com/resources/images/shop/4brand/3.png" alt="">
                                 </a>
                             </li>
-                            <li>
+                            <li id="shu">
                                 <a href="#panel-202443" data-toggle="tab">
                                     <span>卧室</span>
                                     <img src="https://www.zxbangban.com/resources/images/shop/4brand/3.png" alt="">
                                 </a>
                             </li>
-                            <li>
+                            <li id="a">
                                 <a href="#panel-202444" data-toggle="tab">
                                     <span>卧室</span>
                                     <img src="https://www.zxbangban.com/resources/images/shop/4brand/3.png" alt="">
-
                                 </a>
                             </li>
-                            <li>
+                            <li id="b">
                                 <a href="#panel-202445" data-toggle="tab">
-
                                     <span>卧室</span>
                                     <img src="https://www.zxbangban.com/resources/images/shop/4brand/3.png" alt="">
                                 </a>
                             </li>
-
-
                         </ul>
-                        <div class="tab-content">
+                        <div class="tab-content" id="content">
+                            <!--<div class="tab-pane" style="display: block" id="tab-pane"></div>-->
                             <div class="tab-pane" id="panel-202440">
                                 <ul>
                                     <li>
@@ -668,16 +664,14 @@
                                     </li>
                                 </ul>
                             </div>
-
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 
 </body>
 <script src="easing.js"  type="text/javascript"></script>
@@ -742,7 +736,28 @@
             $(this).addClass('current').find('i').addClass('down').parent().next().slideDown('slow','easeOutQuad').parent().siblings().children('a').removeClass('current').find('i').removeClass('down').parent().next().slideUp('slow','easeOutQuad');
             return false;
         });
+//        getCom()
+//        $('#btn li').click(function(){
+//            getCom()
+//        })
+//        function getCom(){
+//            ajax({
+//                type:"GET",
+//                url:"pbl.json",
+//                dataType:"json",
+//                success:function(msg){
+//                    if(msg && msg.length>0){
+//                        var data = msg;
+//                        var str = "";
+//                        for(var i=0;i<data.length;i++){
+//                            str = "<ul><li><a href='111'><img src='"+data[i].image+"' alt=''><span>"+data[i].title+"</span></a></li></ul>";
+//                            $('.tab-pane').append(str);
+//                        }
+//
+//                    }
+//                }
+//            })
+//        }
     })
-
 </script>
 </html>

@@ -16,7 +16,7 @@
         <div class="jumbotron">
             <h1>您的手机号还未注册，请重新登陆</h1>
             <hr/>
-           <<a href="https://zxbangban.com/">重新登陆</a>
+           <a href="https://zxbangban.com/">重新登陆</a>
         </div>
     </div>
 </body>

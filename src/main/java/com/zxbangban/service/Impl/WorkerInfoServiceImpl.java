@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by pingyr on 2017/7/11.
  */
-
+@Service
 public class WorkerInfoServiceImpl implements WorkerInfoService{
 
     @Autowired

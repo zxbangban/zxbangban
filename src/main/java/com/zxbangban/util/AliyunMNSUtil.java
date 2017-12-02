@@ -38,8 +38,10 @@ public class AliyunMNSUtil {
         batchSmsAttributes.setTemplateCode(AliyunMNSTemplateCode.codeOf(messageType).getCode());
 
         BatchSmsAttributes.SmsReceiverParams smsReceiverParams = new BatchSmsAttributes.SmsReceiverParams();
+        String code = "";
         if(messageType == 1){
-            smsReceiverParams.setParam("code",randomSMSCode());
+            code = randomSMSCode();
+            smsReceiverParams.setParam("code",code);
         }
         batchSmsAttributes.addSmsReceiver(phoneNumber,smsReceiverParams);
         messageAttributes.setBatchSmsAttributes(batchSmsAttributes);
@@ -54,7 +56,10 @@ public class AliyunMNSUtil {
 
         if(topicMessage!=null){
             mnsClient.close();
-            return "success";
+            if(code.length() >0){
+                return code;
+            }
+                return "success";
         }else {
             return "failure";
         }

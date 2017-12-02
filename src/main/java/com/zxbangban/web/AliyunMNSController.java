@@ -21,9 +21,7 @@ public class AliyunMNSController {
     @ResponseBody
     public String mnsValid(@RequestParam("tel") String number){
         try {
-            String validCode = aliyunMNService.mnsValid(number);
-            System.out.println(validCode);
-            return validCode;
+            return aliyunMNService.SMSNotification(1,number);
         }catch (Exception e){
             return "000000";
         }

@@ -19,7 +19,7 @@ var navbar = {
             var $cookie = $.cookie("uid");
             var $headImg = $.cookie("headimg");
             if($cookie !== undefined && $cookie.length > 5){
-                $cookie = $cookie.substring(0,6) + "...";
+                $cookie = $cookie.substring(0,5) + "...";
             }
             if ($cookie !== undefined) {
                 $navLogin.html(
@@ -1276,7 +1276,7 @@ var processQuoted = {
     }
 };
 
-var workermanager = {
+var workerManager = {
     detail: {
         init: function () {
 
@@ -1295,7 +1295,7 @@ var workermanager = {
                     type: "get",
                     success: function (result) {
 
-                        if (result !== null && result === "1") {
+                        if (result !== null && result === "success") {
                             alert("短信发送成功");
                             $(c).parent().addClass("success");
                         } else {
@@ -1454,52 +1454,82 @@ var workermanager = {
         }
     }
 };
+var util = {
+    detil : {
+        init : function () {
 
-//选项卡封装
-function tabFun(aBtn,aDiv){
-    for(var i=0;i<aBtn.length;i++){
-        aBtn[i].index=i;
-        aBtn[i].onclick=function(){
-            for(var i=0;i<aBtn.length;i++){//先清空所有的样式
-                aBtn[i].className='';
-                aDiv[i].className='';
+        },
+        //选项卡封装
+        tabFun : function (aBtn, aDiv) {
+            for (var i = 0; i < aBtn.length; i++) {
+                aBtn[i].index = i;
+                aBtn[i].onclick = function () {
+                    for (var i = 0; i < aBtn.length; i++) {//先清空所有的样式
+                        aBtn[i].className = '';
+                        aDiv[i].className = '';
+                    }
+                    this.className = 'on';
+                    aDiv[this.index].className = 'show';
+                };
             }
-            this.className='on';
-            aDiv[this.index].className='show';
-        };
-    }
-}
-//封装ajax代码
-function ajax(){
-    var ajaxData = {
-        type:arguments[0].type || "GET",
-        url:arguments[0].url || "",
-        async:arguments[0].async || "true",
-        data:arguments[0].data || null,
-        dataType:arguments[0].dataType || "text",
-        contentType:arguments[0].contentType || "application/x-www-form-urlencoded",
-        beforeSend:arguments[0].beforeSend || function(){},
-        success:arguments[0].success || function(){},
-        error:arguments[0].error || function(){}
-    }
-    ajaxData.beforeSend()
-    var xhr = createxmlHttpRequest();
-    xhr.responseType=ajaxData.dataType;
-    xhr.open(ajaxData.type,ajaxData.url,ajaxData.async);
-    xhr.setRequestHeader("Content-Type",ajaxData.contentType);
-    xhr.send(convertData(ajaxData.data));
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4) {
-            if(xhr.status == 200){
-                ajaxData.success(xhr.response)
-            }else{
-                ajaxData.error()
+        },
+        //封装ajax代码
+        ajax : function () {
+            var ajaxData = {
+                type: arguments[0].type || "GET",
+                url: arguments[0].url || "",
+                async: arguments[0].async || "true",
+                data: arguments[0].data || null,
+                dataType: arguments[0].dataType || "text",
+                contentType: arguments[0].contentType || "application/x-www-form-urlencoded",
+                beforeSend: arguments[0].beforeSend || function () {
+                },
+                success: arguments[0].success || function () {
+                },
+                error: arguments[0].error || function () {
+                }
+            };
+            ajaxData.beforeSend();
+            var xhr = createXMLHttpRequest();
+            xhr.responseType = ajaxData.dataType;
+            xhr.open(ajaxData.type, ajaxData.url, ajaxData.async);
+            xhr.setRequestHeader("Content-Type", ajaxData.contentType);
+            xhr.send(convertData(ajaxData.data));
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        ajaxData.success(xhr.response)
+                    } else {
+                        ajaxData.error()
+                    }
+                }
+            }
+        },
+        //封装getByClassName代码
+        getByClassName : function (oParent, sClassName) {
+            if (oParent.getElementsByClassName(sClassName)) {
+                return oParent.getElementsByTagName('*');
+            } else {
+                var aRes = [];
+                var aChild = oParent.getElementsByTagName('*');
+                for (var i = 0; i < aChild.length; i++) {
+                    var obj = aChild[i];
+                    var oTmp = obj.className.split(' ');
+                    for (var j = 0; j < oTmp.length; j++) {
+                        if (oTmp[j] === sClassName) {
+                            aRes.push(obj)
+                        }
+                    }
+                    return aRes;
+                }
             }
         }
-    }
-}
 
-function createxmlHttpRequest() {
+    }
+};
+
+
+function createXMLHttpRequest() {
     if (window.ActiveXObject) {
         return new ActiveXObject("Microsoft.XMLHTTP");
     } else if (window.XMLHttpRequest) {
@@ -1507,36 +1537,18 @@ function createxmlHttpRequest() {
     }
 }
 
-function convertData(data){
-    if( typeof data === 'object' ){
-        var convertResult = "" ;
-        for(var c in data){
-            convertResult+= c + "=" + data[c] + "&";
+function convertData(data) {
+    if (typeof data === 'object') {
+        var convertResult = "";
+        for (var c in data) {
+            convertResult += c + "=" + data[c] + "&";
         }
-        convertResult=convertResult.substring(0,convertResult.length-1)
+        convertResult = convertResult.substring(0, convertResult.length - 1);
         return convertResult;
-    }else{
+    } else {
         return data;
     }
 }
-//封装getByClassName代码
-function getByClassName(oParent,sClassName){
-    if(oParent.getElementsByClassName(sClassName)){
-        return oParent.getElementsByTagName('*');
-    }else{
-        var aRes =[];
-        var aChild = oParent.getElementsByTagName('*');
-        for(var i=0;i<aChild.length;i++){
-            var obj = aChild[i];
-            var oTmp = obj.className.split(' ');
-            for(var j=0;j<oTmp.length;j++){
-                if(oTmp[j] == sClassName){
-                    aRes.push(obj)
-                }
-            }
-            return aRes;
-        }
-    }
-}
+
 
 

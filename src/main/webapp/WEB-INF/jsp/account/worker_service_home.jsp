@@ -392,7 +392,7 @@
         });
         $(".btn-detail").click(function () {
             tag = $(this);
-            workermanager.detail.managerment(tag);
+            workerManager.detail.managerment(tag);
         });
         $("#modal-container-manager-detail").on("hide.bs.modal", function () {
             location.reload();
@@ -409,16 +409,16 @@
     });
 
     function a() {
-        workermanager.detail.notice(tag);
+        workerManager.detail.notice(tag);
     }
 
     function b1() {
-        workermanager.detail.changeStateTrue(tag);
+        workerManager.detail.changeStateTrue(tag);
         location.reload();
     }
 
     function b2() {
-        workermanager.detail.changeStateFalse(tag);
+        workerManager.detail.changeStateFalse(tag);
         location.reload();
     }
 

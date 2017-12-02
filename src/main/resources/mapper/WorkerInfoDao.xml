@@ -25,6 +25,7 @@
             w.head_img_url,
             w.job_id,
             w.pr,
+            w.tel,
             w.authenticated,
             w.certificated,
             w.location,

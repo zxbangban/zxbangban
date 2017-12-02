@@ -50,7 +50,7 @@ public class WorkerServiceController {
         try{
             UserInfo userInfo = userInfoService.queryByUsername(uid);
             Integer roleId = userInfo.getRoleId();
-            if (roleId.equals(5) || roleId.equals(7)) {
+            if (roleId.equals(5) || roleId.equals(7) || roleId.equals(8)) {
                 List<Worker> workers = workerService.queryWorkersByJob(j);
                 int count;
                 if(j.equals("ALL")){
@@ -82,12 +82,18 @@ public class WorkerServiceController {
     @RequestMapping(value = "/notification", method = RequestMethod.GET, produces = "text/html;charset=utf8")
     @ResponseBody
     public String notification(@RequestParam("wid") long wid) {
-        String tel = workerInfoService.queryTelByWorkerId(wid);
+        WorkerInfo workerInfo = workerInfoService.queryWorkerByWorkerId(wid);
+        String tel = workerInfo.getTel();
+        boolean cert = workerInfo.isCertificated();
+        System.out.println(wid + "; "+ tel +"; "+ cert);
         if (tel.length() == 11) {
-            int r = aliyunMNService.notification(tel);
-            return String.valueOf(r);
+            if(cert){
+                return aliyunMNService.SMSNotification(5,tel);
+            }
+                return aliyunMNService.SMSNotification(2,tel);
+
         } else {
-            return String.valueOf(0);
+            return "failure";
         }
 
     }

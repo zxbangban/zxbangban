@@ -200,11 +200,7 @@
         WHERE `tel` = #{telphone}
     </select>
 
-    <select id="queryByTel" parameterType="String" resultType="WorkerInfo">
-        SELECT `workerId`,`name`,`job_id`,`state`
-        FROM workerinfo
-        WHERE `tel` = #{telphone}
-    </select>
+
 
     <update id="changeStateTrue" parameterType="long">
         UPDATE workerinfo SET state = TRUE WHERE `workerId` = #{workerid}
@@ -222,4 +218,16 @@
     <select id="queryOARatingByWorkerId" parameterType="long" resultType="Double">
         SELECT over_all_rating FROM workerinfo WHERE workerId = #{workerid}
     </select>
+
+    <select id="queryByTel" parameterType="String" resultType="WorkerInfo">
+        SELECT `workerId`,`name`,`state`
+        FROM workerinfo
+        WHERE `tel` = #{tel}
+    </select>
+
+    <update id="updateWorkerState">
+        UPDATE workerinfo
+        SET `state` = #{state}
+        WHERE `workerId` = #{workerId}
+    </update>
 </mapper>

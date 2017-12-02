@@ -28,4 +28,8 @@ public class UserInfoServiceImpl implements UserInfoService {
     public int updatePassword(String username, String password) {
         return userInfoDao.updatePassword(username,password);
     }
+
+    public UserInfo queryByRoleId(Integer roleId) {
+        return userInfoDao.queryByRoleId(roleId);
+    }
 }

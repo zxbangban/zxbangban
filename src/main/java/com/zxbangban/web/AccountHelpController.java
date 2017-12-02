@@ -73,7 +73,7 @@ public class AccountHelpController {
     @RequestMapping(value = "/valicode")
     public String valiCode(@RequestParam("number") String number,Model model){
         if(number.length() == 11){
-            String code = aliyunMNService.mnsValid(number);
+            String code = aliyunMNService.SMSNotification(1,number);
             model.addAttribute("code",code);
             return "account_support/validata_code";
         }else {

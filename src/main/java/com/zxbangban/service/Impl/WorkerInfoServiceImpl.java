@@ -62,6 +62,10 @@ public class WorkerInfoServiceImpl implements WorkerInfoService{
         return workerInfoDao.queryTelByWorkerId(workerId);
     }
 
+    public WorkerInfo queryByTel(String tel) {
+        return workerInfoDao.queryByTel(tel);
+    }
+
     public WorkerInfo queryDetailByWorkerId(long workerId) {
         return workerInfoDao.queryDetailByWorkerId(workerId);
     }

@@ -25,6 +25,7 @@
             w.head_img_url,
             w.job_id,
             w.pr,
+            w.tel,
             w.authenticated,
             w.certificated,
             w.location,
@@ -195,6 +196,12 @@
 
     <select id="queryDetailByTelPhone" parameterType="String" resultType="WorkerInfo">
         SELECT `workerId`,`name`,`job_id`,`head_img_url`
+        FROM workerinfo
+        WHERE `tel` = #{telphone}
+    </select>
+
+    <select id="queryByTel" parameterType="String" resultType="WorkerInfo">
+        SELECT `workerId`,`name`,`job_id`,`state`
         FROM workerinfo
         WHERE `tel` = #{telphone}
     </select>

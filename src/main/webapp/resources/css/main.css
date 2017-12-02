@@ -405,7 +405,7 @@ table{border-collapse:collapse;border-spacing:0}
 .treebox{width:200px;margin:0 auto;margin-top:20px}
 .menu{overflow:hidden;border-color:#ddd;border-style:solid;border-width:0 1px 1px}
 .menu li.level1>a{display:block;height:45px;line-height:2.8125rem;color:#555;padding-left:50px;border-bottom:1px solid #000;font-size:1rem;position:relative;transition:all .5s ease 0s}
-.ico{width:20px;height:20px;display:block;position:absolute;left:20px;top:10px;background-repeat:no-repeat;background-image:url(images/ico1.png)}
+.ico{width:20px;height:20px;display:block;position:absolute;left:20px;top:10px;background-repeat:no-repeat;}
 .level1 i{text-align:center;height:10px;background-repeat:no-repeat;display:block;position:absolute;right:20px;top:0}
 .menu li ul{overflow:hidden}
 .menu li ul.level2{display:none}

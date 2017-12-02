@@ -1,9 +1,12 @@
 package com.zxbangban.web;
 
 import com.zxbangban.entity.Customer;
+import com.zxbangban.entity.UserInfo;
 import com.zxbangban.entity.WorkerInfo;
 import com.zxbangban.enums.TypesOfWorkers;
+import com.zxbangban.service.AliyunMNService;
 import com.zxbangban.service.CustomerService;
+import com.zxbangban.service.UserInfoService;
 import com.zxbangban.service.WorkerInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +31,11 @@ public class CustomerController {
     @Autowired
     private WorkerInfoService workerInfoService;
 
+    @Autowired
+    private AliyunMNService aliyunMNService;
 
+    @Autowired
+    private UserInfoService userInfoService;
 
     /**
      * 顾客预约托管
@@ -54,6 +61,10 @@ public class CustomerController {
         try{
             int result = customerService.newCustomer(customer);
             model.addAttribute("msg","预约成功！");
+            aliyunMNService.SMSNotification(3,tel);
+            UserInfo userInfo = userInfoService.queryByRoleId(8);
+            String telphone = userInfo.getTelphone();
+            aliyunMNService.SMSNotification(4,telphone);
             sessionStatus.setComplete();
             return "appointment/appointmentsuccess";
         }catch (Exception e){
@@ -68,6 +79,7 @@ public class CustomerController {
         model.addAttribute("workerid",workerid);
         return "redirect:/appointment";
     }
+
 
 
 }

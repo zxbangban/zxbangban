@@ -35,9 +35,7 @@
         .modal-backdrop.in {
             opacity: 0.75;
         }
-        .container > .banner{
-            margin-top: 10px;
-        }
+
     </style>
 </head>
 <body>

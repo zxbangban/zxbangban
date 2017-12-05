@@ -35,9 +35,7 @@
         .modal-backdrop.in {
             opacity: 0.75;
         }
-        .container > .banner{
-            margin-top: 10px;
-        }
+
     </style>
 </head>
 <body>
@@ -46,7 +44,7 @@
     <div class="container">
         <div class="row clearfix banner">
             <div class="col-md-12 column">
-                <div id="myCarousel" class="carousel slide">
+                <div id="myCarousel" class="carousel slide" style="padding:0;">
                     <ol class="carousel-indicators">
                         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                         <li data-target="#myCarousel" data-slide-to="1"></li>

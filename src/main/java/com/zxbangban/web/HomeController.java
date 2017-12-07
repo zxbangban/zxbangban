@@ -172,6 +172,36 @@ public class HomeController {
 
     /**
      *
+     * @return 装修效果图列表页面
+     */
+    @RequestMapping("/details")
+    public String details(){
+        return "details/details";
+    }
+
+    /**
+     *
+     * @return 招贤纳士
+     */
+    @RequestMapping("/join")
+    public String join(){
+        return "join/join";
+    }
+
+
+
+    /**
+     *
+     * @return  工人入驻页面跳转
+     */
+    @RequestMapping("/detail_list")
+    public String detailsList(){
+        return "details/detail_list";
+    }
+
+
+    /**
+     *
      * @return  工人入驻页面跳转
      */
     @RequestMapping("/wokerregister")

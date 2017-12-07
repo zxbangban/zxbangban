@@ -306,7 +306,7 @@
             $('.lazyload img').each(function(){
                 var $cur = $(this);
                 if($cur.attr('isLoaded')){
-                    return
+                    return true;
                 }
                 if(shouldShow($cur)){
                     showImg($cur);

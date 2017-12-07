@@ -26,7 +26,7 @@
                         </div>
                         <div class="zx_con">
                             <ul>
-                                <li><a href="">客厅</a></li>
+                                <li><a href="${pageContext.request.contextPath}/details">客厅</a></li>
                                 <li><a href="">餐厅</a></li>
                                 <li><a href="">卧室</a></li></ul>
                             <ul>
@@ -744,12 +744,12 @@
             return false;
         });
     })
-    $.ajax({
+    /*$.ajax({
         type:"GET",
         url:"pbl.json",
         success:function(msg){
             console.log(msg);
         }
-    })
+    })*/
 </script>
 </html>

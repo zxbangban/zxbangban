@@ -62,6 +62,6 @@
 </body>
 <%@include file="common/script.jsp"%>
 <script type="text/javascript">
-    usersignup.detail.check();
+    wxsignup.detail.check();
 </script>
 </html>

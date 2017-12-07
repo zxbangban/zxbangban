@@ -52,21 +52,6 @@
 </body>
 <%@include file="common/script.jsp"%>
 <script type="text/javascript">
-    function valiTel() {
-        var $temp = $tel.val();
-        var $telRegular = /^0?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/;
-        if ($temp.length === 0) {
-            $tel.val("");
-            $tel.attr("placeholder","您没有输入手机号！");
-            return false;
-        } else if (!($telRegular.test($temp))) {
-            $tel.val("");
-            $tel.attr("placeholder", "手机号码输入不正确！");
-            return false;
-        } else {
-            $telChChe = $temp;
-            return true;
-        }
-    }
+    telbinding.detail.check();
 </script>
 </html>

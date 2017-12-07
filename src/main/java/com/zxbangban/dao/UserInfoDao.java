@@ -14,4 +14,8 @@ public interface UserInfoDao {
     String queryTelByUsername(String username);
     int updatePassword(@Param("username") String username, @Param("password")String password);
     UserInfo queryByRoleId(Integer roleId);
+    UserInfo queryByUnionId(String unionId);
+    UserInfo queryByTelphone(String telphone);
+    int saveUserInfo(@Param("userInfo") UserInfo userInfo);
+    int saveUnameAndPassword(@Param("userInfo") UserInfo userInfo);
 }

@@ -97,7 +97,7 @@ public class CustomerController {
         return "redirect:/quoted/free";
         }catch (Exception e){
         model.addAttribute("msg","报价失败！");
-        return "appointment/appointmentsuccess";
+        return "redirect:/home";
         }
     }
 

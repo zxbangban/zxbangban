@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="">
                         <form class="form-horizontal" role="form"
-                              action="${pageContext.request.contextPath}/quoted/free"
+                              action="${pageContext.request.contextPath}/c/quoted"
                               method="post">
                             <div class="col-md-6 column">
                                 <div class="row">
@@ -93,7 +93,7 @@
                             <div class="col-md-12 column">
                                 <div class="form-group">
                                     <div class="col-sm-offset-3 col-xs-offset-3 col-sm-6 col-xs-6">
-                                        <button type="submit" class="btn btn-success btn-block"
+                                        <button type="submit" class="btn btn-success "
                                                 style="background-color:#ffdd54;color: black">马上报价
                                         </button>
                                     </div>

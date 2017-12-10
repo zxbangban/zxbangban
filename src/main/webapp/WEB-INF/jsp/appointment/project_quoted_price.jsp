@@ -74,7 +74,7 @@
                                 <div class="col-md-6 col-md-offset-3 column">
 
                                     <form class="bs-example bs-example-form" role="form"
-                                          action="${pageContext.request.contextPath}/c/free-appointment" method="post">
+                                          action="${pageContext.request.contextPath}/c/customersave" method="post">
                                         <div class="input-group">
                                             <span class="input-group-addon">姓名</span>
                                             <input type="text" class="form-control" placeholder="请输入姓名" name="name">

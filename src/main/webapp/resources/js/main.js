@@ -981,7 +981,7 @@ var servicehomepage = {
                             }
                             var $cache = "<div class='table-responsive'>" +
                                 "<table class='table'>" +
-                                "<thead><tr><th>姓名</th><th>预约日期</th><th>工程地址</th><th>备注</th></tr></thead><tbody>" + $temp + "</tbody>" +
+                                "<thead><tr><th>姓名</th><th>预约日期</th><th>地址</th><th>备注</th></tr></thead><tbody>" + $temp + "</tbody>" +
                                 "</table>" +
                                 "</div>";
                             $appoint.find("h5").removeClass("loading").html($cache);

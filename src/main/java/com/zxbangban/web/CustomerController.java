@@ -87,17 +87,16 @@ public class CustomerController {
      */
     @RequestMapping(value = "/quoted",method = RequestMethod.POST)
     public String customerQuoted(@RequestParam("adds") String name, @RequestParam("tel") String tel,
-                               @RequestParam("type") String type, @RequestParam("area") int area,Model model){
+                                 @RequestParam("type") String type, @RequestParam("area") int area,Model model){
         try{
-            System.out.println(name+"  "+tel+"  "+type+"  "+area);
             Customer customer = new Customer(name,tel,"", new Date(),"");
-            customer.setNotes("房屋面积：" + area + "    "+"户型" + type+"   "+"房屋报价");
+            customer.setNotes("房屋面积：" + area + ";"+"户型:" + type+";");
             customerService.newCustomer(customer);
-       model.addAttribute("area",area);
-        return "redirect:/quoted/free";
+            model.addAttribute("area",area);
+            return "redirect:/quoted/free";
         }catch (Exception e){
-        model.addAttribute("msg","报价失败！");
-        return "redirect:/home";
+            model.addAttribute("msg","报价失败！");
+            return "redirect:/home";
         }
     }
 
@@ -107,11 +106,11 @@ public class CustomerController {
     * */
     @RequestMapping(value = "/customersave",method = RequestMethod.POST)
     public String customerSave( @RequestParam("name") String name, @RequestParam("tel") String tel,
-                               @RequestParam("location") String location,Model model){
+                                @RequestParam("location") String location,Model model){
         try{
-                Customer customer = new Customer(name,tel,location,new Date(),"");
-                customer.setNotes("房屋报价");
-                customerService.newCustomer(customer);
+            Customer customer = new Customer(name,tel,location,new Date(),"");
+            customer.setNotes("房屋报价");
+            customerService.newCustomer(customer);
             model.addAttribute("msg","保存成功！");
             return "appointment/appointmentsuccess";
         }catch (Exception e){

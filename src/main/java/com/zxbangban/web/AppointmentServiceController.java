@@ -41,7 +41,6 @@ public class AppointmentServiceController {
     @RequestMapping(value = "/delete",method = RequestMethod.GET,produces = "text/html;charset=utf8")
     @ResponseBody
     public String delete(@RequestParam("id")long id){
-        System.out.println(id);
         int r = customerService.delete(id);
         return String.valueOf(r);
     }

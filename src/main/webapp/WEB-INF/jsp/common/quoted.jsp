@@ -18,7 +18,6 @@
             </div>
         </div>
         <div class="row clearfix">
-            <p>今日已有 <span>50</span>位业主获取</p>
             <div class="col-md-3 column">
                 <div class="" style="background: transparent;text-align: center;color: white">
                     <h2 class="ads_h2">金牌工人<span style="color: #ffdd54;font-size: 1.1em">3秒</span>报价</h2>
@@ -46,18 +45,12 @@
                             <div class="col-md-6 column">
                                 <div class="row">
                                     <div class="form-group">
-                                        <label class="col-sm-4 col-xs-4 control-label">户型</label>
+                                        <label for="tel"
+                                               class="col-sm-4 col-xs-4 control-label">手机号码</label>
                                         <div class="col-sm-8 col-xs-8">
-                                            <label>
-                                                <select name="type" class="form-control">
-                                                    <option value="三室二厅一厨二卫">三室二厅一厨二卫</option>
-                                                    <option value="三室一厅一厨二卫">三室一厅一厨二卫</option>
-                                                    <option value="三室一厅一厨一卫">三室一厅一厨一卫</option>
-                                                    <option value="二室一厅一厨">二室一厅一厨</option>
-                                                    <option value="一室一厅一厨">一室一厅一厨</option>
-                                                    <option value="其他">其他</option>
-                                                </select>
-                                            </label>
+                                            <input type="number" class="form-control" id="tel"
+                                                   name="tel"
+                                                   placeholder="请输入您的手机号手机号">
                                         </div>
                                     </div>
                                 </div>
@@ -76,15 +69,22 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-md-6 column">
                                 <div class="row">
                                     <div class="form-group">
-                                        <label for="tel"
-                                               class="col-sm-4 col-xs-4 control-label">手机号码</label>
+                                        <label class="col-sm-4 col-xs-4 control-label">房屋户型</label>
                                         <div class="col-sm-8 col-xs-8">
-                                            <input type="number" class="form-control" id="tel"
-                                                   name="tel"
-                                                   placeholder="请输入您的手机号手机号">
+                                            <label>
+                                                <select name="type" class="form-control">
+                                                    <option value="三室二厅一厨二卫">三室二厅二卫一厨</option>
+                                                    <option value="三室一厅一厨二卫">三室一厅二卫一厨</option>
+                                                    <option value="三室一厅一厨一卫">三室一厅一卫一厨</option>
+                                                    <option value="二室一厅一厨">二室一厅一厨</option>
+                                                    <option value="一室一厅一厨">一室一厅一厨</option>
+                                                    <option value="其他">其他</option>
+                                                </select>
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
@@ -92,8 +92,8 @@
 
                             <div class="col-md-12 column">
                                 <div class="form-group">
-                                    <div class="col-sm-offset-3 col-xs-offset-3 col-sm-6 col-xs-6">
-                                        <button type="submit" class="btn btn-success "
+                                    <div class="col-sm-offset-6 col-xs-offset-6 col-sm-6 col-xs-6">
+                                        <button type="submit" class="btn btn-success"
                                                 style="background-color:#ffdd54;color: black">马上报价
                                         </button>
                                     </div>

@@ -44,7 +44,7 @@
 <%@include file="WEB-INF/jsp/common/header.jsp" %>
 <div class="page-wrapper">
     <div class="container">
-        <div class="row clearfix banner">
+        <div class="row clearfix">
             <div class="col-md-12 column">
                 <div id="myCarousel" class="carousel slide">
                     <ol class="carousel-indicators">

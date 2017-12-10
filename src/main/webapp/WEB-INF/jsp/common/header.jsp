@@ -29,7 +29,6 @@
                 <li style="position: relative;overflow: hidden;"><span class="ribbon"><a>H</a></span><a href="${pageContext.request.contextPath}/w/category" id="nav-workers">找工人</a></li>
                 <li><a href="${pageContext.request.contextPath}/wokerregister" id="nav-workerregister">工人入驻</a></li>
                 <li><a href="${pageContext.request.contextPath}/appointment">免费预约</a> </li>
-                <li><a href="${pageContext.request.contextPath}/effect">装修效果图</a> </li>
                 <li><a href="${pageContext.request.contextPath}/customer-service" id="nav-service">客服</a> </li>
             </ul>
 

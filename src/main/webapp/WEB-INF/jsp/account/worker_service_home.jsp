@@ -46,7 +46,7 @@
 <%@include file="../common/header.jsp" %>
 <div class="page-wrapper">
     <div class="row clearfix">
-        <div class="col-lg-3 col-md-3 column">
+        <div class="col-lg-2 col-md-2 column">
             <div class="jumbotron">
                 <div class="panel-group" id="accordion">
                     <div class="panel panel-default">
@@ -77,7 +77,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-9 col-md-9 column">
+        <div class="col-lg-10 col-md-10 column">
             <h1>${msg}</h1>
             <c:set var="worker" scope="page" value="${workers}"/>
             <c:if test="${worker.size() > 0}">

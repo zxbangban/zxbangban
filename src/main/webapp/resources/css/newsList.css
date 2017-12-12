@@ -389,7 +389,20 @@ body,button,input,select,textarea {
     margin-top: 0;
     font-weight: 700
 }
-
+@media (max-width:680px){
+    .excerpt h2{
+        font-size:2.25rem;
+    }
+    .excerpt .cat{
+        font-size:2.25rem;
+    }
+    .excerpt .meta{
+        font-size:2rem;
+    }
+    .excerpt .note{
+        font-size:2rem;
+    }
+}
 .excerpt h2 a {
     color: #555
 }

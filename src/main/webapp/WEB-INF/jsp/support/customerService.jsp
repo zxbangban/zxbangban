@@ -12,14 +12,13 @@
     <%@include file="../common/head.jsp"%>
 </head>
 <style type="text/css">
-.jumbotron>.qr_code{
-    width:100%;
-    font-size:56px;
-    text-align: center;
-}
+    .jumbotron>.qr_code{
+        width:100%;
+        font-size:56px;
+        text-align: center;
+    }
     .position{
         position: relative;
-
     }
     .jumbotron{
         position: absolute;
@@ -28,15 +27,36 @@
         margin: 0 auto;
         left: 12%;
     }
-
-.jumbotron >h1,h2{
-    color: #fff;
-    margin-top:50px;
-    margin-bottom:100px;
-}
+    .jumbotron >h1,h2{
+        color: #fff;
+        margin-top:50px;
+        margin-bottom:100px;
+    }
     svg{
-
         width: 100%;
+
+    }
+    .img-responsive{
+        width: 29%;margin: 0 auto;
+    }
+    @media (max-width:660px) {
+        svg{
+            width: 100%;
+            height:70%;
+        }
+        .jumbotron{
+            position: absolute;
+            top: 0;
+            background: none;
+            margin: 0 auto;
+            left: 0;
+        }
+        .jumbotron>.qr_code{
+            font-size:3rem;
+        }
+        .img-responsive{
+            width: 63%;margin: 0 auto;
+        }
     }
 </style>
 <body>
@@ -72,7 +92,7 @@
         <div class="jumbotron">
             <h1 class="qr_code">使用微信扫描二维码，登录微信客服中心</h1>
             <%--<h2>8:30 - 18:30</h2>--%>
-            <img src="${pageContext.request.contextPath}/resources/images/common/QR_2.jpg" alt="" class="img-responsive" style="width: 29%;margin: 0 auto">
+            <img src="${pageContext.request.contextPath}/resources/images/common/QR_2.jpg" alt="" class="img-responsive">
         </div>
     </div>
 </div>

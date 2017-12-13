@@ -192,7 +192,7 @@ public class HomeController {
 
     /**
      *
-     * @return  工人入驻页面跳转
+     * @return  装修效果图
      */
     @RequestMapping("/detail_list")
     public String detailsList(){

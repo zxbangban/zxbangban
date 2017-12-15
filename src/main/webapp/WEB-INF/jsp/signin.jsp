@@ -30,7 +30,7 @@
                                     登录装修帮办会员
                                 </a>
                             </li>
-                            <li>
+                            <li id="WxTab">
                                 <a href="#weixin" data-toggle="tab">
                                     <span class="fa fa-weixin" aria-hidden="true"
                                        style="color: #83d944;">
@@ -92,11 +92,16 @@
             id:"weixin",
             appid: "wx398ae8a98dc4a7cc",
             scope: "snsapi_login",
-            redirect_uri: "https%3a%2f%2fwww.zxbangban.com%2faccount%2fwxtoken",
+            redirect_uri: "https%3A%2F%2Fwww.zxbangban.com",
             state: "",
             style: "white",
             href: ""
         });
+
+        var WxTab = $("#WxTab");
+        if(util.detil.isPC() !== true){
+            WxTab.hide();
+        }
     });
 </script>
 </html>

@@ -349,6 +349,11 @@ p{
 table>thead>tr>th{
     text-align: center;
 }
-
+.btn-submit{
+    margin-top:50px;
+    margin-bottom:50px;
+    width:200px;
+    margin-left:60px;
+}
 
 

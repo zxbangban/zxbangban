@@ -61,9 +61,48 @@
                 <div class="col-md-8 col-sm-8 col-xs-12 column">
                     <div class="jumbotron">
                         <div>
-                            <h2 style="margin-bottom: 0">${worker.name}</h2>
-                            <span><a href="#">编辑名字</a> </span>
+                            <h2 style="margin-bottom: 0">姓名：${worker.name}</h2>
+                            <span><a href="#"></a> </span>
+                            <span></span>
                         </div>
+                        <h2 style="margin-bottom: 0">工程描述:</h2>
+                        <div>
+                            <c:choose>
+                                <c:when test="${empty worker.projectDes}">
+                                    <span style="font-size: 30px;border: 1px;height: auto;width: auto">暂无</span> <br>
+                                    <a href="${pageContext.request.contextPath}/worker-console/addDec?wid=${worker.workerId}"   ><span style="font-size: 20px">添加</span></a>
+                                </c:when>
+                                <c:otherwise>
+                                    <span style="border: 1px;height: auto">
+                                        <div id="projectDes">
+                                              <span style="font-size: 20px;border: 1px;height: auto;width: auto">${worker.projectDes}</span>
+                                        </div>
+                                        <a href="${pageContext.request.contextPath}/worker-console/addDec?wid=${worker.workerId}"   ><span style="font-size: 20px">添加</span></a>
+                                    </span>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                        <h2 style="margin-bottom: 0">工程图片:</h2>
+
+                        <c:choose>
+                            <c:when test="${empty worker.projectImgUrl}">
+                                <span style="font-size: 40px;border: 1px;height: auto;width: auto">暂无</span> <br>
+                                <a href="${pageContext.request.contextPath}/worker-console/uploadpic?wid=${worker.workerId}"><span style="font-size: 20px">上传图片</span></a>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="row">
+                                    <c:forEach items="${worker.projectImgUrl.split(';')}" var="workerImg" >
+                                        <c:if test="${not empty workerImg}">
+                                        <div class="col-md-4 column"  >
+                                            <img src="${workerImg}" class='img-responsive'/>
+                                        </div>
+                                        </c:if>
+                                    </c:forEach>
+                                </div>
+                                <a href="${pageContext.request.contextPath}/worker-console/uploadpic?wid=${worker.workerId}"   ><span style="font-size: 20px">上传图片</span></a>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
                     </div>
                 </div>
             </c:if>
@@ -75,9 +114,7 @@
 </body>
 <%@include file="../common/script.jsp" %>
 <script type="text/javascript">
-    $(function () {
 
-    });
     function ei(param) {
         var $i = $(param);
         var $flag = $($i).val();

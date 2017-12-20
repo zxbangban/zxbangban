@@ -115,6 +115,7 @@
             w.`job_id`,
             w.`address`,
             w.`location`,
+            w.`project_des`,
             w.`project_img_url`,
             w.`state`,
             w.`authenticated`,
@@ -182,6 +183,12 @@
         WHERE `workerId` = #{workerid}
     </update>
 
+    <update id="saveDes" parameterType="WorkerInfo">
+        UPDATE workerinfo
+        SET `project_des` = #{projectDes}
+        WHERE `workerId` = #{workerid}
+    </update>
+
     <update id="editProjectImg">
         UPDATE workerinfo
         SET `project_img_url` = #{projectImg}
@@ -195,7 +202,7 @@
     </select>
 
     <select id="queryDetailByTelPhone" parameterType="String" resultType="WorkerInfo">
-        SELECT `workerId`,`name`,`job_id`,`head_img_url`
+        SELECT `workerId`,`name`,`job_id`,`head_img_url`,`project_des`,`project_img_url`
         FROM workerinfo
         WHERE `tel` = #{telphone}
     </select>

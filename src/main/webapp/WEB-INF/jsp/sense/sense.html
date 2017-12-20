@@ -21,21 +21,25 @@
                 <div class="sence_btn">
                     <ul >
                         <li class="show">
-                            <!--<div class="con_title">-->
-                                <!--<span>123</span>-->
-                                <!--<span>只做第一 &nbsp 永不言败</span>-->
-                            <!--</div>-->
                             <h3 style="text-align: center"></h3>
-                            <div class="main row">
-                                <div class="view view-tenth col-xs-12 col-md-6 col-sm-6">
-                                    <img  src="http://mpic.tiankong.com/03c/4dc/03c4dcb3fc75e286c1c2114a3e423ee6/640.jpg@360h" />
+                            <div class="main">
+                                <div class="view view-tenth">
+                                    <img src="http://mpic.tiankong.com/c1d/7ad/c1d7ad8003e6d5ac2381080c91ba5b20/640.jpg@360h" />
                                     <div class="mask">
                                         <h2>Wonder Girls</h2>
                                         <p>Wonder Girls一向以青春活力的形象展现在观众面前，先后在韩国和美国乐坛都取得了不错的成绩...</p>
                                         <a href="#" class="link">查看全文</a>
                                     </div>
                                 </div>
-                                <div class="view view-tenth  col-xs-12 col-md-6 col-sm-6">
+                                <div class="view view-tenth">
+                                    <img src="http://mpic.tiankong.com/c1d/7ad/c1d7ad8003e6d5ac2381080c91ba5b20/640.jpg@360h" />
+                                    <div class="mask">
+                                        <h2>Wonder Girls</h2>
+                                        <p>Wonder Girls一向以青春活力的形象展现在观众面前，先后在韩国和美国乐坛都取得了不错的成绩...</p>
+                                        <a href="#" class="link">查看全文</a>
+                                    </div>
+                                </div>
+                                <div class="view view-tenth">
                                     <img src="http://mpic.tiankong.com/03c/4dc/03c4dcb3fc75e286c1c2114a3e423ee6/640.jpg@360h" />
                                     <div class="mask">
                                         <h2>Wonder Girls</h2>
@@ -43,15 +47,7 @@
                                         <a href="#" class="link">查看全文</a>
                                     </div>
                                 </div>
-                                <div class="view view-tenth  col-xs-12 col-md-6 col-sm-6">
-                                    <img src="http://mpic.tiankong.com/03c/4dc/03c4dcb3fc75e286c1c2114a3e423ee6/640.jpg@360h" />
-                                    <div class="mask">
-                                        <h2>Wonder Girls</h2>
-                                        <p>Wonder Girls一向以青春活力的形象展现在观众面前，先后在韩国和美国乐坛都取得了不错的成绩...</p>
-                                        <a href="#" class="link">查看全文</a>
-                                    </div>
-                                </div>
-                                <div class="view view-tenth  col-xs-12 col-md-6 col-sm-6">
+                                <div class="view view-tenth">
                                     <img src="http://mpic.tiankong.com/03c/4dc/03c4dcb3fc75e286c1c2114a3e423ee6/640.jpg@360h" />
                                     <div class="mask">
                                         <h2>Wonder Girls</h2>
@@ -62,10 +58,6 @@
                             </div>
                         </li>
                         <li>
-                            <!--<div class="con_title">-->
-                                <!--<span>456</span>-->
-                                <!--<span>只做第一 &nbsp 永不言败</span>-->
-                            <!--</div>-->
                             <h3 style="text-align: center"> </h3>
                             <div class="main">
                                 <div class="view view-tenth">
@@ -112,7 +104,7 @@
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script>
     $(".title_btn h2").click(function(){
-        $(this).toggleClass("active");
+        $(this).toggleClass("active").siblings().removeClass("active");
         $('.sence_btn li').toggleClass('show');
         if($('.sence_btn li').className == "show"){
             alert(1)

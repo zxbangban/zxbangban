@@ -114,13 +114,13 @@
             <h2 style="color: #FFF">请完善您的资料进行认证</h2>
         	</div>
         	<form id="upBox">
-						<h2>请上传您的工程效果图</h2>
-						<div id="inputBox">
-							<input type="file" title="请选择图片" id="file" multiple accept="image/png,image/jpg,image/gif,image/JPEG,video/*" capture="camera" />点击选择图片
-						</div>
-						<div id="imgBox"></div>
-						<a id="btn">上传</a>
-					</form>
+                <h2>请上传您的工程效果图</h2>
+                <div id="inputBox">
+                    <input type="file" title="请选择图片" id="file" multiple accept="image/png,image/jpg,image/gif,image/JPEG,video/*" capture="camera" />点击选择图片
+                </div>
+                <div id="imgBox"></div>
+                <a id="btn">上传</a>
+            </form>
         </div>
     </div>
 </div>

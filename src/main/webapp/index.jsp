@@ -186,6 +186,7 @@
 </div>
 <%@include file="WEB-INF/jsp/common/footer.jsp" %>
 <%@include file="WEB-INF/jsp/common/quoted.jsp"%>
+<%@include file="WEB-INF/jsp/common/active.jsp"%>
 <div id="fudai">
     <a href="${pageContext.request.contextPath}/activity" target="_blank">
         <img src="${pageContext.request.contextPath}/resources/images/activity/bag.png" style="width: 100%;height: auto"/>

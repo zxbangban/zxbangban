@@ -31,6 +31,7 @@
 				border-right: 1px solid #ccc;
 				height: 60px;
 				width: 38%;
+				padding-left: 10px;;
 			}
 			.container div>h3{
 				margin: 0;
@@ -65,11 +66,41 @@
 		  	}
 		  	
 
-			.jobCon{
+			.container .jobCon{
 				vertical-align: top;height: 120px;line-height: 120px;
 			}
 			.time>p:nth-child(2) input{
 				width:21%;border: none;margin-left: 20px;
+			}
+			.container .time,.container .con{
+				margin: 0;
+			}
+			input[type="radio"]{
+				width: 5%;
+				margin: 0;
+				height: 20px;
+				vertical-align: auto;
+			}
+			.container .sex{
+				display: inline-block;
+				width: 30%;
+				border: none;
+				margin-left: 30px;;
+			}
+			.container .sex span{
+			    width: 6rem;
+			    height: 3rem;
+			    z-index: 2;
+			    margin: auto;
+			    display: inline-block;
+			    line-height: 3rem;
+			    text-align: center;
+			    border: .1rem solid #fe5454;
+			    color: #fe5454;
+			}
+			.container .sex .active{
+				background-color: #fe5454;
+    			color: #fff;
 			}
 			@media (max-width: 768px){
 				
@@ -109,47 +140,64 @@
 				.con>.jobCon{
 					width: 100%;
 					border-right:none ;
+					height:5rem;
+					line-height: 5rem;
 				}
 				h4{
 					width: 100%;
 				}
+				#keyword_time_min{
+					border: none;
+					border-left: 1px solid #ccc;
+				}
+				#keyword_time_max{
+					border: none;
+					border-right: 1px solid #ccc;
+				}
 			}
 			
 			
+
 		</style>
 	</head>
 	<body>
 		<div class="container">
 			<form action="" method="post">
 				<div>
-					<h3 class="aa">姓名</h3><input type="text" />
-					<h3>性别</h3><input type="text" style="" />
+					<h3 class="aa">姓名</h3><input type="text" placeholder="张三" />
+					<h3>性别</h3>
+                     <div class="sex">
+                     	
+					    <span class="active">男</span> 	
+					    <span>女</span>
+					     
+					</div>
 				</div>
 				<div>
-					<h3>身份证号</h3><input type="text" />
-					<h3>民族</h3><input type="text" style=""  />
+					<h3>身份证号</h3><input type="number" placeholder="140428*************" />
+					<h3>民族</h3><input type="text" style="border: none;" placeholder="汉族" />
 					
 				</div>
 				<div>
-					<h3>身高(cm)</h3><input type="text" />
-					<h3>体重(kg)</h3><input type="text"  />
+					<h3>身高(cm)</h3><input type="text" placeholder="170" />
+					<h3>体重(kg)</h3><input type="text" style="border: none;" placeholder="50" />
 				</div>
 				
 				<div>
 					<h3>户籍</h3><input type="text" placeholder="列如：山西长治" />
-					<h3>目前所在地</h3><input type="text" placeholder="列如：山西长治市**县**镇**村**号" />
+					<h3>目前所在地</h3><input type="text"style="border: none;" placeholder="列如：山西长治市**县**镇**村**号" />
 				</div>
 				<div>
 					<h3>毕业学校</h3><input type="text" placeholder="列如：北京大学" />
-					<h3>专业</h3><input type="text" placeholder="列如：工程管理"/>
+					<h3>专业</h3><input type="text"style="border: none;" placeholder="列如：工程管理"/>
 				</div>
 				<div>
 					<h3>工种</h3><input type="text" placeholder="列如：工长" />
-					<h3>工龄（年）</h3><input type="number" placeholder="列如：3" />
+					<h3>工龄（年）</h3><input type="number" placeholder="列如：3"style="border: none;" />
 				</div>
 				<div>
 					<h3>通讯地址</h3><input type="text" placeholder="列如：山西省长治市郊区00号" />
-					<h3>联系电话</h3><input type="text" placeholder="列如：135****0000"/>
+					<h3>联系电话</h3><input type="text" placeholder="列如：135****0000"style="border: none;"/>
 				</div>
 				<h2 style="text-align: center;">工作经历</h2>
 				<div>
@@ -173,4 +221,11 @@
 			</form>
 		</div>
 	</body>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(".sex span").click(function() {
+		    $(this).addClass("active");
+		    $(this).siblings("span").removeClass("active");
+		});
+	</script>
 </html>

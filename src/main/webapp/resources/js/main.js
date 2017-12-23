@@ -129,7 +129,7 @@ var homepagestate = {
 
                             var result = data.split(";");
                             for (var i = 0; i < result.length; i++) {
-                                if (result[i].length === 0) {
+                                if (result[i].length ===0) {
                                     continue;
                                 }
                                 $temp += "<div class='col-md-4 column'><img src='" + result[i] + "' class='img-responsive'/> </div>";

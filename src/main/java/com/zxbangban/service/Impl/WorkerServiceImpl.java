@@ -1,15 +1,13 @@
 package com.zxbangban.service.Impl;
 
-import com.zxbangban.dto.Worker;
+import com.zxbangban.entity.Worker;
 import com.zxbangban.entity.WorkerInfo;
-import com.zxbangban.enums.TypesOfWorkers;
 import com.zxbangban.service.WorkerInfoService;
 import com.zxbangban.service.WorkerProfileService;
 import com.zxbangban.service.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,28 +24,13 @@ public class WorkerServiceImpl implements WorkerService {
     }
 
     public List<Worker> queryWorkersByJob(String str) {
-        List<Worker> workers = new ArrayList<Worker>();
-        List<WorkerInfo> workerIfs;
+        List<Worker> workers;
         if(str.equals("ALL")){
-            workerIfs = workerInfoService.queryAll();
+            workers = workerInfoService.queryAll();
         }else {
-            workerIfs = workerInfoService.queryByJobId(TypesOfWorkers.valueOf(str).getJobId());
+            workers = workerInfoService.queryByJobName(str);
         }
-        for (WorkerInfo workerInfo1 : workerIfs) {
-            Worker worker = new Worker();
-            worker.setId(workerInfo1.getWorkerId());
-            worker.setName(workerInfo1.getName());
-            worker.setHeadImgUrl(workerInfo1.getHeadImgUrl());
-            worker.setTelPhone(workerInfo1.getTel());
-            worker.setJob(TypesOfWorkers.typeOf(workerInfo1.getJobId()).getType());
-            worker.setState(workerInfo1.isState());
-            worker.setAuthenticated(workerInfo1.isAuthenticated());
-            worker.setPr(workerInfo1.getPr());
-            worker.setCertificated(workerInfo1.isCertificated());
-            worker.setShow(workerInfo1.isShow());
-            worker.setCreateTime(workerInfo1.getCreateTime());
-            workers.add(worker);
-        }
+
         return workers;
     }
 

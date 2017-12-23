@@ -1,10 +1,8 @@
 package com.zxbangban.web;
 
-import com.zxbangban.dto.Quoted;
 import com.zxbangban.entity.Customer;
 import com.zxbangban.entity.UserInfo;
 import com.zxbangban.entity.WorkerInfo;
-import com.zxbangban.enums.TypesOfWorkers;
 import com.zxbangban.service.AliyunMNService;
 import com.zxbangban.service.CustomerService;
 import com.zxbangban.service.UserInfoService;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by pingyr on 2017/7/14.
@@ -54,10 +51,8 @@ public class CustomerController {
         Customer customer = new Customer(name,tel,location,new Date(),"");
         if(workerId != null){
             WorkerInfo workerInfo = workerInfoService.queryWorkerByWorkerId(Long.parseLong(workerId));
-            customer.setNotes("预约工人姓名:"+workerInfo.getName() +
-                    "; 工人种类:" + TypesOfWorkers.typeOf(workerInfo.getJobId()).getType() +
-                    "; 工人平台认证状态:"+workerInfo.isCertificated() +
-                    "; 工人实名认证状态:"+workerInfo.isAuthenticated()+";");
+            customer.setNotes("预约[工号:" + workerId + ";姓名:"+workerInfo.getName() +
+                   "]");
         }
 
         try{

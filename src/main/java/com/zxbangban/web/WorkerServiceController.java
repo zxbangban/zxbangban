@@ -2,13 +2,12 @@ package com.zxbangban.web;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.zxbangban.dto.Worker;
+import com.zxbangban.entity.Worker;
 import com.zxbangban.dto.WorkerDetail;
 import com.zxbangban.entity.Jobs;
 import com.zxbangban.entity.UserInfo;
 import com.zxbangban.entity.WorkerInfo;
 import com.zxbangban.entity.WorkerProfile;
-import com.zxbangban.enums.TypesOfWorkers;
 import com.zxbangban.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -56,7 +54,7 @@ public class WorkerServiceController {
                 if(j.equals("ALL")){
                     count = workerInfoService.countWorkers();
                 }else {
-                    count = workerInfoService.countWorkersByJoBId(TypesOfWorkers.valueOf(j).getJobId());
+                    count = workerInfoService.countWorkersByJobName(j);
                 }
 
                 List<Jobs> jobsList = jobsService.getJobs();

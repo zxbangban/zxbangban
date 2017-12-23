@@ -169,16 +169,6 @@ public class HomeController {
     public String effect(){
         return "effect/effect";
     }
-
-    /**
-     *
-     * @return  工人入驻页面跳转
-     */
-    @RequestMapping("/wokerregister")
-    public String workerRegister(){
-        return "worker_register";
-    }
-
     /**
      *
      * @return 业主预约页面跳转

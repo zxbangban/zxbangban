@@ -27,7 +27,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="${pageContext.request.contextPath}/shop" id="nav-shop">商城</a></li>
                 <li style="position: relative;overflow: hidden;"><span class="ribbon"><a>H</a></span><a href="${pageContext.request.contextPath}/w/category" id="nav-workers">找工人</a></li>
-                <li><a href="${pageContext.request.contextPath}/wokerregister" id="nav-workerregister">工人入驻</a></li>
+                <li><a href="${pageContext.request.contextPath}/jobs/register" id="nav-workerregister">工人入驻</a></li>
                 <li><a href="${pageContext.request.contextPath}/appointment">免费预约</a> </li>
                 <li><a href="${pageContext.request.contextPath}/customer-service" id="nav-service">客服</a> </li>
             </ul>

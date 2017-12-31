@@ -130,6 +130,8 @@ public class WorkerInfoServiceImpl implements WorkerInfoService{
         return workerInfoDao.changeStateTrue(workerId);
     }
 
+    public int saveDes(long id, String projectDes) {  return workerInfoDao.saveDes(id, projectDes); }
+
     public int changeStateFalse(long workerId) {
         return workerInfoDao.changeStateFalse(workerId);
     }

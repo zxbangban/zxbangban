@@ -56,6 +56,8 @@ public interface WorkerInfoService {
 
     int updateOARating(long workerid);
 
+    int saveDes(long id,String projectDes);
+
     int editPorjectImg(long id,String projectImg);
 
     String queryProjectImgByWorkerId(long workerid);

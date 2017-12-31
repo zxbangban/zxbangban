@@ -144,6 +144,8 @@ public interface WorkerInfoDao {
 
     int editLocation(@Param("workerid") long workerid,@Param("location") String location);
 
+    int saveDes(@Param("workerid") long workerid,@Param("projectDes") String projectDes);
+
     int editProjectImg(@Param("workerid") long workerid,@Param("projectImg") String projectImg);
 
     String queryProjectImgByWorkerId(@Param("workerid") long workerid);

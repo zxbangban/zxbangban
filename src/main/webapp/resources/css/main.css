@@ -355,6 +355,7 @@ table>thead>tr>th{
     text-align: center;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 .table > tbody > tr > th{
     text-align: center;
 }
@@ -539,6 +540,14 @@ table{border-collapse:collapse;border-spacing:0}
     will-change: transform;
 }
 
+=======
+.btn-submit{
+    margin-top:50px;
+    margin-bottom:50px;
+    width:200px;
+    margin-left:60px;
+}
+>>>>>>> c0d553e252f72c247c659f96bde2376eaeed3068
 
 .slide.active .slide__overlay,
 .slide.active .slide__text {

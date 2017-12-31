@@ -249,4 +249,68 @@ public class WorkerServiceController {
         int result = workerInfoService.editPorjectImg(wid,stringBuilder.toString());
         return "redirect:/worker-console/home?j=ALL";
     }
+
+
+    /*
+    * 跳转至工人添加工程描述
+    *
+    * */
+    @RequestMapping(value = "addDec",method = RequestMethod.GET)
+    public String addDec(@RequestParam long wid,Model model){
+        model.addAttribute("wid",wid);
+        return "account_support/addworkerdec";
+    }
+
+    /*
+    * 跳转至工人信息页面
+    *
+    * */
+    @RequestMapping(value = "saveDes",method = RequestMethod.POST)
+    public String saveDec(@RequestParam long wid,@RequestParam String start,@RequestParam String end,@RequestParam String desc,Model model){
+        try{
+            WorkerInfo workerInfo = workerInfoService.queryDetailByWorkerId(wid);
+            StringBuilder projectDes=new StringBuilder();
+            String start1=start.replaceAll("-","/");
+            String end1=end.replaceAll("-","/");
+            if (workerInfo.getProjectDes()==null) {
+                projectDes.append(start1).append("-").append(end1).append(",").append(desc).append("<br/>");
+            }else {
+                projectDes.append(start1).append("-").append(end1).append(",").append(desc).append("<br/>").append(workerInfo.getProjectDes());
+            }
+            int r=workerInfoService.saveDes(wid,projectDes.toString());
+            return "redirect:/my-account/profile-workerinfo";
+        }catch (Exception e){
+            return "common/errorpage";
+        }
+    }
+
+    /*
+    * 跳转至工人上传图片页面
+    * */
+    @RequestMapping(value = "uploadpic",method = RequestMethod.GET)
+    public String uploadpic(@RequestParam long wid,Model model){
+        model.addAttribute("wid",wid);
+        return "account_support/addworkerpic";
+    }
+    /*
+       * 工人上传图片
+       * */
+    @RequestMapping(value = "/wid={wid}/upload-programimg",method = RequestMethod.POST,produces = "text/html;charset=utf8")
+    public String uploadProgramImg(@PathVariable("wid") long wid, @RequestParam MultipartFile[] files){
+        WorkerInfo workerInfo = workerInfoService.queryDetailByWorkerId(wid);
+        String imgUrl = workerInfo.getProjectImgUrl();
+        StringBuilder stringBuilder;
+        if(imgUrl == null){
+            imgUrl = "";
+        }
+        stringBuilder = new StringBuilder(imgUrl);
+        for(MultipartFile item : files){
+            String name = aliyunOSService.updateProjectImages(wid,item);
+            String url = "https://zxbangban.oss-cn-beijing.aliyuncs.com/" + name + "?x-oss-process=style/Cut_picture";
+            stringBuilder.append(";").append(url);
+        }
+        int result = workerInfoService.editPorjectImg(wid,stringBuilder.toString());
+        return "redirect:/my-account/profile-workerinfo";
+    }
+
 }

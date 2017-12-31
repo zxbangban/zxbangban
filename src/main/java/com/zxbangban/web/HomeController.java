@@ -169,6 +169,49 @@ public class HomeController {
     public String effect(){
         return "effect/effect";
     }
+<<<<<<< HEAD
+
+    /**
+     *
+     * @return 装修效果图列表页面
+     */
+    @RequestMapping("/details")
+    public String details(){
+        return "details/details";
+    }
+
+    /**
+     *
+     * @return 招贤纳士
+     */
+    @RequestMapping("/join")
+    public String join(){
+        return "join/join";
+    }
+
+
+
+    /**
+     *
+     * @return  装修效果图
+     */
+    @RequestMapping("/detail_list")
+    public String detailsList(){
+        return "details/detail_list";
+    }
+
+
+    /**
+     *
+     * @return  工人入驻页面跳转
+     */
+    @RequestMapping("/wokerregister")
+    public String workerRegister(){
+        return "worker_register";
+    }
+
+=======
+>>>>>>> f772da54f928b79297a244e3d57f0bb72c629e22
     /**
      *
      * @return 业主预约页面跳转

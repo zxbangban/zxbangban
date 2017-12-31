@@ -28,7 +28,7 @@
             </div>
             <div class="col-md-3 col-sm-6 col-xs-6 column">
                 <h4 class="h4">公司</h4>
-                <p class="pText">招贤纳士</p>
+                <p class="pText"><a href="${pageContext.request.contextPath}/join">招贤纳士</a></p>
                 <p class="pText"><a href="${pageContext.request.contextPath}/about-us">关于我们</a></p>
                 <p class="pText">公司新闻</p>
             </div>

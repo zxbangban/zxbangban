@@ -59,8 +59,7 @@
                                     <span class="glyphicon glyphicon-star"></span>
                                     <span class="glyphicon glyphicon-star"></span>
                                     <span class="glyphicon glyphicon-star"></span>
-                                </li>
-                            </ul>
+                             </ul>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-6 col-xs-6 column">

@@ -8,7 +8,5 @@ import org.springframework.stereotype.Service;
 @Service
 public interface AliyunMNService {
 
-    String mnsValid(String phoneNumber);
-
-    int notification(String phoneNumber);
+    String SMSNotification(int typeNumber,String phoneNumber);
 }

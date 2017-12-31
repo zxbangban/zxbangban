@@ -9,8 +9,11 @@
     margin: 0 0 10px;
 
 }
+<<<<<<< HEAD
 
 a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0}
+=======
+>>>>>>> f772da54f928b79297a244e3d57f0bb72c629e22
 
 #header,#worker-search,#worker-search-banner,#worker-search-banner-search{
     background-color : #e48632;
@@ -351,6 +354,7 @@ p{
 table>thead>tr>th{
     text-align: center;
 }
+<<<<<<< HEAD
 .table > tbody > tr > th{
     text-align: center;
 }
@@ -869,6 +873,9 @@ table{border-collapse:collapse;border-spacing:0}
 .sen{
     background: url(../images/sevse/banner_about.jpg) no-repeat;height: 600px;background-size:100% 100%
 }
+=======
+
+>>>>>>> f772da54f928b79297a244e3d57f0bb72c629e22
 
 .sence .title_btn > h2{
     width:20%;

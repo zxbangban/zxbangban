@@ -26,7 +26,7 @@ public class AppointmentServiceController {
     public String home(@SessionAttribute("uid") String uid, Model model) {
         UserInfo userInfo = userInfoService.queryByUsername(uid);
         Integer roleId = userInfo.getRoleId();
-        if (roleId.equals(4) || roleId.equals(7)) {
+        if (roleId.equals(4) || roleId.equals(7) || roleId.equals(8)) {
             List<Customer> customers = customerService.queryAll();
 
             model.addAttribute("customers",customers);
@@ -41,7 +41,6 @@ public class AppointmentServiceController {
     @RequestMapping(value = "/delete",method = RequestMethod.GET,produces = "text/html;charset=utf8")
     @ResponseBody
     public String delete(@RequestParam("id")long id){
-        System.out.println(id);
         int r = customerService.delete(id);
         return String.valueOf(r);
     }

@@ -1,5 +1,6 @@
 package com.zxbangban.dao;
 
+import com.zxbangban.entity.Worker;
 import com.zxbangban.entity.WorkerInfo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -46,13 +47,15 @@ public interface WorkerInfoDao {
      * 查询所有工人信息
      * @return List<WorkerInfo>
      */
-    List<WorkerInfo> queryAll();
+    List<Worker> queryAll();
 
     /**
      * 查询对应工种下的所有工人信息
      * @return List<WorkerInfo>
      */
-    List<WorkerInfo> queryByJobId(Integer jobId);
+    List<Worker> queryByJobId(Integer jobId);
+
+    List<Worker> queryByJobName(String jobName);
 
     int countWorkers();
 
@@ -63,9 +66,13 @@ public interface WorkerInfoDao {
      */
     int countWorkersByJoBId(@Param("jobId") Integer jobId);
 
+    int countWorkersByJobName(@Param("jobName") String jobName);
+
     List<WorkerInfo> queryDetailByTelPhone(String telphone);
 
     String queryTelByWorkerId(long workerid);
+
+    WorkerInfo queryByTel(String tel);
 
     /**
      * 根据工人id查询工人部分详细信息

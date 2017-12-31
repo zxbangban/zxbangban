@@ -1,4 +1,4 @@
-package com.zxbangban.dto;
+package com.zxbangban.entity;
 
 import org.springframework.stereotype.Repository;
 

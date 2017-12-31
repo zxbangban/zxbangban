@@ -16,10 +16,8 @@
 <%@include file="../common/header.jsp" %>
 <div class="page-wrapper">
     <div class="row clearfix">
-        <div class="col-md-2 column">
 
-        </div>
-        <div class="col-md-10 column">
+        <div class="col-md-12 column">
             <h1>${msg}</h1>
             <c:set var="customer" scope="page" value="${customers}"/>
             <c:if test="${customer.size() > 0}">
@@ -32,7 +30,6 @@
                         <th>手机号</th>
                         <th>工程地址</th>
                         <th>预约时间</th>
-                        <th>优先级</th>
                         <th>备注信息</th>
                         <th>管理</th>
                         <th>其他</th>
@@ -47,7 +44,6 @@
                             <th>${c.telphone}</th>
                             <th>${c.programAddress}</th>
                             <th><fmt:formatDate value="${c.createTime}" type="both"/></th>
-                            <th>${c.priority}</th>
                             <th>${c.notes}</th>
                             <th>
                                 <button type="button" name="notification" class="btn btn-default btn-manager"

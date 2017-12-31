@@ -208,7 +208,7 @@ public class MyAccountController {
     @ResponseBody
     public String managerAppoint(@RequestParam("roleid")Integer roleid,@RequestParam("uid") String uid){
         int i = roleid;
-        if(3 < i && i < 8){
+        if(3 < i && i < 10){
             List<Customer> list = customerService.queryAll();
             ObjectMapper objectMapper = new ObjectMapper();
             try {
@@ -232,7 +232,7 @@ public class MyAccountController {
     @ResponseBody
     public String managerWorker(@RequestParam("roleid")Integer roleId, @RequestParam("uid") String uid){
         int i = roleId;
-        if(3 < i && i < 8){
+        if(3 < i && i < 10){
             List<WorkerInfo> list = workerInfoService.queryNew();
             ObjectMapper objectMapper = new ObjectMapper();
             try {

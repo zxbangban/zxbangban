@@ -12,4 +12,5 @@ public interface UserInfoService {
     UserInfo queryByUsername(String username);
     String queryTelByUsername(String username);
     int updatePassword(String username, String password);
+    UserInfo queryByRoleId(Integer roleId);
 }

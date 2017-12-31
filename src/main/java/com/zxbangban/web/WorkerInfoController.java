@@ -2,8 +2,11 @@ package com.zxbangban.web;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.zxbangban.entity.UserInfo;
 import com.zxbangban.entity.WorkerInfo;
 import com.zxbangban.entity.WorkerProfile;
+import com.zxbangban.service.AliyunMNService;
+import com.zxbangban.service.UserInfoService;
 import com.zxbangban.service.WorkerInfoService;
 import com.zxbangban.service.WorkerProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,12 @@ public class WorkerInfoController {
 
     @Autowired
     private WorkerProfileService workerProfileService;
+
+    @Autowired
+    private AliyunMNService aliyunMNService;
+
+    @Autowired
+    private UserInfoService userInfoService;
 
     @RequestMapping(value = "/category")
     public String category(){
@@ -54,6 +63,9 @@ public class WorkerInfoController {
         workerInfo.setCreateTime(new Date());
         try{
             workerInfoService.newWorkerInfo(workerInfo);
+            UserInfo userInfo = userInfoService.queryByRoleId(8);
+            String telphone = userInfo.getTelphone();
+            aliyunMNService.SMSNotification(6,telphone);
             return "workerregistsuccess";
         }catch (Exception e){
             return "error";
@@ -129,4 +141,19 @@ public class WorkerInfoController {
 
         return workerInfoService.queryProjectImgByWorkerId(id);
     }
+
+    /*
+    * 根据工人手机号查询工人信息
+    *
+    * */
+    @RequestMapping(value = "/workerInfo",method = RequestMethod.POST)
+    public String workerInfo(@RequestParam("tel")String tel,Model model){
+        try{
+            workerInfoService.queryByTel(tel);
+            return "workerregistsuccess";
+        }catch (Exception e){
+            return "error";
+        }
+    }
+
 }

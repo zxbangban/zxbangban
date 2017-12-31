@@ -13,14 +13,11 @@ import java.math.BigDecimal;
 @RequestMapping(value = "/quoted")
 public class ProcessQuotedController {
 
-    @RequestMapping(value = "free",method = RequestMethod.POST)
-    public String freeQuoted(@RequestParam("area")int area,@RequestParam("type") String type,
-                             @RequestParam("tel") String tel,Model model){
+    @RequestMapping(value = "free",method = RequestMethod.GET)
+    public String freeQuoted( @RequestParam("area") int area , Model model){
         BigDecimal a = new BigDecimal(String.valueOf(0.4));
         BigDecimal b = new BigDecimal(String.valueOf(0.6));
         BigDecimal cost = null;
-
-
         if(area < 90){
             cost = BigDecimal.valueOf(200*90);
         }else {

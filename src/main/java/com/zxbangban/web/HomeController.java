@@ -169,6 +169,7 @@ public class HomeController {
     public String effect(){
         return "effect/effect";
     }
+<<<<<<< HEAD
 
     /**
      *
@@ -209,6 +210,8 @@ public class HomeController {
         return "worker_register";
     }
 
+=======
+>>>>>>> f772da54f928b79297a244e3d57f0bb72c629e22
     /**
      *
      * @return 业主预约页面跳转

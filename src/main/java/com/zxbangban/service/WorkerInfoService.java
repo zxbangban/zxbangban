@@ -38,8 +38,6 @@ public interface WorkerInfoService {
 
     WorkerInfo queryDetailByWorkerId(long workerid);
 
-    WorkerInfo queryByTel(String tel);
-
     int updateIsShow(long workerid);
 
     int updateIsNotShow(long workerid);
@@ -69,4 +67,8 @@ public interface WorkerInfoService {
     int deleteWorkerInfo(long workerId);
 
     double queryOARatingByWorkerId(long workerId);
+
+    WorkerInfo queryByTel(String tel);
+
+    int updateWorkerState(boolean state,long workerId);
 }

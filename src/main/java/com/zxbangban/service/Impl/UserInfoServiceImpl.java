@@ -32,4 +32,16 @@ public class UserInfoServiceImpl implements UserInfoService {
     public UserInfo queryByRoleId(Integer roleId) {
         return userInfoDao.queryByRoleId(roleId);
     }
+
+    public UserInfo queryByUnionId(String unionId) {
+        return userInfoDao.queryByUnionId(unionId);
+    }
+    public UserInfo queryByTelphone(String telphone){
+        return userInfoDao.queryByTelphone(telphone);
+    }
+
+    public int saveUserInfo(UserInfo userInfo){
+        return  userInfoDao.saveUserInfo(userInfo);
+    };
+    public int saveUnameAndPassword(UserInfo userInfo){return  userInfoDao.saveUnameAndPassword(userInfo);};
 }

@@ -18,6 +18,8 @@ public class UserInfo {
 
     private String openId;
 
+    private String unionId;
+
     private Integer roleId;
 
     private Integer authen;
@@ -31,6 +33,8 @@ public class UserInfo {
     private Date createTime;
 
     private String telphone;
+
+
 
     public long getUserId() {
         return userId;
@@ -63,6 +67,12 @@ public class UserInfo {
     public void setOpenId(String openId) {
         this.openId = openId;
     }
+
+    public String getunionId() {
+        return unionId;
+    }
+
+    public void setunionId(String unionId) { this.unionId = unionId;  }
 
     public Integer getRoleId() {
         return roleId;
@@ -141,12 +151,13 @@ public class UserInfo {
         this.createTime = createTime;
     }
 
-    public UserInfo(long userId, String username, String password, String openId, Integer roleId, Integer authen,
+    public UserInfo(long userId, String username, String password, String openId,String unionId, Integer roleId, Integer authen,
                     boolean certificeted, String headImgUrl, Integer memberLevel, Date createTime, String telphone) {
         this.userId = userId;
         this.username = username;
         this.password = password;
         this.openId = openId;
+        this.unionId=unionId;
         this.roleId = roleId;
         this.authen = authen;
         this.certificeted = certificeted;
@@ -163,6 +174,7 @@ public class UserInfo {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", openId='" + openId + '\'' +
+                ", unionId='" + unionId + '\'' +
                 ", roleId=" + roleId +
                 ", authen=" + authen +
                 ", certificeted=" + certificeted +

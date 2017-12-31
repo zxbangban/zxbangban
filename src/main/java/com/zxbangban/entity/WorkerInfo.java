@@ -45,6 +45,11 @@ public class WorkerInfo {
      */
     private String location;
 
+    /*
+    * 工程描述
+    * */
+    private  String projectDes;
+
     /**
      * 工程图片
      */
@@ -147,6 +152,15 @@ public class WorkerInfo {
     public void setLocation(String location) {
         this.location = location;
     }
+
+    public String getProjectDes() {
+        return projectDes;
+    }
+
+    public void setProjectDes(String projectDes) {
+        this.projectDes = projectDes;
+    }
+
 
     public String getProjectImgUrl() {
         return projectImgUrl;
@@ -256,7 +270,7 @@ public class WorkerInfo {
     }
 
     public WorkerInfo(long workerId, String name, String headImgUrl, String tel, Integer jobId, String address,
-                      String location, String projectImgUrl, boolean state, boolean authenticated, boolean certificated,
+                      String location,String projectDes, String projectImgUrl, boolean state, boolean authenticated, boolean certificated,
                       boolean pr, String refererTel, boolean isShow, double overAllRating, Date createTime) {
         this.workerId = workerId;
         this.name = name;
@@ -265,6 +279,7 @@ public class WorkerInfo {
         this.jobId = jobId;
         this.address = address;
         this.location = location;
+        this.projectDes=projectDes;
         this.projectImgUrl = projectImgUrl;
         this.state = state;
         this.authenticated = authenticated;
@@ -286,6 +301,7 @@ public class WorkerInfo {
                 ", jobId=" + jobId +
                 ", address='" + address + '\'' +
                 ", location='" + location + '\'' +
+                ", projectDes='" + projectDes + '\'' +
                 ", projectImgUrl='" + projectImgUrl + '\'' +
                 ", state=" + state +
                 ", authenticated=" + authenticated +

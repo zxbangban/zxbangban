@@ -1,7 +1,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zxbangban.dao.WorkerProfileDAO">
+<mapper namespace="com.zxbangban.dao.WorkerProfileDao">
     <insert id="newWorkerProfile" parameterType="WorkerProfile">
         INSERT INTO worker_profile (workerid, age, deposit, star_Evaluated)
         VALUES

@@ -2,13 +2,12 @@ package com.zxbangban.web;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.zxbangban.dto.Worker;
+import com.zxbangban.entity.Worker;
 import com.zxbangban.dto.WorkerDetail;
 import com.zxbangban.entity.Jobs;
 import com.zxbangban.entity.UserInfo;
 import com.zxbangban.entity.WorkerInfo;
 import com.zxbangban.entity.WorkerProfile;
-import com.zxbangban.enums.TypesOfWorkers;
 import com.zxbangban.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -50,13 +48,13 @@ public class WorkerServiceController {
         try{
             UserInfo userInfo = userInfoService.queryByUsername(uid);
             Integer roleId = userInfo.getRoleId();
-            if (roleId.equals(5) || roleId.equals(7)) {
+            if (roleId.equals(5) || roleId.equals(7) || roleId.equals(8)) {
                 List<Worker> workers = workerService.queryWorkersByJob(j);
                 int count;
                 if(j.equals("ALL")){
                     count = workerInfoService.countWorkers();
                 }else {
-                    count = workerInfoService.countWorkersByJoBId(TypesOfWorkers.valueOf(j).getJobId());
+                    count = workerInfoService.countWorkersByJobName(j);
                 }
 
                 List<Jobs> jobsList = jobsService.getJobs();
@@ -82,12 +80,18 @@ public class WorkerServiceController {
     @RequestMapping(value = "/notification", method = RequestMethod.GET, produces = "text/html;charset=utf8")
     @ResponseBody
     public String notification(@RequestParam("wid") long wid) {
-        String tel = workerInfoService.queryTelByWorkerId(wid);
+        WorkerInfo workerInfo = workerInfoService.queryWorkerByWorkerId(wid);
+        String tel = workerInfo.getTel();
+        boolean cert = workerInfo.isCertificated();
+        System.out.println(wid + "; "+ tel +"; "+ cert);
         if (tel.length() == 11) {
-            int r = aliyunMNService.notification(tel);
-            return String.valueOf(r);
+            if(cert){
+                return aliyunMNService.SMSNotification(5,tel);
+            }
+                return aliyunMNService.SMSNotification(2,tel);
+
         } else {
-            return String.valueOf(0);
+            return "failure";
         }
 
     }
@@ -245,4 +249,68 @@ public class WorkerServiceController {
         int result = workerInfoService.editPorjectImg(wid,stringBuilder.toString());
         return "redirect:/worker-console/home?j=ALL";
     }
+
+
+    /*
+    * 跳转至工人添加工程描述
+    *
+    * */
+    @RequestMapping(value = "addDec",method = RequestMethod.GET)
+    public String addDec(@RequestParam long wid,Model model){
+        model.addAttribute("wid",wid);
+        return "account_support/addworkerdec";
+    }
+
+    /*
+    * 跳转至工人信息页面
+    *
+    * */
+    @RequestMapping(value = "saveDes",method = RequestMethod.POST)
+    public String saveDec(@RequestParam long wid,@RequestParam String start,@RequestParam String end,@RequestParam String desc,Model model){
+        try{
+            WorkerInfo workerInfo = workerInfoService.queryDetailByWorkerId(wid);
+            StringBuilder projectDes=new StringBuilder();
+            String start1=start.replaceAll("-","/");
+            String end1=end.replaceAll("-","/");
+            if (workerInfo.getProjectDes()==null) {
+                projectDes.append(start1).append("-").append(end1).append(",").append(desc).append("<br/>");
+            }else {
+                projectDes.append(start1).append("-").append(end1).append(",").append(desc).append("<br/>").append(workerInfo.getProjectDes());
+            }
+            int r=workerInfoService.saveDes(wid,projectDes.toString());
+            return "redirect:/my-account/profile-workerinfo";
+        }catch (Exception e){
+            return "common/errorpage";
+        }
+    }
+
+    /*
+    * 跳转至工人上传图片页面
+    * */
+    @RequestMapping(value = "uploadpic",method = RequestMethod.GET)
+    public String uploadpic(@RequestParam long wid,Model model){
+        model.addAttribute("wid",wid);
+        return "account_support/addworkerpic";
+    }
+    /*
+       * 工人上传图片
+       * */
+    @RequestMapping(value = "/wid={wid}/upload-programimg",method = RequestMethod.POST,produces = "text/html;charset=utf8")
+    public String uploadProgramImg(@PathVariable("wid") long wid, @RequestParam MultipartFile[] files){
+        WorkerInfo workerInfo = workerInfoService.queryDetailByWorkerId(wid);
+        String imgUrl = workerInfo.getProjectImgUrl();
+        StringBuilder stringBuilder;
+        if(imgUrl == null){
+            imgUrl = "";
+        }
+        stringBuilder = new StringBuilder(imgUrl);
+        for(MultipartFile item : files){
+            String name = aliyunOSService.updateProjectImages(wid,item);
+            String url = "https://zxbangban.oss-cn-beijing.aliyuncs.com/" + name + "?x-oss-process=style/Cut_picture";
+            stringBuilder.append(";").append(url);
+        }
+        int result = workerInfoService.editPorjectImg(wid,stringBuilder.toString());
+        return "redirect:/my-account/profile-workerinfo";
+    }
+
 }

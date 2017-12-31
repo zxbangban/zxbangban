@@ -12,4 +12,9 @@ public interface UserInfoService {
     UserInfo queryByUsername(String username);
     String queryTelByUsername(String username);
     int updatePassword(String username, String password);
+    UserInfo queryByRoleId(Integer roleId);
+    UserInfo queryByUnionId(String unionId);
+    UserInfo queryByTelphone(String telphone);
+    int saveUserInfo(UserInfo userInfo);
+    int saveUnameAndPassword(UserInfo userInfo);
 }

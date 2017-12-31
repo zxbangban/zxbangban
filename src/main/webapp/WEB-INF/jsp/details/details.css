@@ -158,6 +158,7 @@ a{
     padding:10px 40px;
     background: #eacc20;
 }
+
 .form-horizontal .form-group{
     margin-left:0;
     margin-right:0;
@@ -165,6 +166,7 @@ a{
 .priceResult{
     margin-left:4px;
 }
+
 .result{
     position: relative;
     width:100%;
@@ -243,6 +245,7 @@ input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{
 .reco_content > a img{
     width:100%;
     height:100%;
+
 }
 .showtime{
     margin-top:54px;background:#9ba3bf;margin-left: 50px;margin-bottom: 10px;

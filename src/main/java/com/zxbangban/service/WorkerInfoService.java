@@ -1,5 +1,6 @@
 package com.zxbangban.service;
 
+import com.zxbangban.entity.Worker;
 import com.zxbangban.entity.WorkerInfo;
 import org.springframework.stereotype.Service;
 
@@ -21,13 +22,17 @@ public interface WorkerInfoService {
 
     List<WorkerInfo> queryNew();
 
-    List<WorkerInfo> queryAll();
+    List<Worker> queryAll();
 
-    List<WorkerInfo> queryByJobId(Integer jobId);
+    List<Worker> queryByJobId(Integer jobId);
+
+    List<Worker> queryByJobName(String jobName);
 
     int countWorkers();
 
     int countWorkersByJoBId(Integer jobId);
+
+    int countWorkersByJobName(String jobName);
 
     String queryTelByWorkerId(long workerid);
 
@@ -51,6 +56,8 @@ public interface WorkerInfoService {
 
     int updateOARating(long workerid);
 
+    int saveDes(long id,String projectDes);
+
     int editPorjectImg(long id,String projectImg);
 
     String queryProjectImgByWorkerId(long workerid);
@@ -62,4 +69,8 @@ public interface WorkerInfoService {
     int deleteWorkerInfo(long workerId);
 
     double queryOARatingByWorkerId(long workerId);
+
+    WorkerInfo queryByTel(String tel);
+
+    int updateWorkerState(boolean state,long workerId);
 }

@@ -50,6 +50,7 @@ public class UserInfoController {
                     httpServletResponse.addCookie(cookie);
                 }
             }
+
             return "redirect:/home";
         }
     }
@@ -74,7 +75,8 @@ public class UserInfoController {
 
     @RequestMapping(value = "/wxtoken")
     public String wxtoken(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse,Model model){
-        httpServletResponse.setContentType("text/html;charset=UTF-8");
+
+      httpServletResponse.setContentType("text/html;charset=UTF-8");
         String code = httpServletRequest.getParameter("code");
         String url1 = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + WXAutoUtil.appId + "&secret=" + WXAutoUtil.appSecret +
                 "&code=" + code + "&grant_type=authorization_code";
@@ -84,33 +86,83 @@ public class UserInfoController {
             String refresh_token = jsonObject1.getString("refresh_token");
             String openid = jsonObject1.getString("openid");
             String unionid = jsonObject1.getString("unionid");
+            UserInfo userInfo = userInfoService.queryByUnionId(unionid);
+            if (userInfo.getTelphone()!=null){
+                userLogin(httpServletRequest, httpServletResponse, model, userInfo.getUsername(), userInfo.getHeadImgUrl());
+                return "redirect:/home";
+            }else {
+
             String url2 = "https://api.weixin.qq.com/sns/userinfo?access_token=" + access_token + "&openid=" + openid;
             JSONObject jsonObject2 = WXAutoUtil.doGetJson(url2);
-            String nickname = URLEncoder.encode(jsonObject2.getString("nickname"),"UTF-8");
             String headimgurl = URLEncoder.encode(jsonObject2.getString("headimgurl"),"UTF-8");
             httpServletResponse.setCharacterEncoding("utf-8");
-            Cookie usernickname = new Cookie("uid", nickname);
             Cookie userheadimg = new Cookie("headimg",headimgurl);
             Cookie userunionid = new Cookie("unionid",unionid);
-            usernickname.setPath("/");
             userheadimg.setPath("/");
             userunionid.setPath("/");
-            httpServletResponse.addCookie(usernickname);
             httpServletResponse.addCookie(userheadimg);
             httpServletResponse.addCookie(userunionid);
             HttpSession httpSession = httpServletRequest.getSession();
-            httpSession.setAttribute("uid",nickname);
             httpSession.setAttribute("unionid",unionid);
             httpSession.setAttribute("headimg",headimgurl);
-            model.addAttribute("uid",nickname);
             model.addAttribute("unionid",unionid);
             model.addAttribute("headimg",headimgurl);
-            return "redirect:/home";
+            return "telbinding";
+           }
         } catch (IOException e) {
             e.printStackTrace();
             return "signin";
         }
 
+    }
+
+
+    /*
+    * 微信登陆手机绑定
+    *
+    * */
+    @RequestMapping(value = "/bindingtel",method = RequestMethod.POST)
+    public String bindingTel(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse,@RequestParam("tel")String telphone,@RequestParam("unionid")String unionid,@RequestParam("headimg")String headimg, Model model){
+        try {
+            //查询手机号，若存在则将用户信息返回；不存在将unionid和telphone保存让用户微信注册
+            UserInfo userInfo=userInfoService.queryByTelphone(telphone);
+            if(userInfo == null){
+                //说明是新用户，让用户注册
+               userInfo.setTelphone(telphone);
+               userInfo.setunionId(unionid);
+               userInfo.setHeadImgUrl(headimg);
+               userInfoService.saveUserInfo(userInfo);
+               model.addAttribute("telphone",telphone);
+                return "wxsignin";
+            }else {
+                //说明用户已经是会员
+                userLogin(httpServletRequest, httpServletResponse, model, userInfo.getUsername(), userInfo.getHeadImgUrl());
+                return "redirect:/home";
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return "signup";
+        }
+    }
+
+    /*
+    * 微信会员注册
+    * */
+    @RequestMapping(value = "/wxregister",method = RequestMethod.POST)
+    public String wxRegister(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestParam("name") String name,
+                           @RequestParam("password")String password, @RequestParam("telphone")String telphone, Model model){
+        try {
+            UserInfo userInfo = userInfoService.queryByTelphone(telphone);
+            userInfo.setUsername(name);
+            userInfo.setPassword(password);
+            userInfoService.saveUnameAndPassword(userInfo);
+            userLogin(httpServletRequest, httpServletResponse, model, name, userInfo.getHeadImgUrl());
+            return "redirect:/home";
+        }catch (Exception e){
+            e.printStackTrace();
+            //model.addAttribute("errormsg","用户名已存在！");
+            return "/signup";
+        }
     }
 
     @RequestMapping(value = "/register",method = RequestMethod.POST)
@@ -148,18 +200,7 @@ public class UserInfoController {
         try{
             UserInfo userInfo = userInfoService.queryByUsername(username);
             if(MD5Util.EncryptedByMD5(password).equals(userInfo.getPassword())){
-                httpServletResponse.setCharacterEncoding("utf-8");
-                Cookie usercookie = new Cookie("uid",username);
-                Cookie userheadimg = new Cookie("headimg", userInfo.getHeadImgUrl());
-                usercookie.setPath("/");
-                userheadimg.setPath("/");
-                httpServletResponse.addCookie(usercookie);
-                httpServletResponse.addCookie(userheadimg);
-                HttpSession httpSession = httpServletRequest.getSession();
-                httpSession.setAttribute("uid",username);
-                httpSession.setAttribute("headimg", userInfo.getHeadImgUrl());
-                model.addAttribute("uid",username);
-                model.addAttribute("headimg", userInfo.getHeadImgUrl());
+                userLogin(httpServletRequest, httpServletResponse, model, username, userInfo.getHeadImgUrl());
                 return "redirect:/home";
             }else {
                 model.addAttribute("errormsg","用户名或密码错误！");
@@ -190,4 +231,19 @@ public class UserInfoController {
         }
         return "redirect:/home";
     }
+    private void userLogin(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Model model, String username, String headImgUrl) {
+        httpServletResponse.setCharacterEncoding("utf-8");
+        Cookie usercookie = new Cookie("uid", username);
+        Cookie userheadimg = new Cookie("headimg", headImgUrl);
+        usercookie.setPath("/");
+        userheadimg.setPath("/");
+        httpServletResponse.addCookie(usercookie);
+        httpServletResponse.addCookie(userheadimg);
+        HttpSession httpSession = httpServletRequest.getSession();
+        httpSession.setAttribute("uid", username);
+        httpSession.setAttribute("headimg", headImgUrl);
+        model.addAttribute("uid", username);
+        model.addAttribute("headimg", headImgUrl);
+    }
+
 }

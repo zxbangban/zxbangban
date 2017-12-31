@@ -248,6 +248,7 @@
     $(function () {
         workerlist.detail.showworkers();
         setInterval(Timer,1000);
+        processQuoted.detail.init();
         processQuoted.detail.window();
 
     });

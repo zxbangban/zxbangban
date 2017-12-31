@@ -1,5 +1,6 @@
 package com.zxbangban.dao;
 
+import com.zxbangban.entity.Worker;
 import com.zxbangban.entity.WorkerInfo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -46,13 +47,15 @@ public interface WorkerInfoDao {
      * 查询所有工人信息
      * @return List<WorkerInfo>
      */
-    List<WorkerInfo> queryAll();
+    List<Worker> queryAll();
 
     /**
      * 查询对应工种下的所有工人信息
      * @return List<WorkerInfo>
      */
-    List<WorkerInfo> queryByJobId(Integer jobId);
+    List<Worker> queryByJobId(Integer jobId);
+
+    List<Worker> queryByJobName(String jobName);
 
     int countWorkers();
 
@@ -63,9 +66,12 @@ public interface WorkerInfoDao {
      */
     int countWorkersByJoBId(@Param("jobId") Integer jobId);
 
+    int countWorkersByJobName(@Param("jobName") String jobName);
+
     List<WorkerInfo> queryDetailByTelPhone(String telphone);
 
     String queryTelByWorkerId(long workerid);
+
 
     /**
      * 根据工人id查询工人部分详细信息
@@ -138,6 +144,8 @@ public interface WorkerInfoDao {
 
     int editLocation(@Param("workerid") long workerid,@Param("location") String location);
 
+    int saveDes(@Param("workerid") long workerid,@Param("projectDes") String projectDes);
+
     int editProjectImg(@Param("workerid") long workerid,@Param("projectImg") String projectImg);
 
     String queryProjectImgByWorkerId(@Param("workerid") long workerid);
@@ -151,4 +159,8 @@ public interface WorkerInfoDao {
 
 
     double queryOARatingByWorkerId(@Param("workerid") long workerId);
+
+    WorkerInfo queryByTel(@Param("tel") String tel);
+
+    int updateWorkerState(@Param("state")boolean state,@Param("workerId")long workerId);
 }

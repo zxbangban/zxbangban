@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: pingyr
@@ -45,35 +46,10 @@
                             <div class="input-group input-group-lg" style="margin-bottom: 20px">
                                 <span class="input-group-addon">工种</span>
                                 <select name="jobId" class="form-control">
-                                    <option value="1">设计师</option>
-                                    <option value="2">工长</option>
-                                    <option value="3">水电工</option>
-
-                                    <option value="4">防水工</option>
-                                    <option value="5">贴砖工</option>
-                                    <option value="6">木工</option>
-
-                                    <option value="7">油漆工</option>
-                                    <option value="8">吊顶工</option>
-                                    <option value="23">土建工</option>
-                                    <option value="24">集成墙吊顶</option>
-                                    <option value="9">家俱安装工</option>
-
-                                    <option value="10">石材安装工</option>
-                                    <option value="11">壁纸工</option>
-                                    <option value="12">室内门安装工</option>
-
-                                    <option value="15">卫浴安装工</option>
-
-                                    <option value="16">灯饰安装</option>
-                                    <option value="17">窗帘安装工</option>
-
-                                    <option value="19">搬运工</option>
-                                    <option value="20">家政</option>
-                                    <option value="21">送货工</option>
-                                    <option value="22">木地工</option>
-                                    <option value="25">美缝工</option>
-                                    <option value="26">包立管</option>
+                                    <c:set var="jobs" value="${jobsList}"/>
+                                    <c:forEach var="job" items="${jobs}">
+                                        <option value="${job.id}">${job.des}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
                             <div class="input-group input-group-lg" style="margin-bottom: 20px">

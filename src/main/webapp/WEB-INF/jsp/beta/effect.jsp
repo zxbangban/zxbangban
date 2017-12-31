@@ -16,12 +16,8 @@
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/effect.css">
     <script src="http://meitu.qizuang.com/assets/common/js/jquery.min.js"></script>
-<<<<<<< HEAD:target/zxbangban/WEB-INF/jsp/effect/effect.html
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="pubu.js"></script>
-
-=======
->>>>>>> 9bbbe54f51e89abf9f4a7eea754d2474dfffac98:src/main/webapp/WEB-INF/jsp/beta/effect.jsp
 </head>
 <body>
 <div class="content">
@@ -192,7 +188,7 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD:target/zxbangban/WEB-INF/jsp/effect/effect.html
+
 <!--banner下面推荐-->
 <div class="content_con">
     <div class="tj container">
@@ -685,10 +681,6 @@
 
 </body>
 <script src="easing.js"  type="text/javascript"></script>
-=======
-
-</body>
->>>>>>> 9bbbe54f51e89abf9f4a7eea754d2474dfffac98:src/main/webapp/WEB-INF/jsp/beta/effect.jsp
 <script type="text/javascript">
     'use strict';
 
@@ -699,12 +691,7 @@
             carousel(carousels[i]);
         }
     });
-<<<<<<< HEAD:target/zxbangban/WEB-INF/jsp/effect/effect.html
     //旋转轮播图
-=======
-
-
->>>>>>> 9bbbe54f51e89abf9f4a7eea754d2474dfffac98:src/main/webapp/WEB-INF/jsp/beta/effect.jsp
     function carousel(root){
         var figure = root.querySelector('figure'),
             nav = root.querySelector('nav'),
@@ -745,7 +732,7 @@
                 e.stopPropagation();
 
                 var t = e.target;
-                if (t.tagName.toUpperCase() != 'BUTTON') return;
+                if (t.tagName.toUpperCase() !== 'BUTTON') return;
 
                 if (t.classList.contains('next')) {
                     currImage++;
@@ -761,7 +748,6 @@
             figure.style.transform = 'rotateY(' + imageIndex * -theta + 'rad)';
         }
     }
-<<<<<<< HEAD:target/zxbangban/WEB-INF/jsp/effect/effect.html
     //手风琴效果
     $(function(){
         $(".treebox .level1>a").click(function(){
@@ -793,7 +779,3 @@
     })
 </script>
 </html>
-=======
-</script>
-
->>>>>>> 9bbbe54f51e89abf9f4a7eea754d2474dfffac98:src/main/webapp/WEB-INF/jsp/beta/effect.jsp

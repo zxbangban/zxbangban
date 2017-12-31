@@ -24,4 +24,32 @@
         WHERE username = #{username}
 
     </update>
+
+    <select id="queryByRoleId" parameterType="Integer" resultType="UserInfo">
+        SELECT user_id,telphone,username,role_id
+        FROM userinfo WHERE role_id = #{roleId}
+    </select>
+
+    <select id="queryByUnionId" parameterType="String" resultType="UserInfo">
+        SELECT username,head_img_url
+        FROM userinfo WHERE unionId= #{unionId}
+    </select>
+
+    <select id="queryByTelphone" parameterType="String" resultType="UserInfo">
+         SELECT user_id,telphone,username,password,role_id,authen,head_img_url,member_level
+        FROM userinfo WHERE telphone = #{telphone}
+    </select>
+
+    <insert id="saveUserInfo" parameterType="UserInfo">
+        INSERT INTO userinfo
+        (telphone,unionid,headimg)
+        VALUES (#{userInfo.telphone},#{userInfo.unionid},#{userInfo.headImgUrl})
+    </insert>
+
+    <insert id="saveUnameAndPassword" parameterType="UserInfo">
+         INSERT INTO userinfo
+          (username,password,telphone,create_time)
+        VALUES (#{userInfo.username},#{userInfo.password},#{userInfo.createTime})
+    </insert>
+
 </mapper>

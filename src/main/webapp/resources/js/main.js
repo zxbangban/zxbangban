@@ -19,7 +19,7 @@ var navbar = {
             var $cookie = $.cookie("uid");
             var $headImg = $.cookie("headimg");
             if($cookie !== undefined && $cookie.length > 5){
-                $cookie = $cookie.substring(0,6) + "...";
+                $cookie = $cookie.substring(0,5) + "...";
             }
             if ($cookie !== undefined) {
                 $navLogin.html(
@@ -129,7 +129,7 @@ var homepagestate = {
 
                             var result = data.split(";");
                             for (var i = 0; i < result.length; i++) {
-                                if (result[i].length === 0) {
+                                if (result[i].length ===0) {
                                     continue;
                                 }
                                 $temp += "<div class='col-md-4 column'><img src='" + result[i] + "' class='img-responsive'/> </div>";
@@ -287,6 +287,122 @@ var workerlist = {
         }
     }
 };
+
+//对于微信工人修改状态
+
+var workerstate = {
+    detail: {
+        validata: function () {
+            $("form").submit(function () {
+                if (valiTel() === false) {
+                    return false;
+                }
+                if (valiTelCode() === false) {
+                    return false;
+                }
+            });
+
+
+            var $tel = $("input[name=tel]");
+            $tel.blur(function () {
+                valiTel()
+            });
+            var $telCode = $("input[name=telcode]");
+            $telCode.blur(function () {
+                valiTelCode();
+            });
+            var $telChChe = "";
+            var $telCodeTemp = "";
+
+            var $flag = 0;
+            $("#codebtn").click(function () {
+                if ($telChChe.length > 0 && $flag === 0) {
+                    $.ajax({
+                        beforeSend: function () {
+                            valiTel();
+                        },
+                        url: "/valitel/aliyunMNSValidate",
+                        data: {
+                            "tel": $telChChe
+                        },
+                        type: "get",
+                        success: function (data) {
+                            $telCodeTemp = data;
+                            checkbtn();
+                        },
+                        error: function (xhr) {
+                            alert(xhr.status + " " + xhr.statusText);
+                        }
+                    });
+                }
+            });
+
+            function valiTel() {
+                var $temp = $tel.val();
+                var $telRegular = /^0?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/;
+                if ($temp.length === 0) {
+                    $tel.val("");
+                    $tel.attr("placeholder", errorInfo.THE_CELL_PHONE_NUMBER_CANNOT_BE_EMPTY);
+                    return false;
+                } else if (!($telRegular.test($temp))) {
+                    $tel.val("");
+                    $tel.attr("placeholder", errorInfo.THE_CELL_PHONE_NUMBER_IS_INCORRECT);
+                    return false;
+                } else {
+                    $telChChe = $temp;
+                    return true;
+                }
+
+
+            }
+
+            function checkbtn() {
+                $flag = 1;
+                var count = 60;
+                var $codeBtn = $("#codebtn");
+                $codeBtn.addClass("disabled");
+                var timer = setInterval(function () {
+                    count = count - 1;
+                    $codeBtn.text(count + "秒后重发");
+                    if (count <= 0) {
+                        $codeBtn.text("验证码");
+                        $codeBtn.removeClass("disabled");
+                        clearInterval(timer);
+                        $flag = 0;
+                        $telCodeTemp = "";
+                    }
+
+                }, 1000)
+
+            }
+
+            function valiTelCode() {
+                valiTel();
+                if ($telCode.val() !== "" && $telCodeTemp !== "") {
+                    if ($telCode.val() === $telCodeTemp) {
+                        return true;
+                    } else {
+                        $telCode.val("");
+                        $telCode.attr("placeholder", errorInfo.THE_VERIFICATION_CODE_IS_INCORRECT);
+                        return false;
+                    }
+                } else {
+                    $telCode.val("");
+                    $telCode.attr("placeholder", errorInfo.NO_VERIFICATION_CODE);
+                    return false;
+                }
+            }
+
+            var errorInfo = {
+                THE_CELL_PHONE_NUMBER_CANNOT_BE_EMPTY: "您没有输入手机号！",
+                THE_CELL_PHONE_NUMBER_IS_INCORRECT: "手机号码输入不正确！",
+                NO_VERIFICATION_CODE: "请填写6位的手机验证码！",
+                THE_VERIFICATION_CODE_IS_INCORRECT: "手机验证码不正确！"
+            };
+        }
+    }
+};
+
 
 var appointment = {
     detail: {
@@ -714,6 +830,133 @@ var usersignup = {
         }
     }
 };
+
+//微信会员注册
+var wxsignup = {
+    detail: {
+        check: function () {
+            $("form").submit(function () {
+                if (valiName() === false || valiName() === undefined) {
+                    return false;
+                }
+                if (checkpassword() === false || checkpassword() === undefined) {
+                    return false;
+                }
+                if (checkPrivacy() === false || checkPrivacy() === undefined) {
+                    return false
+                }
+            });
+
+            var $name = $("input[name=name]");
+            $name.blur(function () {
+                valiName();
+            });
+
+            var $password = $("input[name=password]");
+            $password.blur(function () {
+                valipassword();
+            });
+
+            var $privacy = $("input[name=privacy]");
+
+            function valipassword() {
+                var $temp = $password.val();
+                var $passwordRegular1 = /^\s*$/g;
+                var $passwordRegular2 = /[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/;
+                if ($temp.length === 0) {
+                    $password.val("");
+                    $password.attr("placeholder", errorInfo.PASSWORD_TOO_EMPTY);
+                    return false;
+                }
+                if ($temp.length < 6) {
+                    $password.val("");
+                    $password.attr("placeholder", errorInfo.PASSWORD_PAIR_SHORT);
+                    return false;
+                }
+                if ($temp.length > 16) {
+                    $password.val("");
+                    $password.attr("placeholder", errorInfo.PASSWORD_TOO_LONG);
+                    return false;
+                }
+                if ($passwordRegular1.test($temp)) {
+                    $password.val("");
+                    $password.attr("placeholder", errorInfo.PASSWORD_CANNOT_BE_BLANK);
+                    return false;
+                }
+                if (!($passwordRegular2.test($temp))) {
+                    $password.val("");
+                    $password.attr("placeholder", errorInfo.THE_PASSWORD_HAS_NO_LETTERS);
+                    return false;
+                }
+                return true;
+
+            }
+
+            function checkPrivacy() {
+                return $privacy.prop('checked');
+
+            }
+
+            var errorInfo = {
+                USER_NAME_IS_TOO_SHORT: "用户名过短！(6-40位)",
+                USERNAME_TOO_LONG: "用户名过长！(6-40位)",
+                USER_NAME_IS_EMPTY: "用户名不能为空！",
+                USER_NAME_HAS_SPECIAL_SYMBOLS: "用户名只能由英文，数字组成",
+                DON_T_HAVE_UPPERCASE_LETTERS: "用户名不能有大写字母！",
+                PASSWORD_PAIR_SHORT: "密码不能小于6位！",
+                PASSWORD_TOO_LONG: "密码不能大于16位！",
+                PASSWORD_TOO_EMPTY: "密码不能为空！",
+                THE_PASSWORD_HAS_NO_LETTERS: "密码中必须同时有字母和数字！",
+                PASSWORD_CANNOT_BE_BLANK: "密码中不能有空格！"
+            };
+        }
+    }
+};
+
+//微信手机绑定
+var telbinding = {
+    detail: {
+        check: function () {
+            $("form").submit(function () {
+                if (valiTel() === false || valiTel() === undefined) {
+                    return false;
+                }
+            });
+
+            var $tel = $("input[name=tel]");
+            $tel.blur(function () {
+                valiTel()
+            });
+
+            var $telChChe = "";
+
+            function valiTel() {
+                var $temp = $tel.val();
+                var $telRegular = /^0?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/;
+                if ($temp.length === 0) {
+                    $tel.val("");
+                    $tel.attr("placeholder", errorInfo.THE_CELL_PHONE_NUMBER_CANNOT_BE_EMPTY);
+                    return false;
+                }
+                if (!($telRegular.test($temp))) {
+                    $tel.val("");
+                    $tel.attr("placeholder", errorInfo.THE_CELL_PHONE_NUMBER_IS_INCORRECT);
+                    return false;
+                } else {
+                    $telChChe = $temp;
+                    return true;
+                }
+            }
+
+            var errorInfo = {
+                THE_CELL_PHONE_NUMBER_CANNOT_BE_EMPTY: "手机号码不能为空！",
+                THE_CELL_PHONE_NUMBER_IS_INCORRECT: "手机号码不正确！",
+            };
+        }
+    }
+};
+
+
 //个人中心首页
 var accounthomepage = {
     detail: {
@@ -865,7 +1108,7 @@ var servicehomepage = {
                             }
                             var $cache = "<div class='table-responsive'>" +
                                 "<table class='table'>" +
-                                "<thead><tr><th>姓名</th><th>预约日期</th><th>工程地址</th><th>备注</th></tr></thead><tbody>" + $temp + "</tbody>" +
+                                "<thead><tr><th>姓名</th><th>预约日期</th><th>地址</th><th>备注</th></tr></thead><tbody>" + $temp + "</tbody>" +
                                 "</table>" +
                                 "</div>";
                             $appoint.find("h5").removeClass("loading").html($cache);
@@ -1160,7 +1403,7 @@ var processQuoted = {
     }
 };
 
-var workermanager = {
+var workerManager = {
     detail: {
         init: function () {
 
@@ -1179,7 +1422,7 @@ var workermanager = {
                     type: "get",
                     success: function (result) {
 
-                        if (result !== null && result === "1") {
+                        if (result !== null && result === "success") {
                             alert("短信发送成功");
                             $(c).parent().addClass("success");
                         } else {
@@ -1338,52 +1581,96 @@ var workermanager = {
         }
     }
 };
+var util = {
+    detil : {
+        init : function () {
 
-//选项卡封装
-function tabFun(aBtn,aDiv){
-    for(var i=0;i<aBtn.length;i++){
-        aBtn[i].index=i;
-        aBtn[i].onclick=function(){
-            for(var i=0;i<aBtn.length;i++){//先清空所有的样式
-                aBtn[i].className='';
-                aDiv[i].className='';
+        },
+        //选项卡封装
+        tabFun : function (aBtn, aDiv) {
+            for (var i = 0; i < aBtn.length; i++) {
+                aBtn[i].index = i;
+                aBtn[i].onclick = function () {
+                    for (var i = 0; i < aBtn.length; i++) {//先清空所有的样式
+                        aBtn[i].className = '';
+                        aDiv[i].className = '';
+                    }
+                    this.className = 'on';
+                    aDiv[this.index].className = 'show';
+                };
             }
-            this.className='on';
-            aDiv[this.index].className='show';
-        };
-    }
-}
-//封装ajax代码
-function ajax(){
-    var ajaxData = {
-        type:arguments[0].type || "GET",
-        url:arguments[0].url || "",
-        async:arguments[0].async || "true",
-        data:arguments[0].data || null,
-        dataType:arguments[0].dataType || "text",
-        contentType:arguments[0].contentType || "application/x-www-form-urlencoded",
-        beforeSend:arguments[0].beforeSend || function(){},
-        success:arguments[0].success || function(){},
-        error:arguments[0].error || function(){}
-    }
-    ajaxData.beforeSend()
-    var xhr = createxmlHttpRequest();
-    xhr.responseType=ajaxData.dataType;
-    xhr.open(ajaxData.type,ajaxData.url,ajaxData.async);
-    xhr.setRequestHeader("Content-Type",ajaxData.contentType);
-    xhr.send(convertData(ajaxData.data));
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4) {
-            if(xhr.status == 200){
-                ajaxData.success(xhr.response)
-            }else{
-                ajaxData.error()
+        },
+        //封装ajax代码
+        ajax : function () {
+            var ajaxData = {
+                type: arguments[0].type || "GET",
+                url: arguments[0].url || "",
+                async: arguments[0].async || "true",
+                data: arguments[0].data || null,
+                dataType: arguments[0].dataType || "text",
+                contentType: arguments[0].contentType || "application/x-www-form-urlencoded",
+                beforeSend: arguments[0].beforeSend || function () {
+                },
+                success: arguments[0].success || function () {
+                },
+                error: arguments[0].error || function () {
+                }
+            };
+            ajaxData.beforeSend();
+            var xhr = createXMLHttpRequest();
+            xhr.responseType = ajaxData.dataType;
+            xhr.open(ajaxData.type, ajaxData.url, ajaxData.async);
+            xhr.setRequestHeader("Content-Type", ajaxData.contentType);
+            xhr.send(convertData(ajaxData.data));
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        ajaxData.success(xhr.response)
+                    } else {
+                        ajaxData.error()
+                    }
+                }
             }
+        },
+        //封装getByClassName代码
+        getByClassName : function (oParent, sClassName) {
+            if (oParent.getElementsByClassName(sClassName)) {
+                return oParent.getElementsByTagName('*');
+            } else {
+                var aRes = [];
+                var aChild = oParent.getElementsByTagName('*');
+                for (var i = 0; i < aChild.length; i++) {
+                    var obj = aChild[i];
+                    var oTmp = obj.className.split(' ');
+                    for (var j = 0; j < oTmp.length; j++) {
+                        if (oTmp[j] === sClassName) {
+                            aRes.push(obj)
+                        }
+                    }
+                    return aRes;
+                }
+            }
+        },
+        isPC : function () {
+            var userAgentInfo = navigator.userAgent;
+            var Agents = ["Android", "iPhone",
+                "SymbianOS", "Windows Phone",
+                "iPad", "iPod"];
+            var flag = true;
+            for (var v = 0; v < Agents.length; v++) {
+                if (userAgentInfo.indexOf(Agents[v]) > 0) {
+                    flag = false;
+                    break;
+                }
+            }
+            return flag;
         }
-    }
-}
 
-function createxmlHttpRequest() {
+    }
+};
+
+
+function createXMLHttpRequest() {
     if (window.ActiveXObject) {
         return new ActiveXObject("Microsoft.XMLHTTP");
     } else if (window.XMLHttpRequest) {
@@ -1391,18 +1678,19 @@ function createxmlHttpRequest() {
     }
 }
 
-function convertData(data){
-    if( typeof data === 'object' ){
-        var convertResult = "" ;
-        for(var c in data){
-            convertResult+= c + "=" + data[c] + "&";
+function convertData(data) {
+    if (typeof data === 'object') {
+        var convertResult = "";
+        for (var c in data) {
+            convertResult += c + "=" + data[c] + "&";
         }
-        convertResult=convertResult.substring(0,convertResult.length-1)
+        convertResult = convertResult.substring(0, convertResult.length - 1);
         return convertResult;
-    }else{
+    } else {
         return data;
     }
 }
+<<<<<<< HEAD
 //封装getByClassName代码
 function getByClassName(oParent,sClassName){
     if(oParent.getElementsByClassName(sClassName)){
@@ -1422,6 +1710,55 @@ function getByClassName(oParent,sClassName){
         }
     }
 }
+var lozyLoad = (function(){
+    var clock;
+    function init(){
+        $(window).on('scroll', function(){
+            if(clock){
+                clearTimeout(clock);
+            }
+            clock = setTimeout(function(){
+                checkShow();
+            },200);
+
+        })
+        checkShow();
+
+    }
+    function checkShow(){
+        $('.lazyload img').each(function(){
+            var $cur = $(this);
+            if($cur.attr('isLoaded')){
+                return
+            }
+            if(shouldShow($cur)){
+                showImg($cur);
+            }
+        })
+    }
+    function shouldShow($node){
+        var scrollH = $(window).scrollTop(),
+            winH = $(window).height(),
+            top = $node.offset().top;
+        if(top < winH + scrollH){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    function showImg($node){
+        $node.attr('src',$node.attr('data-img'));
+        $node.attr('isLoaded',true);
+
+    }
+    return {
+        init:init
+    }
+
+})();
+
+=======
+>>>>>>> f772da54f928b79297a244e3d57f0bb72c629e22
 
 
 

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.math.BigDecimal;
 
 @Repository
-public interface WorkerProfileDAO {
+public interface WorkerProfileDao {
 
     /**
      * 更新工人的个人资料

@@ -1,0 +1,166 @@
+<html>
+	<head>
+		
+		<title>工人个人简历上传</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<link href="http://apps.bdimg.com/libs/todc-bootstrap/3.1.1-3.2.1/todc-bootstrap.min.css" rel="stylesheet">
+		<style type="text/css">
+			*{margin:0;padding:0}
+			body,td,th {
+			    font-size: 18px;
+			    color: #000;
+			}
+			input,textarea,img{
+				border: none;
+			}
+			textarea{
+				resize: none;
+				outline: none;
+			}
+			input::-webkit-outer-spin-button,
+			input::-webkit-inner-spin-button {
+			    -webkit-appearance: none !important;
+			    margin: 0;
+			}
+			input{
+				outline: none;
+				line-height:60px ;
+				padding-left: 10px;
+				width: 100%;
+			}
+			table { 
+			 border-collapse:collapse; 
+			 border-spacing:0; 
+			} 
+			th,td { 
+			 padding: 0; 
+			}
+			th{
+				width: 100px;
+			}
+			::-webkit-clear-button {}
+			@media screen and (max-width: 660px) {
+				body,td,th {
+				    font-size:.1rem;
+				    color: #000;
+				}
+				.s{
+					width: 25%;
+				}
+			}
+		</style>
+	</head>
+<body>
+<center>
+  <p><b>个人简历</b></p>
+ 	<div class="table-responsive">
+  	
+ 
+  <table id="ss" class="table table-bordered">
+  	<!--第一行-->
+    <tr>
+      <th class="info">姓名</th>
+      	<td colspan="2" class="s"><input type="text" name="" id="" placeholder="姓名"/></td>
+      <th class="info">性别</th>
+      	<td colspan="1"><input type="text" name="" id="" value="" /></td>
+      	<td  colspan="3" rowspan="3">123</td>
+    </tr>
+	<!--第二行-->
+    <tr>
+      <th>民族</th>
+      	<td colspan="1"><input type="text" name="" id="" value="" /></td>
+      <th>政治面貌</th>
+      	<td colspan="2"><input type="text" name="" id="" value="" /></td>
+    </tr>
+    
+    <tr>
+      <th>身高(cm)</th>
+      	<td><input type="number" name="" id="" value="" /></td>
+      <th>体重(kg)</th>
+      	<td colspan="2"><input type="number" name="" id="" value="" /></td>
+      	
+    </tr>
+   
+    <tr>
+      <th>户籍</th>
+      	<td colspan="1"><input type="text" /></td>
+      <th>目前所在地</th>
+      	<td colspan="3"><input type="text" /></td>
+      
+    </tr>
+    <tr>
+		<th>毕业学校</th>
+	      <td colspan="3" class="ssss">
+	      	<input type="text" name="" id="" value="" />
+	      </td>
+      	<th>专业</th>
+      		<td><input type="text" name="" id="" value="" /></td>
+    </tr>
+   
+    <tr>
+      <th>工种情况</th>
+      	<td colspan="3"><input type="text" name="" id="" value="" /></td>
+      <th>工龄（年）</th>
+      	<td colspan="3"><input type="number"/></td>
+    </tr>
+    <tr>
+      <th>通讯地址</th>
+      	<td colspan="3"><input type="text" /></td>
+      <th>联系电话</th>
+      	<td colspan="3"> <input type="number"/></td>
+    </tr>
+   
+    <tr>
+      	<th colspan="5" height="40px">工作经历</th><td><span id="addBtn" style="display: inline-block;width:100%;text-align: center;">点击添加工作经历</span></td> 
+      	
+    </tr>
+	<tr>
+		<!--<th>任职时间 </th>
+			<td colspan="1"><input type="number" name="" id="" value="" /></td>-->
+	  	
+		<td colspan="3">
+			<p>公司名称: <input type="text" style="width:78%;border: 1px solid #ccc;line-height: 30px;"  /></p>
+			<p style="margin-top: 10px;">工作时间: 
+				<input type="date" name="" id="keyword_time_max" value="" style="width:36%;border: 1px solid #ccc;line-height: 30px;" /> ~
+				<input type="date" name="" id="keyword_time_min" value="" style="width:36%;border: 1px solid #ccc;line-height: 30px;" /> 
+				
+			</p>
+		</td>
+			<!--<th>时间:</th>
+				<td rowspan="1">
+					<input type="text" name="" id="" value="" style="width: 90%;border: 1px solid #ccc;line-height: 30px;" />
+				</td>
+			<th>名字:</th>
+			<input type="text" name="" id="" value="" style="width: 90%;border: 1px solid #ccc;line-height: 30px;" />-->
+		
+		<th >工作内容 </th>
+		<td colspan="3" ><span style="vertical-align: top;"></span><textarea name="" rows="5" cols="50"></textarea></td>
+	</tr>
+    
+  </table>
+  
+  
+</center>
+
+ </div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+	window.onload = function () { 
+		var btn = document.getElementById("addBtn"); 
+		btn.onclick = function() { 
+			insertEle(); 
+		} 
+	} 
+	function insertEle() { 
+		var oTest = document.getElementById("ss"); 
+		var newNode = document.createElement("tr"); 
+		newNode.innerHTML = '<th>公司名称 :</th><td colspan="2" > <input type="" name="" id="" value="" /></td><th >工作内容 : </th><td colspan="4" ><span style="vertical-align: top;"></span><textarea name="" rows="5" cols="50"></textarea></td>'; 
+		//oTest.appendChild(newNode); 
+		oTest.insertBefore(newNode,null); // 这两种方法均可实现 
+	} 
+	
+</script>
+</html>

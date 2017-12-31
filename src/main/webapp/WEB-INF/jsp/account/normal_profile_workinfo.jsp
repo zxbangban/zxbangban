@@ -84,7 +84,7 @@
         $($($i).parent()).html("<div class=''>" +
             "<form class='form' enctype='multipart/form-data' action='/my-account/editheadimg' method='post'>" +
             "<div class='input-group'>" +
-            "<input type='file' class='form-control' name='file'>" +
+            "<input type='file ' class='form-control' name='file'>" +
             "<span class='input-group-btn'><button type='submit' class='btn btn-default'>保存</button>" +
             "</span>" +
             "</div></form></div>");

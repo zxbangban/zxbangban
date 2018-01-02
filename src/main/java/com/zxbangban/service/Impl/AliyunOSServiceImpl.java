@@ -10,8 +10,11 @@ import java.io.*;
 
 @Service
 public class AliyunOSServiceImpl implements AliyunOSService{
-    public String updateHeadImages(long id,MultipartFile multipartfile) {
+    public String updateHeadImages(long id,MultipartFile multipartfile,String oldFile) {
         try {
+            if(oldFile!=null){
+                AliyunOSSUtil.doDelete(oldFile);
+            };
             return AliyunOSSUtil.doPost(String.valueOf(id),multipartfile);
         } catch (IOException e) {
             return  "https://zxbangban.oss-cn-beijing.aliyuncs.com/headdefaultimg.png";

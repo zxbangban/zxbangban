@@ -110,7 +110,7 @@ public class WorkerInfoServiceImpl implements WorkerInfoService{
         return workerInfoDao.editProjectImg(id,projectImg);
     }
 
-    public String queryProjectImgByWorkerId(long workerId) {
+    public String  queryProjectImgByWorkerId(long workerId) {
         return workerInfoDao.queryProjectImgByWorkerId(workerId);
     }
 

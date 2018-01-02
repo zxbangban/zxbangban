@@ -18,7 +18,9 @@
         .headimg {
             background-color: #cccccc;
         }
-
+        .noneBtn{
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -75,15 +77,16 @@
                                 <c:otherwise>
                                     <span style="border: 1px;height: auto">
                                         <div id="projectDes">
-                                              <span style="font-size: 20px;border: 1px;height: auto;width: auto">${worker.projectDes}</span>
+                                              <span class="changeCon" style="font-size: 20px;border: 1px;height: auto;width: auto">${worker.projectDes}</span>
                                         </div>
+                                        <button type="button"  class="btn btn-primary changeBtn"  data-toggle="button"> 编辑</button>
+                                        <button type="button" class="btn btn-primary noneBtn">保存</button>
                                         <a href="${pageContext.request.contextPath}/worker-console/addDec?wid=${worker.workerId}"   ><span style="font-size: 20px">添加</span></a>
                                     </span>
                                 </c:otherwise>
                             </c:choose>
                         </div>
                         <h2 style="margin-bottom: 0">工程图片:</h2>
-
                         <c:choose>
                             <c:when test="${empty worker.projectImgUrl}">
                                 <span style="font-size: 40px;border: 1px;height: auto;width: auto">暂无</span> <br>
@@ -120,12 +123,44 @@
         var $flag = $($i).val();
         $($($i).parent()).html("<div class=''>" +
             "<form class='form' enctype='multipart/form-data' action='/my-account/editheadimg' method='post'>" +
+            "<input type='hidden' class='form-control' name='oldFile' value='${worker.headImgUrl}'>" +
             "<div class='input-group'>" +
             "<input type='file' class='form-control' name='file'>" +
             "<span class='input-group-btn'><button type='submit' class='btn btn-default'>保存</button>" +
             "</span>" +
             "</div></form></div>");
+
     }
+    $(function () {
+       $(".changeBtn").click(function(){
+           $(this).css("display","none");
+           $('.noneBtn').css("display","inline-block")
+           $('.changeCon').attr("contenteditable","true").css("border","1px solid #ccc");
+
+       })
+        $(".noneBtn").click(function(){
+           /* $('.changeCon').attr("contenteditable","false").css("border","none");
+            $(".changeBtn").css("display","inline-block");
+            $(this).css("display","none");*/
+           var projectDes=$(".changeCon").html();
+           $.ajax({
+               type:"POST",
+               url:"${pageContext.request.contextPath}/worker-console/editDes",
+               data:{projectDes:projectDes,wid:${worker.workerId}},
+               dataType:"json",
+               success:function(abc){
+                   if(abc=="1"){
+                       $(".noneBtn").css("display","none");
+                       $('.changeCon').attr("contenteditable","false").css("border","none");
+                       $(".changeBtn").css("display","inline-block");
+                   }else{
+                       alert("保存失败");
+                   }
+               }
+           });
+        })
+
+    })
 </script>
 </html>
 

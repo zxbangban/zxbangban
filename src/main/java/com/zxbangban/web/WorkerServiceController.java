@@ -287,6 +287,20 @@ public class WorkerServiceController {
     }
 
     /*
+   * 跳转至工人信息页面
+   *
+   * */
+    @RequestMapping(value = "editDes",method = RequestMethod.POST)
+    @ResponseBody
+    public String editDes(@RequestParam long wid,@RequestParam String projectDes,Model model){
+        try{
+            workerInfoService.saveDes(wid,projectDes);
+            return "1";
+        }catch (Exception e){
+            return "common/errorpage";
+        }
+    }
+    /*
     * 跳转至工人上传图片页面
     * */
     @RequestMapping(value = "uploadpic",method = RequestMethod.GET)

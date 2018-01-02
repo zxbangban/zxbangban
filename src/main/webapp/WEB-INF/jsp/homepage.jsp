@@ -51,14 +51,22 @@
                                     </c:choose>
                                 </li>
                                 <li>
-                                    工龄:<span class="loading" id="age"></span>
+                                    工龄:<span class="loading" id="age">${workerProfile.age}</span>
                                 </li>
                                 <li>
+                                    星级：
                                     <span class="glyphicon glyphicon-star"></span>
                                     <span class="glyphicon glyphicon-star"></span>
                                     <span class="glyphicon glyphicon-star"></span>
                                     <span class="glyphicon glyphicon-star"></span>
                                     <span class="glyphicon glyphicon-star"></span>
+                                </li>
+
+                                <li>
+                                    籍贯:<span  id="address">${workerinfo.address}</span>
+                                </li>
+                                <li>
+                                    现工程地址:<span  id="location">${workerinfo.location}</span>
                                 </li>
                             </ul>
                         </div>
@@ -70,7 +78,32 @@
                                     <span>综合评分:<span class="" id="oARating">${workerinfo.overAllRating}</span></span>
                                 </li>
                                 <li>
-                                    <span><span class="loading" id="pageview"></span><span class="glyphicon glyphicon-eye-open"></span> </span>
+                                    <span>浏览量：<span class="loading" id="pageview"></span><span class="glyphicon glyphicon-eye-open"></span> </span>
+                                </li>
+                                <li>
+                                    工种:
+                                    <span id="jobId">
+                                        <c:forTokens items="设计师,工长,水电工,防水工,贴砖工,木工,油漆工,吊顶工,土建工,集成墙吊顶,家俱安装工,石材安装工,壁纸工,室内门安装工,卫浴安装工,灯饰安装,窗帘安装工,搬运工,家政,送货工,木地工,美缝工,包立管
+" delims="," var="item" varStatus="status" >
+                                        <c:if test="${workerinfo.jobId==status.count}">${item}</c:if>
+                                        </c:forTokens>
+                                    </span>
+
+                                </li>
+                                <li>
+                                    施工状态:
+                                    <c:choose>
+                                        <c:when test="${workerinfo.state==true}">
+                                            <span  id="state" style="color: red">
+                                                    施工中
+                                            </span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <span id="state" style="color: #83d944">
+                                                     可预约
+                                            </span>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </li>
                                 <li>
                                     <span>
@@ -79,6 +112,7 @@
                                         </a>
                                     </span>
                                 </li>
+
                             </ul>
                         </div>
                     </div>
@@ -96,9 +130,17 @@
                         </h3>
                     </div>
                     <div class="panel-body">
-                        <div id="project">
-                            <h4 class="loading" >Loading</h4>
-                        </div>
+                        <c:choose>
+                            <c:when test="${empty workerinfo.projectDes}">
+                                <h1>暂无数据</h1>
+                            </c:when>
+                            <c:otherwise>
+                                <div >
+                                    <h2 >${workerinfo.projectDes}</h2>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+
                     </div>
                 </div>
             </div>

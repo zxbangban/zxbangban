@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>入驻工人申请 | 装修帮办服务平台</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
     <%@include file="../common/head.jsp"%>
     <STYLE type="text/css">
         .jumbotron{
@@ -16,6 +17,39 @@
         .time_mar{
             margin-left:26px;
         }
+        .condit{
+            border:1px solid #ccc;
+            text-align: left;
+            font-size:14px;
+            padding:10px;
+
+        }
+
+        .inline{
+            display: inline-block;
+        }
+        .sss{
+            display: none;
+        }
+        @media screen and (max-width:660px) {
+            .btn-submit{
+                margin-left:0;
+                margin-top:10px;
+                margin-bottom:10px;
+            }
+            .inline{
+                display: block;
+            }
+            .jumbotron .condit{
+                border:1px solid #ccc;
+                text-align: left;
+                font-size:14px;
+                height:20rem;
+            }
+            .sss{
+                display: inline-block;
+            }
+        }
     </STYLE>
 </head>
 <body>
@@ -29,12 +63,10 @@
                         <h2 style="color: black">平台工人信息录入</h2><br/>
                         <form  action="/worker-console/saveDes" method="post">
                             <input type="hidden" name="wid" value="${wid}">
-                            <span style="font-size: 20px" class="time_mar">时间：</span>
-                            <input type="date" width="60px" name="start">
-                            -
-                            <input type="date" width="60px" name="end"><br/><br/><br/>
-                            <span style="font-size: 20px;vertical-align: top">项目描述：</span>
-                            <textarea name="desc" cols="45" rows="4" max-width="20px" style="resize:none" id="ss"></textarea><br>
+                            <h3 class="inline">时间：</h3>
+                                从：<input type="date" width="60px" name="start" class="start" ><br class="sss" />到：<input type="date" width="60px" name="end">
+                            <h3 style="font-size: 20px;vertical-align: top">项目描述：</h3>
+                            <textarea contenteditable="true" rows="8" cols="65" name="desc" id="textarea" class="condit" style="text-indent: 0;resize: none"></textarea>
                             <input type="submit" value="提交" class="btn btn-success btn-lg btn-submit">
                         </form>
                     </div>
@@ -47,4 +79,13 @@
 <%@include file="../common/footer.jsp"%>
 </body>
 <%@include file="../common/script.jsp"%>
+<script type="text/javascript">
+    $(function(){
+        var clientWidth = document.body.clientWidth || document.documentElement.clientWidth;
+        if(clientWidth <= 600){
+            $("#textarea").attr("cols",27);
+            $("#textarea").attr("rows",8);
+        }
+    })
+</script>
 </html>

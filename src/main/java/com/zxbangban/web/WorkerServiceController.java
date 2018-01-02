@@ -297,6 +297,7 @@ public class WorkerServiceController {
        * */
     @RequestMapping(value = "/wid={wid}/upload-programimg",method = RequestMethod.POST,produces = "text/html;charset=utf8")
     public String uploadProgramImg(@PathVariable("wid") long wid, @RequestParam MultipartFile[] files){
+        try{
         WorkerInfo workerInfo = workerInfoService.queryDetailByWorkerId(wid);
         String imgUrl = workerInfo.getProjectImgUrl();
         StringBuilder stringBuilder;
@@ -311,6 +312,28 @@ public class WorkerServiceController {
         }
         int result = workerInfoService.editPorjectImg(wid,stringBuilder.toString());
         return "redirect:/my-account/profile-workerinfo";
+    }catch (Exception e){
+            return "redirect:/my-account/profile-workerinfo";
+    }
+    }
+
+    /*
+       * 跳转至工人删除图片页面
+       * */
+    @RequestMapping(value = "deletepic",method = RequestMethod.GET)
+    @ResponseBody
+    public String deletePic(@RequestParam String fileName,@RequestParam long wid){
+        try{
+            WorkerInfo workerInfo=workerInfoService.queryDetailByWorkerId(wid);
+            String projectImg=workerInfo.getProjectImgUrl().replace(fileName,"");
+            workerInfoService.updateProjectImg(wid,projectImg);
+            String fName=fileName.replace(";https://zxbangban.oss-cn-beijing.aliyuncs.com/","").replace("?x-oss-process=style/Cut_picture","");
+            aliyunOSService.deleteProjectImage(fName);
+            return "1";
+        }catch (Exception e){
+            return "0";
+         }
+
     }
 
 }

@@ -18,7 +18,30 @@
         .headimg {
             background-color: #cccccc;
         }
+        .imgLen{
 
+        }
+        .imgLen span{
+            position: relative;
+            display: inline-block;
+            margin: 5px;
+        }
+        .imgLen em{
+            position: absolute;
+            top:0;
+            left:0;
+            font-size:20px;
+            display: inline-block;
+            width:100%;
+            height:30px;
+            line-height: 30px;
+            text-align: center;
+            background: rgba(0,0,0,.5);
+            cursor: pointer;
+        }
+        .imgLen img{
+            width:100%;
+        }
     </style>
 </head>
 <body>
@@ -75,9 +98,10 @@
                                 <c:otherwise>
                                     <span style="border: 1px;height: auto">
                                         <div id="projectDes">
-                                              <span style="font-size: 20px;border: 1px;height: auto;width: auto">${worker.projectDes}</span>
+                                              <span style="font-size: 20px;border: 1px;height: auto;width: auto" class="con">${worker.projectDes}</span>
                                         </div>
-                                        <a href="${pageContext.request.contextPath}/worker-console/addDec?wid=${worker.workerId}"   ><span style="font-size: 20px">添加</span></a>
+                                        <span style="font-size: 20px" class="btn btn-success changCon" id="changCon">编辑</span>
+                                        <a href="${pageContext.request.contextPath}/worker-console/addDec?wid=${worker.workerId}"><span style="font-size: 20px" class="btn btn-info">添加</span></a>
                                     </span>
                                 </c:otherwise>
                             </c:choose>
@@ -90,16 +114,19 @@
                                 <a href="${pageContext.request.contextPath}/worker-console/uploadpic?wid=${worker.workerId}"><span style="font-size: 20px">上传图片</span></a>
                             </c:when>
                             <c:otherwise>
-                                <div class="row">
-                                    <c:forEach items="${worker.projectImgUrl.split(';')}" var="workerImg" >
+                                <div class="row"  id="imgLen">
+                                    <c:forEach items="${worker.projectImgUrl.split(';')}" var="workerImg" varStatus="count">
                                         <c:if test="${not empty workerImg}">
-                                        <div class="col-md-4 column"  >
-                                            <img src="${workerImg}" class='img-responsive'/>
+                                        <div class="col-md-4 column imgLen"  >
+                                            <span>
+                                                <em class='remove'>删除图片</em>
+                                                <img src="${workerImg}" class='img-responsive' id="${count.index}"/>
+                                            </span>
                                         </div>
                                         </c:if>
                                     </c:forEach>
                                 </div>
-                                <a href="${pageContext.request.contextPath}/worker-console/uploadpic?wid=${worker.workerId}"   ><span style="font-size: 20px">上传图片</span></a>
+                                <a href="${pageContext.request.contextPath}/worker-console/uploadpic?wid=${worker.workerId}"   ><span  class="btn maxLen btn-primary" style="font-size: 20px">上传图片</span></a>
                             </c:otherwise>
                         </c:choose>
                     </div>
@@ -121,11 +148,53 @@
         $($($i).parent()).html("<div class=''>" +
             "<form class='form' enctype='multipart/form-data' action='/my-account/editheadimg' method='post'>" +
             "<div class='input-group'>" +
-            "<input type='file ' class='form-control' name='file'>" +
+            "<input type='file' class='form-control' name='file'>" +
             "<span class='input-group-btn'><button type='submit' class='btn btn-default'>保存</button>" +
             "</span>" +
             "</div></form></div>");
     }
+    /*编辑按钮*/
+    var changCon = document.getElementById("changCon");
+    changCon.addEventListener("click", chang, false);
+    function chang(){
+        $(".con").attr("contenteditable","true");
+        $(".con").css("border","1px solid #ccc");
+        $(".changCon").html("保存");
+        changCon.addEventListener("click", succ, false);
+        changCon.removeEventListener("click", chang, false);
+    }
+    function succ() {
+        $(".con").attr("contenteditable","flase");
+        $(".con").css("border","none");
+        $(".changCon").html("编辑");
+        changCon.addEventListener("click", chang, false);
+    }
+    /*图片删除*/
+    var imgLen = document.getElementById("imgLen").getElementsByTagName("div");
+    if(imgLen.length >= 7){
+        $('.maxLen').css("display","none");
+    }else{
+        $('.maxLen').css("display","inline-block");
+    }
+    $('.remove').css("color","#fff");
+    $('.remove').click(function(){
+        var index = $(this).siblings().attr("id");
+        var fileName = document.getElementById(index).src;
+        console.log(fileName);
+       $.ajax({
+           url:"${pageContext.request.contextPath}/worker-console/deletepic",
+           type:"GET",
+           data:{wid:${worker.workerId},fileName:fileName},
+           dataType:"json",
+           success:function (receive) {
+               if(receive == 1){
+                   location.reload();
+               }else{
+                   alert("出错了，请刷新页面之后重新删除！");
+               }
+           }
+       })
+    });
 </script>
 </html>
 

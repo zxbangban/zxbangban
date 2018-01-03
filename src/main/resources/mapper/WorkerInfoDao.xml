@@ -63,39 +63,55 @@
         LIMIT 3
     </select>
 
-    <select id="queryAll" resultType="WorkerInfo">
+    <select id="queryAll" resultType="Worker">
         SELECT
-            w.workerId,
+            w.workerId as id,
             w.name,
             w.head_img_url,
-            w.job_id,
+            j.des as job,
             w.pr,
             w.authenticated,
             w.certificated,
             w.location,
             w.state,
             w.create_time,
-            w.tel,
+            w.tel as telPhone,
             w.is_show
-        FROM workerinfo AS w
+        FROM workerinfo AS w INNER JOIN jobs as j WHERE w.job_id = j.id
         ORDER BY w.create_time DESC
     </select>
 
-    <select id="queryByJobId" resultType="WorkerInfo">
+    <select id="queryByJobId" resultType="Worker">
         SELECT
-        w.workerId,
+        w.workerId as id,
         w.name,
         w.head_img_url,
-        w.job_id,
+        j.des AS job,
         w.pr,
         w.authenticated,
         w.certificated,
-        w.location,
         w.state,
         w.create_time,
-        w.tel,
+        w.tel as telPhone,
         w.is_show
-        FROM workerinfo AS w WHERE job_id = #{jobId}
+        FROM workerinfo AS w INNER JOIN jobs as j WHERE w.job_id = j.id and w.job_id = #{jobId}
+        ORDER BY w.create_time DESC
+    </select>
+
+    <select id="queryByJobName" resultType="Worker">
+        SELECT
+        w.workerId as id,
+        w.name,
+        w.head_img_url,
+        j.des AS job,
+        w.pr,
+        w.authenticated,
+        w.certificated,
+        w.state,
+        w.create_time,
+        w.tel as telPhone,
+        w.is_show
+        FROM workerinfo AS w INNER JOIN jobs as j WHERE w.job_id = j.id and w.job_id = #{jobName}
         ORDER BY w.create_time DESC
     </select>
 
@@ -104,7 +120,16 @@
     </select>
 
     <select id="countWorkersByJoBId" resultType="int">
-        SELECT  COUNT(*) FROM workerinfo WHERE job_id = ${jobId}
+        SELECT  COUNT(*) FROM workerinfo WHERE job_id = #{jobId}
+    </select>
+
+    <select id="countWorkersByJobName" resultType="int">
+        SELECT count(*) FROM
+            workerinfo as w
+            INNER JOIN
+            jobs as j WHERE w.job_id = j.id
+                            and
+                            j.name = #{jobName}
     </select>
 
     <select id="queryDetailByWorkerId" resultType="WorkerInfo" parameterType="long">
@@ -208,11 +233,7 @@
         WHERE `tel` = #{telphone}
     </select>
 
-    <select id="queryByTel" parameterType="String" resultType="WorkerInfo">
-        SELECT `workerId`,`name`,`job_id`,`state`
-        FROM workerinfo
-        WHERE `tel` = #{telphone}
-    </select>
+
 
     <update id="changeStateTrue" parameterType="long">
         UPDATE workerinfo SET state = TRUE WHERE `workerId` = #{workerid}
@@ -230,4 +251,16 @@
     <select id="queryOARatingByWorkerId" parameterType="long" resultType="Double">
         SELECT over_all_rating FROM workerinfo WHERE workerId = #{workerid}
     </select>
+
+    <select id="queryByTel" parameterType="String" resultType="WorkerInfo">
+        SELECT `workerId`,`name`,`state`
+        FROM workerinfo
+        WHERE `tel` = #{tel}
+    </select>
+
+    <update id="updateWorkerState">
+        UPDATE workerinfo
+        SET `state` = #{state}
+        WHERE `workerId` = #{workerId}
+    </update>
 </mapper>

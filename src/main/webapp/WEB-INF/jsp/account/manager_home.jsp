@@ -53,7 +53,7 @@
                 </div>
             </div>
             <div class="col-md-8 col-sm-8 col-xs-12 column">
-                <div class="jumbotron" style="height: 210px">
+                <div class="jumbotron" style="height: auto">
                     <h4><span>最近预约</span><span class="pull-right"><a href="${pageContext.request.contextPath}/appoint-console/home">管理中心</a></span></h4>
                     <div class="appoint">
                         <h5 class="loading">正在检查中</h5>
@@ -62,7 +62,7 @@
                 </div>
             </div>
             <div class="col-md-8 col-sm-8 col-xs-12 column">
-                <div class="jumbotron" style="height: 210px">
+                <div class="jumbotron" style="height: auto">
                     <h4><span>最近工人信息</span><span class="pull-right"><a
                             href="${pageContext.request.contextPath}/worker-console/home?j=ALL">管理中心</a></span></h4>
                     <div class="workerinfo">

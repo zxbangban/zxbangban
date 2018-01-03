@@ -143,6 +143,16 @@ public class WorkerInfoController {
         return workerInfoService.queryProjectImgByWorkerId(id);
     }
 
+
+    /*
+    * 工人从微信跳转到手机登陆页面
+    *
+    * */
+    @RequestMapping("/workerlogin")
+    public String workerlogin(){
+        return "workerlogin";
+    }
+
     /*
     * 根据工人手机号查询工人信息
     *
@@ -150,10 +160,25 @@ public class WorkerInfoController {
     @RequestMapping(value = "/workerInfo",method = RequestMethod.POST)
     public String workerInfo(@RequestParam("tel")String tel,Model model){
         try{
-            workerInfoService.queryByTel(tel);
-            return "workerregistsuccess";
+            WorkerInfo workerInfo= workerInfoService.queryByTel(tel);
+            model.addAttribute("workerinfo",workerInfo);
+            return "account/worker_changestate";
         }catch (Exception e){
-            return "error";
+            return "common/errorpage";
+        }
+    }
+
+    /*
+       * 根据工人修改的状态进行保存
+       *
+       * */
+    @RequestMapping(value = "/statesave",method = RequestMethod.POST)
+    public String statesave(@RequestParam("state")boolean state,@RequestParam("wid")long workerId){
+        try{
+            workerInfoService.updateWorkerState(state,workerId);
+            return "workerlogin";
+        }catch (Exception e){
+            return "common/errorpage";
         }
     }
 

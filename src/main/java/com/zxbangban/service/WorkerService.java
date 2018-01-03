@@ -1,6 +1,6 @@
 package com.zxbangban.service;
 
-import com.zxbangban.dto.Worker;
+import com.zxbangban.entity.Worker;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

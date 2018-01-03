@@ -128,7 +128,7 @@ var homepagestate = {
                         if (data.length > 0) {
                             var result = data.split(";");
                             for (var i = 0; i < result.length; i++) {
-                                if (result[i].length === 0) {
+                                if (result[i].length ===0) {
                                     continue;
                                 }
                                 $temp += "<div class='col-md-4 column'><img src='" + result[i] + "' class='img-responsive'/> </div>";
@@ -829,6 +829,133 @@ var usersignup = {
         }
     }
 };
+
+//微信会员注册
+var wxsignup = {
+    detail: {
+        check: function () {
+            $("form").submit(function () {
+                if (valiName() === false || valiName() === undefined) {
+                    return false;
+                }
+                if (checkpassword() === false || checkpassword() === undefined) {
+                    return false;
+                }
+                if (checkPrivacy() === false || checkPrivacy() === undefined) {
+                    return false
+                }
+            });
+
+            var $name = $("input[name=name]");
+            $name.blur(function () {
+                valiName();
+            });
+
+            var $password = $("input[name=password]");
+            $password.blur(function () {
+                valipassword();
+            });
+
+            var $privacy = $("input[name=privacy]");
+
+            function valipassword() {
+                var $temp = $password.val();
+                var $passwordRegular1 = /^\s*$/g;
+                var $passwordRegular2 = /[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/;
+                if ($temp.length === 0) {
+                    $password.val("");
+                    $password.attr("placeholder", errorInfo.PASSWORD_TOO_EMPTY);
+                    return false;
+                }
+                if ($temp.length < 6) {
+                    $password.val("");
+                    $password.attr("placeholder", errorInfo.PASSWORD_PAIR_SHORT);
+                    return false;
+                }
+                if ($temp.length > 16) {
+                    $password.val("");
+                    $password.attr("placeholder", errorInfo.PASSWORD_TOO_LONG);
+                    return false;
+                }
+                if ($passwordRegular1.test($temp)) {
+                    $password.val("");
+                    $password.attr("placeholder", errorInfo.PASSWORD_CANNOT_BE_BLANK);
+                    return false;
+                }
+                if (!($passwordRegular2.test($temp))) {
+                    $password.val("");
+                    $password.attr("placeholder", errorInfo.THE_PASSWORD_HAS_NO_LETTERS);
+                    return false;
+                }
+                return true;
+
+            }
+
+            function checkPrivacy() {
+                return $privacy.prop('checked');
+
+            }
+
+            var errorInfo = {
+                USER_NAME_IS_TOO_SHORT: "用户名过短！(6-40位)",
+                USERNAME_TOO_LONG: "用户名过长！(6-40位)",
+                USER_NAME_IS_EMPTY: "用户名不能为空！",
+                USER_NAME_HAS_SPECIAL_SYMBOLS: "用户名只能由英文，数字组成",
+                DON_T_HAVE_UPPERCASE_LETTERS: "用户名不能有大写字母！",
+                PASSWORD_PAIR_SHORT: "密码不能小于6位！",
+                PASSWORD_TOO_LONG: "密码不能大于16位！",
+                PASSWORD_TOO_EMPTY: "密码不能为空！",
+                THE_PASSWORD_HAS_NO_LETTERS: "密码中必须同时有字母和数字！",
+                PASSWORD_CANNOT_BE_BLANK: "密码中不能有空格！"
+            };
+        }
+    }
+};
+
+//微信手机绑定
+var telbinding = {
+    detail: {
+        check: function () {
+            $("form").submit(function () {
+                if (valiTel() === false || valiTel() === undefined) {
+                    return false;
+                }
+            });
+
+            var $tel = $("input[name=tel]");
+            $tel.blur(function () {
+                valiTel()
+            });
+
+            var $telChChe = "";
+
+            function valiTel() {
+                var $temp = $tel.val();
+                var $telRegular = /^0?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/;
+                if ($temp.length === 0) {
+                    $tel.val("");
+                    $tel.attr("placeholder", errorInfo.THE_CELL_PHONE_NUMBER_CANNOT_BE_EMPTY);
+                    return false;
+                }
+                if (!($telRegular.test($temp))) {
+                    $tel.val("");
+                    $tel.attr("placeholder", errorInfo.THE_CELL_PHONE_NUMBER_IS_INCORRECT);
+                    return false;
+                } else {
+                    $telChChe = $temp;
+                    return true;
+                }
+            }
+
+            var errorInfo = {
+                THE_CELL_PHONE_NUMBER_CANNOT_BE_EMPTY: "手机号码不能为空！",
+                THE_CELL_PHONE_NUMBER_IS_INCORRECT: "手机号码不正确！",
+            };
+        }
+    }
+};
+
+
 //个人中心首页
 var accounthomepage = {
     detail: {
@@ -1562,6 +1689,75 @@ function convertData(data) {
         return data;
     }
 }
+<<<<<<< HEAD
+//封装getByClassName代码
+function getByClassName(oParent,sClassName){
+    if(oParent.getElementsByClassName(sClassName)){
+        return oParent.getElementsByTagName('*');
+    }else{
+        var aRes =[];
+        var aChild = oParent.getElementsByTagName('*');
+        for(var i=0;i<aChild.length;i++){
+            var obj = aChild[i];
+            var oTmp = obj.className.split(' ');
+            for(var j=0;j<oTmp.length;j++){
+                if(oTmp[j] == sClassName){
+                    aRes.push(obj)
+                }
+            }
+            return aRes;
+        }
+    }
+}
+var lozyLoad = (function(){
+    var clock;
+    function init(){
+        $(window).on('scroll', function(){
+            if(clock){
+                clearTimeout(clock);
+            }
+            clock = setTimeout(function(){
+                checkShow();
+            },200);
+
+        })
+        checkShow();
+
+    }
+    function checkShow(){
+        $('.lazyload img').each(function(){
+            var $cur = $(this);
+            if($cur.attr('isLoaded')){
+                return
+            }
+            if(shouldShow($cur)){
+                showImg($cur);
+            }
+        })
+    }
+    function shouldShow($node){
+        var scrollH = $(window).scrollTop(),
+            winH = $(window).height(),
+            top = $node.offset().top;
+        if(top < winH + scrollH){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    function showImg($node){
+        $node.attr('src',$node.attr('data-img'));
+        $node.attr('isLoaded',true);
+
+    }
+    return {
+        init:init
+    }
+
+})();
+
+=======
+>>>>>>> f772da54f928b79297a244e3d57f0bb72c629e22
 
 
 

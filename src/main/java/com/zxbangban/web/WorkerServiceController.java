@@ -2,13 +2,12 @@ package com.zxbangban.web;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.zxbangban.dto.Worker;
+import com.zxbangban.entity.Worker;
 import com.zxbangban.dto.WorkerDetail;
 import com.zxbangban.entity.Jobs;
 import com.zxbangban.entity.UserInfo;
 import com.zxbangban.entity.WorkerInfo;
 import com.zxbangban.entity.WorkerProfile;
-import com.zxbangban.enums.TypesOfWorkers;
 import com.zxbangban.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -56,7 +54,7 @@ public class WorkerServiceController {
                 if(j.equals("ALL")){
                     count = workerInfoService.countWorkers();
                 }else {
-                    count = workerInfoService.countWorkersByJoBId(TypesOfWorkers.valueOf(j).getJobId());
+                    count = workerInfoService.countWorkersByJobName(j);
                 }
 
                 List<Jobs> jobsList = jobsService.getJobs();
@@ -313,6 +311,7 @@ public class WorkerServiceController {
        * */
     @RequestMapping(value = "/wid={wid}/upload-programimg",method = RequestMethod.POST,produces = "text/html;charset=utf8")
     public String uploadProgramImg(@PathVariable("wid") long wid, @RequestParam MultipartFile[] files){
+        try{
         WorkerInfo workerInfo = workerInfoService.queryDetailByWorkerId(wid);
         String imgUrl = workerInfo.getProjectImgUrl();
         StringBuilder stringBuilder;
@@ -327,6 +326,28 @@ public class WorkerServiceController {
         }
         int result = workerInfoService.editPorjectImg(wid,stringBuilder.toString());
         return "redirect:/my-account/profile-workerinfo";
+    }catch (Exception e){
+            return "redirect:/my-account/profile-workerinfo";
+    }
+    }
+
+    /*
+       * 跳转至工人删除图片页面
+       * */
+    @RequestMapping(value = "deletepic",method = RequestMethod.GET)
+    @ResponseBody
+    public String deletePic(@RequestParam String fileName,@RequestParam long wid){
+        try{
+            WorkerInfo workerInfo=workerInfoService.queryDetailByWorkerId(wid);
+            String projectImg=workerInfo.getProjectImgUrl().replace(fileName,"");
+            workerInfoService.updateProjectImg(wid,projectImg);
+            String fName=fileName.replace(";https://zxbangban.oss-cn-beijing.aliyuncs.com/","").replace("?x-oss-process=style/Cut_picture","");
+            aliyunOSService.deleteProjectImage(fName);
+            return "1";
+        }catch (Exception e){
+            return "0";
+         }
+
     }
 
 }

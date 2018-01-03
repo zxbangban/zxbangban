@@ -1,7 +1,8 @@
 package com.zxbangban.service.Impl;
 
 import com.zxbangban.dao.WorkerInfoDao;
-import com.zxbangban.dao.WorkerProfileDAO;
+import com.zxbangban.dao.WorkerProfileDao;
+import com.zxbangban.entity.Worker;
 import com.zxbangban.entity.WorkerInfo;
 import com.zxbangban.service.WorkerInfoService;
 import com.zxbangban.service.WorkerService;
@@ -20,7 +21,7 @@ public class WorkerInfoServiceImpl implements WorkerInfoService{
     private WorkerInfoDao workerInfoDao;
 
     @Autowired
-    private WorkerProfileDAO workerProfileDAO;
+    private WorkerProfileDao workerProfileDao;
 
     @Autowired
     private WorkerService workerService;
@@ -41,14 +42,18 @@ public class WorkerInfoServiceImpl implements WorkerInfoService{
         return workerInfoDao.queryNew();
     }
 
-    public List<WorkerInfo> queryAll() {
+    public List<Worker> queryAll() {
         return workerInfoDao.queryAll();
     }
 
-    public List<WorkerInfo> queryByJobId(Integer jobId) {
+    public List<Worker> queryByJobId(Integer jobId) {
         return workerInfoDao.queryByJobId(jobId);
     }
 
+    @Override
+    public List<Worker> queryByJobName(String jobName) {
+        return workerInfoDao.queryByJobName(jobName);
+    }
 
     public int countWorkers() {
         return workerInfoDao.countWorkers();
@@ -58,13 +63,16 @@ public class WorkerInfoServiceImpl implements WorkerInfoService{
         return workerInfoDao.countWorkersByJoBId(jobId);
     }
 
+    @Override
+    public int countWorkersByJobName(String jobName) {
+        return workerInfoDao.countWorkersByJobName(jobName);
+    }
+
     public String queryTelByWorkerId(long workerId) {
         return workerInfoDao.queryTelByWorkerId(workerId);
     }
 
-    public WorkerInfo queryByTel(String tel) {
-        return workerInfoDao.queryByTel(tel);
-    }
+
 
     public WorkerInfo queryDetailByWorkerId(long workerId) {
         return workerInfoDao.queryDetailByWorkerId(workerId);
@@ -135,4 +143,9 @@ public class WorkerInfoServiceImpl implements WorkerInfoService{
     public double queryOARatingByWorkerId(long workerId) {
         return workerInfoDao.queryOARatingByWorkerId(workerId);
     }
+
+    public  WorkerInfo queryByTel(String tel){ return  workerInfoDao.queryByTel(tel);};
+
+    public int updateWorkerState(boolean state,long workerId){ return workerInfoDao.updateWorkerState(state, workerId);};
+
 }

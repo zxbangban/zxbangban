@@ -760,7 +760,6 @@
                         <h5>UI设计师</h5>
                     </div>
                 </div>
-
             </div>
             <div class="col-md-3 col-sm-6 col-xs-12 column">
                 <div class="about_rel about_chuPeng">
@@ -773,11 +772,10 @@
                         </ul>
                     </div>
                     <div class="list-unstyled text-center about_ul_li">
-                        <h4><strong>刘丰</strong></h4>
+                        <h4><strong>赵志衡</strong></h4>
                         <h5>JAVA程序员</h5>
                     </div>
                 </div>
-
             </div>
             <div class="col-md-3 col-sm-6 col-xs-12 column">
                 <div class="about_rel about_chuPeng">

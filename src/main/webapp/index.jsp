@@ -35,9 +35,7 @@
         .modal-backdrop.in {
             opacity: 0.75;
         }
-        .container > .banner{
-            margin-top: 10px;
-        }
+
     </style>
 </head>
 <body>
@@ -46,7 +44,7 @@
     <div class="container">
         <div class="row clearfix">
             <div class="col-md-12 column">
-                <div id="myCarousel" class="carousel slide">
+                <div id="myCarousel" class="carousel slide" style="padding:0;">
                     <ol class="carousel-indicators">
                         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                         <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -189,6 +187,7 @@
 </div>
 <%@include file="WEB-INF/jsp/common/footer.jsp" %>
 <%@include file="WEB-INF/jsp/common/quoted.jsp"%>
+<%@include file="WEB-INF/jsp/common/active.jsp"%>
 <div id="fudai">
     <a href="${pageContext.request.contextPath}/activity" target="_blank">
         <img src="${pageContext.request.contextPath}/resources/images/activity/bag.png" style="width: 100%;height: auto"/>

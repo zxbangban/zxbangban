@@ -193,8 +193,8 @@ public class WorkerServiceController {
      * @param file 姓名
      */
     @RequestMapping(value = "/wid={wid}/edit-headimg",method = RequestMethod.POST,produces = "text/html;charset=utf8")
-    public String edithImg(@PathVariable("wid") long wid, @RequestParam(value = "file")MultipartFile file){
-        String imgname = aliyunOSService.updateHeadImages(wid,file);
+    public String edithImg(@PathVariable("wid") long wid,@RequestParam("oldFile")String oldFile, @RequestParam(value = "file")MultipartFile file){
+        String imgname = aliyunOSService.updateHeadImages(wid,file,oldFile);
         String imgurl = "https://zxbangban.oss-cn-beijing.aliyuncs.com/" + imgname + "?x-oss-process=style/headimg";
         workerInfoService.editheadimg(wid,imgurl);
         return "redirect:/worker-console/home?j=ALL";
@@ -284,6 +284,20 @@ public class WorkerServiceController {
         }
     }
 
+    /*
+   * 跳转至工人信息页面
+   *
+   * */
+    @RequestMapping(value = "editDes",method = RequestMethod.POST)
+    @ResponseBody
+    public String editDes(@RequestParam long wid,@RequestParam String projectDes,Model model){
+        try{
+            workerInfoService.saveDes(wid,projectDes);
+            return "1";
+        }catch (Exception e){
+            return "common/errorpage";
+        }
+    }
     /*
     * 跳转至工人上传图片页面
     * */

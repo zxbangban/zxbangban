@@ -114,7 +114,7 @@ var homepagestate = {
             }
         },
         c: function (param) {
-            var $orders = $("#project");
+            //var $orders = $("#project");
             var $orderImg = $("#projectimg");
             if (param.length > 0) {
                 $.ajax({
@@ -126,7 +126,6 @@ var homepagestate = {
                     success: function (data) {
                         var $temp = "";
                         if (data.length > 0) {
-
                             var result = data.split(";");
                             for (var i = 0; i < result.length; i++) {
                                 if (result[i].length ===0) {
@@ -135,11 +134,11 @@ var homepagestate = {
                                 $temp += "<div class='col-md-4 column'><img src='" + result[i] + "' class='img-responsive'/> </div>";
                             }
                             var $text = "<div class='row clearfix'>" + $temp + "</div>";
-                            $orders.html("<h1>暂无数据。</h1>");
+                           // $orders.html("<h1>data.projectDes</h1>");
                             $orderImg.html($text);
                         } else {
-                            $orders.html("<h1>暂无数据。</h1>");
-                            $orderImg.html("<h1>暂无数据。</h1>");
+                            //$orders.html("<h1>暂无数据。</h1>");
+                            $orderImg.html("<h1>暂无数据</h1>");
                         }
                     },
                     error: function (xhr) {

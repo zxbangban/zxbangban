@@ -83,7 +83,7 @@
                     <h1>
                         <img src="https://zxbangban.oss-cn-beijing.aliyuncs.com/home/func01.png"/>
                         <a href="${pageContext.request.contextPath}/w/category" type="button"
-                           class="btn btn-default btn-lg btn-block">我要装修</a>
+                           class="btn btn-default btn-lg btn-block btn-primary">我要装修</a>
                     </h1>
                 </div>
             </div>
@@ -92,7 +92,7 @@
                     <h1>
                         <img src="https://zxbangban.oss-cn-beijing.aliyuncs.com/home/func02.png"/>
                         <a href="${pageContext.request.contextPath}/shop" type="button"
-                           class="btn btn-default btn-lg btn-block">建材商城</a>
+                           class="btn btn-default btn-lg btn-block btn-success">建材商城</a>
                     </h1>
                 </div>
             </div>
@@ -101,7 +101,7 @@
                     <h1>
                         <img src="https://zxbangban.oss-cn-beijing.aliyuncs.com/home/func03.png"/>
                         <a href="${pageContext.request.contextPath}/about" type="button"
-                           class="btn btn-default btn-lg btn-block">免费设计</a>
+                           class="btn btn-default btn-lg btn-block btn-info">免费设计</a>
                     </h1>
                 </div>
             </div>
@@ -110,10 +110,23 @@
                     <h1>
                         <img src="https://zxbangban.oss-cn-beijing.aliyuncs.com/home/func04.png"/>
                         <a href="${pageContext.request.contextPath}/appointment" type="button"
-                           class="btn btn-default btn-lg btn-block">免费预约</a>
+                           class="btn btn-default btn-lg btn-block btn-danger">免费预约</a>
                     </h1>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-6 column">
+                <img class="img-responsive" src="https://zxbangban.oss-cn-beijing.aliyuncs.com/home/shoppingad.png"/>
+            </div>
+            <div class="col-md-6 column">
+                <img class="img-responsive" src="https://zxbangban.oss-cn-beijing.aliyuncs.com/homestyle.png"/>
+            </div>
+        </div>
+        <div class="row clearfix">
+
         </div>
     </div>
     <div style="background-color: #f1fafe">
@@ -131,7 +144,7 @@
                             </div>
                             <h3>承诺保障</h3>
                             <span>助力每一位业主体验超凡.</span><br/>
-                            <a href="${pageContext.request.contextPath}/about" class="btn btn-default gbtn">了解更多</a>
+                            <a href="${pageContext.request.contextPath}/about" class="btn btn-default gbtn btn-link"><h4>了解更多...</h4></a>
                         </div>
                     </div>
                 </div>
@@ -147,7 +160,7 @@
                             </div>
                             <h3>工人体系</h3>
                             <span>予力每一位工人造就非凡.</span><br/>
-                            <a href="" class="btn btn-default gbtn">了解更多</a>
+                            <a href="" class="btn btn-default gbtn btn-link"><h4>了解更多...</h4></a>
                         </div>
                     </div>
                 </div>
@@ -162,7 +175,7 @@
                             </div>
                             <h3>关于我们</h3>
                             <span>我们对自己所要追求的目标充满信心.</span><br/>
-                            <a href="${pageContext.request.contextPath}/about-us" class="btn btn-default gbtn">了解更多</a>
+                            <a href="${pageContext.request.contextPath}/about-us" class="btn btn-default gbtn btn-link"><h4>了解更多...</h4></a>
                         </div>
                     </div>
                 </div>
@@ -170,19 +183,7 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="row clearfix">
-            <div class="col-md-6 column">
-                <img class="img-responsive" src="https://zxbangban.oss-cn-beijing.aliyuncs.com/home/shoppingad.png"/>
-            </div>
-            <div class="col-md-6 column">
-                <img class="img-responsive" src="https://zxbangban.oss-cn-beijing.aliyuncs.com/homestyle.png"/>
-            </div>
-        </div>
-        <div class="row clearfix">
 
-        </div>
-    </div>
 </div>
 <%@include file="WEB-INF/jsp/common/footer.jsp" %>
 <%@include file="WEB-INF/jsp/common/quoted.jsp"%>

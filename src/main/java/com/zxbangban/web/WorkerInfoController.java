@@ -75,8 +75,10 @@ public class WorkerInfoController {
     @RequestMapping(value = "/find/workerid={workerid}/home")
     public String workerHomepage(@PathVariable("workerid")long workerid,Model model){
         WorkerInfo workerInfo = workerInfoService.queryWorkerByWorkerId(workerid);
+        WorkerProfile workerProfile=workerProfileService.queryByWorkerId(workerid);
         if(workerInfo != null){
             model.addAttribute("workerinfo",workerInfo);
+            //model.addAttribute("workerProfile",workerProfile);
             return "homepage";
         }else {
             return "redirect:/error";
@@ -138,7 +140,6 @@ public class WorkerInfoController {
     @RequestMapping(value = "/orderdetail/finder",method = RequestMethod.GET,produces = "text/html;charset=utf8")
     @ResponseBody
     public String orderDetail(@RequestParam("id")long id){
-
         return workerInfoService.queryProjectImgByWorkerId(id);
     }
 

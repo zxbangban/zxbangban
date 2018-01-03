@@ -152,12 +152,12 @@ public class MyAccountController {
         return "account/changepassword";
     }
     @RequestMapping(value = "/editheadimg")
-    public String editHeadImg(@SessionAttribute("uid")String uid,@RequestParam(value = "file")MultipartFile file){
+    public String editHeadImg(@SessionAttribute("uid")String uid,@RequestParam("oldFile")String oldFile,@RequestParam(value = "file")MultipartFile file){
         try {
             UserInfo userInfo = userInfoService.queryByUsername(uid);
             String tel = userInfo.getTelphone();
             List<WorkerInfo> list = workerInfoService.queryByTelphone(tel);
-            String imgName = aliyunOSService.updateHeadImages(userInfo.getUserId(),file);
+            String imgName = aliyunOSService.updateHeadImages(userInfo.getUserId(),file,oldFile);
             String url = "https://zxbangban.oss-cn-beijing.aliyuncs.com/" + imgName + "?x-oss-process=style/headimg";
             System.out.println(url);
             for(WorkerInfo workerInfo : list){

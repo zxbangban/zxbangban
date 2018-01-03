@@ -26,6 +26,7 @@
             w.job_id,
             w.pr,
             w.tel,
+            w.project_des,
             w.authenticated,
             w.certificated,
             w.location,
